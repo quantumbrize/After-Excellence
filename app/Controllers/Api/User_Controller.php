@@ -1357,6 +1357,153 @@ class User_Controller extends Api_Controller
 
     }
 
+    // private function new_student_registration($data)
+    // {
+    //     $resp = [
+    //         "status" => false,
+    //         "message" => "Failed to Registration.",
+    //         "data" => []
+    //     ];
+
+    //     try {
+    //         $uploadedFiles = $this->request->getFiles();
+    //         if (empty($data['user_name'])) {
+    //             $resp['message'] = 'Please enter name';
+    //         } else if (empty($data['fathers_name'])) {
+    //             $resp['message'] = 'Please enter fathers name';
+    //         } else if (empty($data['phone'])) {
+    //             $resp['message'] = 'Please enter phone';
+    //         } else if (empty($data['whatsapp'])) {
+    //             $resp['message'] = 'Please enter whatsapp no.';
+    //         } else if (empty($data['email'])) {
+    //             $resp['message'] = 'Please enter email';
+    //         } else if (empty($data['dob'])) {
+    //             $resp['message'] = 'Please enter date of birth';
+    //         } else if (empty($data['aadhar'])) {
+    //             $resp['message'] = 'Please enter aadhar number';
+    //         } else if (empty($data['password'])) {
+    //             $resp['message'] = 'Please enter password';
+    //         } else if (empty($data['state'])) {
+    //             $resp['message'] = 'Please enter state';
+    //         } else if (empty($data['district'])) {
+    //             $resp['message'] = 'Please enter district';
+    //         } else if (empty($data['city'])) {
+    //             $resp['message'] = 'Please enter city';
+    //         } else if (empty($data['block'])) {
+    //             $resp['message'] = 'Please enter block';
+    //         } else if (empty($data['post_office'])) {
+    //             $resp['message'] = 'Please enter post office';
+    //         } else if (empty($data['police_station'])) {
+    //             $resp['message'] = 'Please enter police station';
+    //         } else if (empty($data['pin_code'])) {
+    //             $resp['message'] = 'Please enter pin code';
+    //         } else if (empty($data['contact_no'])) {
+    //             $resp['message'] = 'Please enter contact no.';
+    //         } else if (empty($data['last_qualific'])) {
+    //             $resp['message'] = 'Please enter last qualification';
+    //         } else if (empty($data['passing_year'])) {
+    //             $resp['message'] = 'Please enter passing year';
+    //         } else if (empty($data['parcentage'])) {
+    //             $resp['message'] = 'Please parcentage of marks';
+    //         } else if (empty($data['marks'])) {
+    //             $resp['message'] = 'Please marks';
+    //         } else if (empty($data['exam_board'])) {
+    //             $resp['message'] = 'Please examination board';
+    //         } else if (empty($uploadedFiles['student_photo'])) {
+    //             $resp['message'] = 'Please add a your photo';
+    //         }else if (empty($uploadedFiles['aadhar_img'])) {
+    //             $resp['message'] = 'Please add aadhar card image';
+    //         }else if (empty($uploadedFiles['marksheet_img'])) {
+    //             $resp['message'] = 'Please add marksheet image';
+    //         }else {
+
+    //             $user_data = [
+    //                 "uid" => $this->generate_uid(UID_USER),
+    //                 "user_name" => $data['user_name'],
+    //                 "email" => $data['email'],
+    //                 "number" => $data['phone'],
+    //                 "password" => md5($data['password']),
+    //                 "type" => 'student',
+    //                 "status" => 'pending',
+    //                 "came_frome" => 'online'
+    //             ];
+    //             $student_data = [
+    //                 "uid"                   => $this->generate_uid(UID_STUSENT),
+    //                 "user_id"               => $user_data['uid'],
+    //                 "fathers_name"          => $data['fathers_name'],
+    //                 "whatsapp_no"           => $data['whatsapp'],
+    //                 "dob"                   => $data['dob'],
+    //                 "aadhar"                => $data['aadhar'],
+    //                 "last_qualification"    => $data['last_qualific'],
+    //                 "passing_year"          => $data['passing_year'],
+    //                 "marks_in_parcentage"   => $data['parcentage'],
+    //                 "marks"                 => $data['marks'],
+    //                 "exam_board"            => $data['exam_board']
+    //             ];
+
+    //             $address_data = [
+    //                 "uid"               => $this->generate_uid(UID_ADDRESS),
+    //                 "user_id"           => $user_data['uid'],
+    //                 "state"             => $data['state'],
+    //                 "district"          => $data['district'],
+    //                 "vill_city"         => $data['city'],
+    //                 "block"             => $data['block'],
+    //                 "post_office"       => $data['post_office'],
+    //                 "police_station"    => $data['police_station'],
+    //                 "pin"               => $data['pin_code'],
+    //                 "contact"           => $data['contact_no'],
+    //             ];
+
+    //             $user_image_data = [
+    //                 "uid"               => $this->generate_uid(UID_USER_IMG),
+    //                 "user_id"           => $user_data['uid'],
+    //             ];
+                
+
+    //             $file_src = $this->single_upload($uploadedFiles['student_photo'], PATH_USER_IMG);
+    //             $user_image_data['img'] = $file_src;
+
+    //             $file_src = $this->single_upload($uploadedFiles['aadhar_img'], PATH_USER_DOC);
+    //             $student_data['aadhar_img'] = $file_src;
+            
+    //             $file_src = $this->single_upload($uploadedFiles['marksheet_img'], PATH_USER_DOC);
+    //             $student_data['marksheet_img'] = $file_src;
+
+    //             $UsersModel = new UsersModel();
+    //             $UserImageModel = new UserImageModel();
+    //             $StudentModel = new StudentModel();
+    //             $AddressModel = new AddressModel();
+
+    //             // Insert user data
+    //            $insert_user_data = $UsersModel->insert($user_data);
+    //            if($insert_user_data){
+    //                 $insert_user_img_data = $UserImageModel->insert($user_image_data);
+    //                 if($insert_user_img_data){
+    //                         $insert_student_data = $StudentModel->insert($student_data);
+    //                         if($insert_student_data){
+    //                             $insert_address_data = $AddressModel->insert($address_data);
+    //                             if($insert_address_data){
+    //                                 $resp['status'] = true;
+    //                                 $resp['message'] = 'Thanks For Registration. Please Wait For Admin Approval';
+    //                                 $resp['data'] = ['user_id' => $user_data['uid']];
+    //                             }
+    //                         }
+    //                 }
+    //            }
+               
+                
+
+                
+    //         }
+
+    //     } catch (\Exception $e) {
+    //         // Catch any exceptions and set error message
+    //         $resp['message'] = $e->getMessage();
+    //     }
+
+    //     return $resp;
+    // }
+
     private function new_student_registration($data)
     {
         $resp = [
@@ -1369,53 +1516,23 @@ class User_Controller extends Api_Controller
             $uploadedFiles = $this->request->getFiles();
             if (empty($data['user_name'])) {
                 $resp['message'] = 'Please enter name';
-            } else if (empty($data['fathers_name'])) {
-                $resp['message'] = 'Please enter fathers name';
             } else if (empty($data['phone'])) {
                 $resp['message'] = 'Please enter phone';
-            } else if (empty($data['whatsapp'])) {
-                $resp['message'] = 'Please enter whatsapp no.';
             } else if (empty($data['email'])) {
                 $resp['message'] = 'Please enter email';
             } else if (empty($data['dob'])) {
                 $resp['message'] = 'Please enter date of birth';
-            } else if (empty($data['aadhar'])) {
-                $resp['message'] = 'Please enter aadhar number';
+            } else if (empty($data['roll'])) {
+                $resp['message'] = 'Please enter roll';
+            } else if (empty($data['className'])) {
+                $resp['message'] = 'Please select class';
+            } else if (empty($data['branchName'])) {
+                $resp['message'] = 'Please select branch';
             } else if (empty($data['password'])) {
                 $resp['message'] = 'Please enter password';
-            } else if (empty($data['state'])) {
-                $resp['message'] = 'Please enter state';
-            } else if (empty($data['district'])) {
-                $resp['message'] = 'Please enter district';
-            } else if (empty($data['city'])) {
-                $resp['message'] = 'Please enter city';
-            } else if (empty($data['block'])) {
-                $resp['message'] = 'Please enter block';
-            } else if (empty($data['post_office'])) {
-                $resp['message'] = 'Please enter post office';
-            } else if (empty($data['police_station'])) {
-                $resp['message'] = 'Please enter police station';
-            } else if (empty($data['pin_code'])) {
-                $resp['message'] = 'Please enter pin code';
-            } else if (empty($data['contact_no'])) {
-                $resp['message'] = 'Please enter contact no.';
-            } else if (empty($data['last_qualific'])) {
-                $resp['message'] = 'Please enter last qualification';
-            } else if (empty($data['passing_year'])) {
-                $resp['message'] = 'Please enter passing year';
-            } else if (empty($data['parcentage'])) {
-                $resp['message'] = 'Please parcentage of marks';
-            } else if (empty($data['marks'])) {
-                $resp['message'] = 'Please marks';
-            } else if (empty($data['exam_board'])) {
-                $resp['message'] = 'Please examination board';
-            } else if (empty($uploadedFiles['student_photo'])) {
+            } else if (empty($uploadedFiles['user_image'])) {
                 $resp['message'] = 'Please add a your photo';
-            }else if (empty($uploadedFiles['aadhar_img'])) {
-                $resp['message'] = 'Please add aadhar card image';
-            }else if (empty($uploadedFiles['marksheet_img'])) {
-                $resp['message'] = 'Please add marksheet image';
-            }else {
+            } else {
 
                 $user_data = [
                     "uid" => $this->generate_uid(UID_USER),
@@ -1424,34 +1541,25 @@ class User_Controller extends Api_Controller
                     "number" => $data['phone'],
                     "password" => md5($data['password']),
                     "type" => 'student',
-                    "status" => 'pending',
-                    "came_frome" => 'online'
+                    "status" => 'active'
                 ];
                 $student_data = [
                     "uid"                   => $this->generate_uid(UID_STUSENT),
                     "user_id"               => $user_data['uid'],
-                    "fathers_name"          => $data['fathers_name'],
-                    "whatsapp_no"           => $data['whatsapp'],
                     "dob"                   => $data['dob'],
-                    "aadhar"                => $data['aadhar'],
-                    "last_qualification"    => $data['last_qualific'],
-                    "passing_year"          => $data['passing_year'],
-                    "marks_in_parcentage"   => $data['parcentage'],
-                    "marks"                 => $data['marks'],
-                    "exam_board"            => $data['exam_board']
+                    "password"              => $data['password'],
+                    "login_code"            => ''
+                    
                 ];
 
-                $address_data = [
-                    "uid"               => $this->generate_uid(UID_ADDRESS),
-                    "user_id"           => $user_data['uid'],
-                    "state"             => $data['state'],
-                    "district"          => $data['district'],
-                    "vill_city"         => $data['city'],
-                    "block"             => $data['block'],
-                    "post_office"       => $data['post_office'],
-                    "police_station"    => $data['police_station'],
-                    "pin"               => $data['pin_code'],
-                    "contact"           => $data['contact_no'],
+                $class_roll = [
+                    "uid"                   => $this->generate_uid('ROL'),
+                    "user_id"               => $user_data['uid'],
+                    "class_id"              => $data['className'],
+                    "branch_id"             => $data['branchName'],
+                    "roll"                  => $data['roll'],
+                    "status"                => 'active',
+                    
                 ];
 
                 $user_image_data = [
@@ -1460,19 +1568,13 @@ class User_Controller extends Api_Controller
                 ];
                 
 
-                $file_src = $this->single_upload($uploadedFiles['student_photo'], PATH_USER_IMG);
+                $file_src = $this->single_upload($uploadedFiles['user_image'], PATH_USER_IMG);
                 $user_image_data['img'] = $file_src;
-
-                $file_src = $this->single_upload($uploadedFiles['aadhar_img'], PATH_USER_DOC);
-                $student_data['aadhar_img'] = $file_src;
-            
-                $file_src = $this->single_upload($uploadedFiles['marksheet_img'], PATH_USER_DOC);
-                $student_data['marksheet_img'] = $file_src;
 
                 $UsersModel = new UsersModel();
                 $UserImageModel = new UserImageModel();
                 $StudentModel = new StudentModel();
-                $AddressModel = new AddressModel();
+                $StudentClassRollModel = new StudentClassRollModel();
 
                 // Insert user data
                $insert_user_data = $UsersModel->insert($user_data);
@@ -1481,10 +1583,10 @@ class User_Controller extends Api_Controller
                     if($insert_user_img_data){
                             $insert_student_data = $StudentModel->insert($student_data);
                             if($insert_student_data){
-                                $insert_address_data = $AddressModel->insert($address_data);
-                                if($insert_address_data){
+                                $insert_class_roll_data = $StudentClassRollModel->insert($class_roll);
+                                if($insert_class_roll_data){
                                     $resp['status'] = true;
-                                    $resp['message'] = 'Thanks For Registration. Please Wait For Admin Approval';
+                                    $resp['message'] = 'Student Added Succesfully';
                                     $resp['data'] = ['user_id' => $user_data['uid']];
                                 }
                             }
@@ -1524,35 +1626,15 @@ class User_Controller extends Api_Controller
             user_img.uid AS user_img_id,
             user_img.img AS user_img,
             student.uid AS student_id,
-            student.fathers_name,
-            student.whatsapp_no,
             student.dob,
-            student.aadhar,
-            student.last_qualification,
-            student.passing_year,
-            student.marks_in_parcentage,
-            student.marks,
-            student.exam_board,
-            student.aadhar_img,
-            student.marksheet_img,
-            address.uid AS address_id,
-            address.state,
-            address.district,
-            address.vill_city,
-            address.block,
-            address.post_office,
-            address.police_station,
-            address.pin,
-            address.contact
-            
+            student.password,
+            student.login_code
         FROM
             users
         JOIN
             user_img ON users.uid = user_img.user_id
         JOIN
-            student ON users.uid = student.user_id
-        JOIN 
-            address ON users.uid = address.user_id";
+            student ON users.uid = student.user_id";
 
         if (!empty($data['user_id'])) {
             $user_id = $data['user_id'];

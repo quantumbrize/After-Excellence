@@ -22,7 +22,11 @@
                             <div class="row g-4">
                                 <div class="col-sm-auto">
                                     <div>
-                                       
+                                       <a href="javascript:void(0)" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                            id="addproduct-btn">
+                                            <i class="ri-add-line align-bottom me-1"></i>
+                                            Add Student
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="col-sm" style="display: none;">
@@ -48,7 +52,7 @@
                                                     class="badge bg-danger-subtle text-danger align-middle rounded-pill ms-1"></span>
                                             </a>
                                         </li>
-                                        <li class="nav-item">
+                                        <!-- <li class="nav-item">
                                             <a class="nav-link fw-semibold" data-bs-toggle="tab"
                                                 href="#productnav-published" role="tab">
                                                 Published <span 
@@ -61,7 +65,7 @@
                                                 Draft<span 
                                                     class="badge bg-danger-subtle text-danger align-middle rounded-pill ms-1">0</span>
                                             </a>
-                                        </li>
+                                        </li> -->
                                     </ul>
                                 </div>
                                 <div class="col-auto">
@@ -89,9 +93,9 @@
                                                 <th>Name</th>
                                                 <th>Email</th>
                                                 <th>Phone</th>
-                                                <th>Last Qualification</th>
-                                                <th>Parcentage</th>
-                                                <th>Registration Date</th>
+                                                <th>DOB</th>
+                                                <th>Roll</th>
+                                                <th>Created At</th>
                                                 <th>Status</th>
                                             </tr>
                                         </thead>
@@ -131,4 +135,100 @@
 
     </div>
     <!-- container-fluid -->
+</div>
+
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Studen Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+            <div class="col-6">
+                <label class="form-label" for="product-title-input">Select Class</label>
+                    <select class="form-control" name="className" id="className" onchange="get_branches()">
+
+                    </select>
+                <div class="invalid-feedback">Please Enter a banner title.</div>
+            </div>
+            <div class="col-6">
+                <label class="form-label" for="product-title-input">Select Branch</label>
+                    <select class="form-control" name="branchName" id="branchName">
+                        <option value="">Branch Not Found</option>
+                    </select>
+                <div class="invalid-feedback">Please Enter a banner title.</div>
+            </div>
+        <!-- </div> -->
+        <!-- <div class="row"> -->
+            <div class="col-4">
+                <label class="form-label" for="product-title-input">Image</label>
+                <input type="file" id="file-input" >
+                <label for="file-input" id="btn_upload" class="btn btn-success">
+                        Upload Image
+                </label>
+                <!-- <p id="num-of-files"></p>
+                <div id="images"></div> -->
+            </div>
+            <div class="col-2">
+                <p id="num-of-files"></p>
+                <div id="images">
+                    <img src="<?= base_url('public/assets/images/demo_profile.webp')?>" alt="">
+                </div>
+            </div>
+            <div class="col-6">
+                <label class="form-label" for="product-title-input">Name</label>
+                    <input type="text" class="form-control" id="name" value=""
+                        placeholder="Add Name" required="">
+                <div class="invalid-feedback">Please Enter a title.</div>
+            </div>
+        <!-- </div> -->
+        <!-- <div class="row"> -->
+            <div class="col-6">
+                <label class="form-label" for="product-title-input">Email</label>
+                    <input type="text" class="form-control" id="email" value=""
+                        placeholder="Add Email" required="">
+                <div class="invalid-feedback">Please Enter a title.</div>
+            </div>
+            <div class="col-6">
+                <label class="form-label" for="product-title-input">Phone</label>
+                    <input type="text" class="form-control" id="phone" value=""
+                        placeholder="Add Phone" required="">
+                <div class="invalid-feedback">Please Enter a title.</div>
+            </div>
+        <!-- </div> -->
+        <!-- <div class="row"> -->
+            <div class="col-6">
+                <label class="form-label" for="product-title-input">DOB</label>
+                    <input type="date" class="form-control" id="dob" value=""
+                        placeholder="Add DOB" required="">
+                <div class="invalid-feedback">Please Enter a title.</div>
+            </div>
+            <div class="col-6">
+                <label class="form-label" for="product-title-input">Roll</label>
+                    <input type="text" class="form-control" id="roll" value=""
+                        placeholder="Add Roll" required="">
+                <div class="invalid-feedback">Please Enter a title.</div>
+            </div>
+            <div class="col-6">
+                <label class="form-label" for="product-title-input">Password</label>
+                    <input type="text" class="form-control" id="password" value=""
+                        placeholder="Add Password" required="">
+                <div class="invalid-feedback">Please Enter a title.</div>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" id="student_add_btn" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>

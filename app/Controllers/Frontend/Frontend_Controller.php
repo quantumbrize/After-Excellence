@@ -5,6 +5,7 @@ namespace App\Controllers\Frontend;
 use App\Controllers\Main_Controller;
 use App\Models\UsersModel;
 use App\Models\OtpModel;
+use App\Models\StudentModel;
 
 class Frontend_Controller extends Main_Controller
 {
@@ -476,6 +477,12 @@ class Frontend_Controller extends Main_Controller
 
     }
 
+    public function login_pin()
+    {
+        echo view('/frontend/login_code');
+
+    }
+
 
     public function logout()
     {
@@ -855,28 +862,34 @@ class Frontend_Controller extends Main_Controller
             ->where('type', 'student')
             ->where('status', 'active')
             ->groupStart()
-            ->where('email', $email_number)
-            ->orWhere('number', $email_number)
+                ->where('email', $email_number)
+                ->orWhere('number', $email_number)
             ->groupEnd()
             ->get()
             ->getResultArray();
         $UsersData = !empty($UsersData[0]) ? $UsersData[0] : null;
         if (!empty($UsersData)) {
-            // session_start();
-            // $_SESSION['user_id'] = $UsersData['uid'];
-            // $_SESSION['user_type'] = $UsersData['type'];
-
-            // $session = \Config\Services::session();
-            // $session->set(SES_USER_USER_ID, $UsersData['uid']);
-            // $session->set(SES_USER_TYPE, $UsersData['type']);
-
-            $this->session->set(SES_USER_USER_ID, $UsersData['uid']);
-            $this->session->set(SES_USER_TYPE, $UsersData['type']);
+            $otp = mt_rand(1000, 9999);
+            $StudentModel = new StudentModel();
+            $StudentModel->transStart();
+            try {
+                $StudentModel
+                    ->where('user_id', $UsersData['uid'])
+                    ->set(['login_code' => $otp])
+                    ->update();
+                $StudentModel->transCommit();
+            } catch (\Exception $e) {
+                $StudentModel->transRollback();
+                throw $e;
+            }
+            // $this->session->set(SES_USER_USER_ID, $UsersData['uid']);
+            // $this->session->set(SES_USER_TYPE, $UsersData['type']);
             // $this->pr($this->session->get());
             $response = [
                 "status" => true,
                 "message" => "User Found",
-                "user_id" => $UsersData['uid']
+                "data" => $UsersData,
+                "login_code" => $otp
             ];
         }
 
@@ -884,28 +897,51 @@ class Frontend_Controller extends Main_Controller
         echo json_encode($response);
     }
 
-    public function verify_otp()
+    public function verify_pin()
     {
         $response = [
             "status" => false,
-            "message" => "OTP NOT MATCHED",
+            "message" => "PIN NOT MATCHED",
             "user_id" => ""
         ];
-        $OtpModel = new OtpModel();
-        $OtpModel->where('user_id', $this->request->getPost('user_id'));
-        $latestOtp = $OtpModel->orderBy('created_at', 'DESC')->first();
-        if ($latestOtp['otp'] == $this->request->getPost('otp')) {
-            $usersModel = new UsersModel();
-            $usersModel->setUserActive($latestOtp['user_id'], ['status' => 'active']);
-            $response = [
-                "status" => true,
-                "message" => "OTP MATCHED",
-                "user_id" => $this->request->getPost('user_id')
-            ];
+        $StudentModel = new StudentModel();
+        $student = $StudentModel->where('user_id', $this->request->getPost('user_id'))->first();
+        if($student){
+            if($student['login_code'] == $this->request->getPost('pin')){
+                $this->session->set(SES_USER_USER_ID, $this->request->getPost('user_id'));
+                $this->session->set(SES_USER_TYPE, $this->request->getPost('type'));
+                $response = [
+                    "status" => true,
+                    "message" => "PIN MATCHED",
+                    "user_id" => $this->request->getPost('user_id')
+                ];
+            }
         }
         echo json_encode($response);
-
     }
+
+    // public function verify_otp()
+    // {
+    //     $response = [
+    //         "status" => false,
+    //         "message" => "OTP NOT MATCHED",
+    //         "user_id" => ""
+    //     ];
+    //     $OtpModel = new OtpModel();
+    //     $OtpModel->where('user_id', $this->request->getPost('user_id'));
+    //     $latestOtp = $OtpModel->orderBy('created_at', 'DESC')->first();
+    //     if ($latestOtp['otp'] == $this->request->getPost('otp')) {
+    //         $usersModel = new UsersModel();
+    //         $usersModel->setUserActive($latestOtp['user_id'], ['status' => 'active']);
+    //         $response = [
+    //             "status" => true,
+    //             "message" => "OTP MATCHED",
+    //             "user_id" => $this->request->getPost('user_id')
+    //         ];
+    //     }
+    //     echo json_encode($response);
+
+    // }
 
     public function signup_success()
     {

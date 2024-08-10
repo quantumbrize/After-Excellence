@@ -44,10 +44,6 @@
                                         <td style="text-align: right" class="text-secondary">${student.user_id}</td>
                                     </tr>
                                     <tr>
-                                        <td>Father's Name</td>
-                                        <td style="text-align: right" class="text-secondary">${student.fathers_name}</td>
-                                    </tr>
-                                    <tr>
                                         <td>Email</td>
                                         <td style="text-align: right" class="text-secondary">${student.email} </td>
                                     </tr>
@@ -56,65 +52,20 @@
                                         <td style="text-align: right" class="text-secondary">${student.number} </td>
                                     </tr>
                                     <tr>
-                                        <td>WhatsApp</td>
-                                        <td style="text-align: right" class="text-secondary">${student.whatsapp_no} </td>
-                                    </tr>
-                                    <tr>
                                         <td>Date Of Birth</td>
                                         <td style="text-align: right" class="text-secondary">${formatDate(student.dob)}</td>
                                     </tr>
                                     <tr>
-                                        <td>Aadhar</td>
-                                        <td style="text-align: right" class="text-secondary">${student.aadhar}</td>
+                                        <td>Password</td>
+                                        <td style="text-align: right" class="text-secondary">${student.password} </td>
                                     </tr>
                                     <tr>
-                                        <td>Last Qualiication</td>
-                                        <td style="text-align: right" class="text-secondary">${student.last_qualification}</td>
+                                        <td>Login PIN</td>
+                                        <td style="text-align: right" class="text-secondary">${student.login_code} </td>
                                     </tr>
-                                    <tr>
-                                        <td>Passing Year</td>
-                                        <td style="text-align: right" class="text-secondary">${formatDate(student.passing_year)}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Parcentage</td>
-                                        <td style="text-align: right" class="text-secondary">${student.marks_in_parcentage}%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Marks</td>
-                                        <td style="text-align: right" class="text-secondary">${student.marks}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>City</td>
-                                        <td style="text-align: right" class="text-secondary">${student.vill_city}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Block</td>
-                                        <td style="text-align: right" class="text-secondary">${student.block}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Police Station</td>
-                                        <td style="text-align: right" class="text-secondary">${student.police_station}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Post Office</td>
-                                        <td style="text-align: right" class="text-secondary">${student.post_office}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>District</td>
-                                        <td style="text-align: right" class="text-secondary">${student.district}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>State</td>
-                                        <td style="text-align: right" class="text-secondary">${student.state}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Pin Code</td>
-                                        <td style="text-align: right" class="text-secondary">${student.pin}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Contact</td>
-                                        <td style="text-align: right" class="text-secondary">${student.contact}</td>
-                                    </tr>
+                                   
+                                    
+                                    
                                     `
                         $('#student_details').html(html);
 
@@ -148,12 +99,6 @@
                                                        
                                                     </tbody>
                                                 </table>
-                                                <div class="documents-container">
-                                                    <img src="<?= base_url('public/uploads/user_documents/') ?>${student.aadhar_img}" alt="" class="documents-img">
-                                                    <span>Aadhar Card</span>
-                                                    <img src="<?= base_url('public/uploads/user_documents/') ?>${student.marksheet_img}" alt="" class="documents-img mt-5">
-                                                    <span>Marksheet</span>
-                                                </div>
                                             </div>`
                         $('#course_image').html(student_img);
                     }
@@ -267,7 +212,7 @@
     
 
     function generateRollNumber() {
-        const prefix = "ATOMZ";
+        const prefix = "FLORALMS";
         const digits = Math.floor(Math.random() * 900000) + 100000;
         const rollNumber = prefix + digits;
         $('#studentRoll').val(rollNumber);

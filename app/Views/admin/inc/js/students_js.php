@@ -1,5 +1,96 @@
+
 <script>
+     $('#student_add_btn').on('click', function () {
+        var formData = new FormData();
+
+        formData.append('className', $('#className').val());
+        formData.append('branchName', $('#branchName').val());
+        formData.append('user_name', $('#name').val());
+        formData.append('phone', $('#phone').val());
+        formData.append('email', $('#email').val());
+        formData.append('dob', $('#dob').val());
+        formData.append('roll', $('#roll').val());
+        formData.append('password', $('#password').val());
+        var file1 = $('#file-input')[0].files[0];
+        if (file1) {
+            formData.append('user_image', file1);
+        }
+
+        $.ajax({
+            url: "<?= base_url('/api/user/student/add') ?>",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            beforeSend: function () {
+                $('#student_add_btn').html(`<div class="spinner-border" role="status"></div>`)
+                $('#student_add_btn').attr('disabled', true)
+
+            },
+            success: function (resp) {
+                let html = ''
+
+                if (resp.status) {
+                    html += `<div class="alert alert-success alert-dismissible alert-label-icon label-arrow fade show material-shadow" role="alert">
+                                <i class="ri-checkbox-circle-fill label-icon"></i>${resp.message}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>`
+                    $('#name').val('');
+                    $('#phone').val('');
+                    $('#email').val('');
+                    $('#dob').val('');
+                    $('#roll').val('');
+                    $('#password').val('');
+                    $('#branchName').val('');
+                    $('#images').html(`<img src="<?= base_url('public/assets/images/demo_profile.webp')?>" alt="">`);
+                    classes()
+                } else {
+                    html += `<div class="alert alert-warning alert-dismissible alert-label-icon label-arrow fade show material-shadow" role="alert">
+                                <i class="ri-alert-line label-icon"></i><strong>Warning</strong> - ${resp.message}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>`
+                }
+
+
+                $('#alert').html(html)
+                console.log(resp)
+            },
+            error: function (err) {
+                console.log(err)
+            },
+            complete: function () {
+                $('#student_add_btn').html(`submit`)
+                $('#student_add_btn').attr('disabled', false)
+            }
+        })
+    })
+
+    let $fileInput = $("#file-input");
+    let $imageContainer = $("#images");
+    let $numOfFiles = $("#num-of-files");
+
+    function preview() {
+        $imageContainer.html("");
+        $numOfFiles.text(`${$fileInput[0].files.length} Files Selected`);
+
+        $.each($fileInput[0].files, function (index, file) {
+            let reader = new FileReader();
+            let $figure = $("<figure>");
+            let $figCap = $("<figcaption>").text(file.name);
+            // $figure.append($figCap);
+            reader.onload = function () {
+                let $img = $("<img>").attr("src", reader.result).attr("id", "userImage");
+                $figure.prepend($img);
+                // $("#userImage").attr("src", reader.result);
+            }
+            $imageContainer.append($figure);
+            reader.readAsDataURL(file);
+        });
+    }
+    $fileInput.change(preview);
+
     load_products();
+    classes()
     function calculateFinalPrice(originalPrice, discountPercentage) {
         // Calculate the discount amount
         var discountAmount = (originalPrice * discountPercentage) / 100;
@@ -101,10 +192,10 @@
                                                 ${student.number}
                                             </td>
                                             <td >
-                                                ${student.last_qualification}
+                                                ${student.dob}
                                             </td>
                                             <td >
-                                                ${student.marks_in_parcentage}%
+                                                ${student.student_roll[0].student_roll}
                                             </td>
                                             <td >
                                                 ${formatDate(student.created_at)}
@@ -125,6 +216,50 @@
             },
             complete: function () {
 
+            }
+        })
+    }
+
+    function classes(){
+        $.ajax({
+            url: "<?= base_url('/api/class-list') ?>",
+            type: "GET",
+            beforeSend: function () { },
+            success: function (resp) {
+                // console.log(resp)
+                let html = '<option value="">Select-Class</option>'
+                if (resp.status) {
+                    $.each(resp.data, function (key, val) {
+                        html += `<option value="${val.class_id}">${val.class_name}</option>`
+                    })
+                }
+                $('#className').html(html)
+            },
+            error: function (err) {
+                console.log(err)
+            }
+        })
+    }
+
+    function get_branches(){
+        var class_id = $('#className').val()
+        $.ajax({
+            url: "<?= base_url('/api/branches') ?>",
+            type: "GET",
+            data: {class_id:class_id},
+            beforeSend: function () { },
+            success: function (resp) {
+                // console.log(resp)
+                let html = '<option value="">Select-Branch</option>'
+                if (resp.status) {
+                    $.each(resp.data, function (key, val) {
+                        html += `<option value="${val.branch_id}">${val.branch_name}</option>`
+                    })
+                }
+                $('#branchName').html(html)
+            },
+            error: function (err) {
+                console.log(err)
             }
         })
     }

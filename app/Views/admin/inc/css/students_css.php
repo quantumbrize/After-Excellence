@@ -31,3 +31,55 @@
     }
 
 </style>
+
+
+<style>
+    input[type="file"] {
+        display: none;
+    }
+
+    #btn_upload {
+        display: block;
+        position: relative;
+        color: #ffffff;
+        font-size: 18px;
+        text-align: center;
+        margin: auto;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .container p {
+        text-align: center;
+        margin: 20px 0 30px 0;
+    }
+
+    #images {
+        width: 90%;
+        position: relative;
+        margin: auto;
+        display: flex;
+        justify-content: space-evenly;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+    #userImage{
+        width: 200%;
+        height: auto;
+    }
+
+    figure {
+        width: 45%;
+    }
+
+    img {
+        width: 100%;
+        border-radius: 50%;
+    }
+
+    figcaption {
+        text-align: center;
+        font-size: 2.4vmin;
+        margin-top: 0.5vmin;
+    }
+</style>

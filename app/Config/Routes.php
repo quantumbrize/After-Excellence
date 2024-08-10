@@ -22,7 +22,7 @@ $routes->get('/change-password',                    'Frontend\Frontend_Controlle
 $routes->post('/change-password-action',            'Frontend\Frontend_Controller::handle_change_password'); // Handle change password form submission
 $routes->post('/send-otp',                          'Frontend\Frontend_Controller::send_otp'); // Send OTP for verification
 $routes->get('/verify-otp',                         'Frontend\Frontend_Controller::load_otp'); // Load OTP verification page
-$routes->post('/verify-otp-action',                 'Frontend\Frontend_Controller::verify_otp'); // Handle OTP verification form submission
+// $routes->post('/verify-otp-action',                 'Frontend\Frontend_Controller::verify_otp');
 $routes->get('/product/list',                       'Frontend\Product_Controller::product_list'); // List of products
 $routes->get('/product/details',                    'Frontend\Product_Controller::product_details'); // Product details page
 $routes->get('/product/category',                   'Frontend\Product_Controller::product_category'); // Product category page
@@ -60,6 +60,8 @@ $routes->get('/offline-test/marksheet',             'Frontend\Frontend_Controlle
 
 $routes->get('/study-material',                     'Frontend\Frontend_Controller::study_material');
 $routes->get('/papers',                             'Frontend\Frontend_Controller::paper');
+$routes->get('/login-pin',                          'Frontend\Frontend_Controller::login_pin');
+$routes->post('/verify-pin-action',                 'Frontend\Frontend_Controller::verify_pin'); // Handle PIN verification form submission
 
 
 

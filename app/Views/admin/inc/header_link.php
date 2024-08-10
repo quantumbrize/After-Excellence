@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
         integrity="sha384-ROBdErehxIu+Y/Bgy5ZsEgGQJ14gwYpS7YCS4xGOEl0x2TRccKoE+LYhCFOShXsO" crossorigin="anonymous">
     <script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
+
     <? //require_once(APPPATH . 'views/inc/main_css.php');      ?>
     <?php
     if (!empty($header_asset_link)) {

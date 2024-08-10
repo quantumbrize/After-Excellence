@@ -60,50 +60,7 @@
                             </table>
                             <table class="table">
                                 <tbody id="student_details">
-                                    <tr>
-                                        <td>id</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Category</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Price</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Discount</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Final Price</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>About Course</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Duration</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Start date</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Max-Student</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Professor</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Contact</td>
-                                        <td></td>
-                                    </tr>
+                                    
                                 </tbody>
                             </table>
                         </div>
