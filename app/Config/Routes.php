@@ -8,7 +8,7 @@ use CodeIgniter\Router\RouteCollection;
 $routes->setAutoRoute(true);
 
 // Frontend Routes
-$routes->get('/',                                   'Frontend\Frontend_Controller::index'); // Home page
+$routes->get('/',                                   'Frontend\Frontend_Controller::home'); // Home page
 $routes->get('/logout',                             'Frontend\Frontend_Controller::logout'); // Logout functionality
 $routes->get('/user/registration',                  'Frontend\Frontend_Controller::user_registration'); // Logout functionality
 $routes->get('/login',                              'Frontend\Frontend_Controller::load_login'); // Load login page
@@ -62,6 +62,7 @@ $routes->get('/study-material',                     'Frontend\Frontend_Controlle
 $routes->get('/papers',                             'Frontend\Frontend_Controller::paper');
 $routes->get('/login-pin',                          'Frontend\Frontend_Controller::login_pin');
 $routes->post('/verify-pin-action',                 'Frontend\Frontend_Controller::verify_pin'); // Handle PIN verification form submission
+$routes->get('/pdf-reader',                        'Frontend\Frontend_Controller::pdf_reader');
 
 
 
@@ -290,6 +291,8 @@ $routes->get('/api/study-materials',                    'Api\Class_Controller::G
 $routes->get('/api/delete/study-materials',             'Api\Class_Controller::GET_delete_study_material');
 $routes->post('/api/add/popular-paper',                 'Api\Class_Controller::POST_add_popular_paper');
 $routes->get('/api/popular-papers',                     'Api\Class_Controller::GET_popular_papers');
+$routes->get('/api/user/popular-papers',                'Api\Class_Controller::GET_popular_papers_by_student');
+
 $routes->get('/api/delete/popular-paper',               'Api\Class_Controller::GET_delete_popular_paper');
 $routes->post('/api/update/popular-paper',              'Api\Class_Controller::POST_update_popular_paper');
 $routes->post('/api/update/study-materials',            'Api\Class_Controller::POST_update_study_material');

@@ -1650,23 +1650,26 @@ class User_Controller extends Api_Controller
         $students = json_decode(json_encode($students), true);
 
         if (count($students) > 0) {
-            $sql_roll = "SELECT
-                    student_class_roll.roll AS student_roll,
-                    student_class_roll.uid AS student_class_roll_id,
-                    student_class_roll.created_at,
-                    classes.class_name,
-                    branches.branch_name
-                    
-                FROM
-                    student_class_roll
-                JOIN
-                    classes ON student_class_roll.class_id = classes.uid
-                JOIN
-                    branches ON student_class_roll.branch_id = branches.uid
-                WHERE
-                    student_class_roll.user_id = '{$students[0]['user_id']}'";
+            foreach($students as $index => $student){
 
-                $students[0]['student_roll'] = $CommonModel->customQuery($sql_roll);
+                $sql_roll = "SELECT
+                        student_class_roll.roll AS student_roll,
+                        student_class_roll.uid AS student_class_roll_id,
+                        student_class_roll.created_at,
+                        classes.class_name,
+                        branches.branch_name
+                        
+                    FROM
+                        student_class_roll
+                    JOIN
+                        classes ON student_class_roll.class_id = classes.uid
+                    JOIN
+                        branches ON student_class_roll.branch_id = branches.uid
+                    WHERE
+                        student_class_roll.user_id = '{$student['user_id']}'";
+    
+                    $students[$index]['student_roll'] = $CommonModel->customQuery($sql_roll);
+            }
 
             $resp["status"] = true;
             $resp["data"] = !empty($data['user_id']) ? $students[0] : $students;

@@ -134,7 +134,7 @@
         <!-- card -->
         <div class="banner-container" id="banner-container">
             <!-- Static banner for reference -->
-            <div class="banner">
+            <!-- <div class="banner">
                 <img src="<?= base_url()?>/public/assets/images/pdfimage.png" alt="Banner Image">
                 <div class="banner-content">
                     <h3>Graphic Design</h3>
@@ -149,48 +149,48 @@
                     <p>Advanced</p>
                     <p>Rating: 4.2</p>
                 </div>
-            </div>
+            </div> -->
         </div>
         <!-- card -->
 
         <!-- teacher -->
-         <div class="header">
-            <h3>Study Material</h3>
-            <button class="see-all" id="see-all-material">See All ></button>
-        </div>
-        <div class="section-container">
-            <div class="section-item">
-                <img src="<?= base_url()?>/public/assets/images/1.png" alt="Description of Image 1" class="section-image">
-                <div class="section-title">Teacher 1</div>
+            <div class="header">
+                <h3>Study Material</h3>
+                <button class="see-all" id="see-all-material">See All ></button>
             </div>
-            <div class="section-item">
-                <img src="<?= base_url()?>/public/assets/images/2.png" alt="Description of Image 2" class="section-image">
-                <div class="section-title">Teacher 2</div>
+            <div class="section-container">
+                <div class="section-item">
+                    <img src="<?= base_url()?>/public/assets/images/1.png" alt="Description of Image 1" class="section-image">
+                    <div class="section-title">Teacher 1</div>
+                </div>
+                <div class="section-item">
+                    <img src="<?= base_url()?>/public/assets/images/2.png" alt="Description of Image 2" class="section-image">
+                    <div class="section-title">Teacher 2</div>
+                </div>
+                <div class="section-item">
+                    <img src="<?= base_url()?>/public/assets/images/1.png" alt="Description of Image 1" class="section-image">
+                    <div class="section-title">Teacher 3</div>
+                </div>
+                <div class="section-item">
+                    <img src="<?= base_url()?>/public/assets/images/2.png" alt="Description of Image 2" class="section-image">
+                    <div class="section-title">Teacher 4</div>
+                </div>
+                <div class="section-item">
+                    <img src="<?= base_url()?>/public/assets/images/1.png" alt="Description of Image 1" class="section-image">
+                    <div class="section-title">Teacher 5</div>
+                </div>
+                <div class="section-item">
+                    <img src="<?= base_url()?>/public/assets/images/2.png" alt="Description of Image 2" class="section-image">
+                    <div class="section-title">Teacher 6</div>
+                </div>
+                <div class="section-item">
+                    <img src="<?= base_url()?>/public/assets/images/1.png" alt="Description of Image 1" class="section-image">
+                    <div class="section-title">Teacher 7</div>
+                </div>
+                <div class="section-item">
+                    <img src="<?= base_url()?>/public/assets/images/2.png" alt="Description of Image 2" class="section-image">
+                    <div class="section-title">Teacher 8</div>
+                </div>
+            
+                <!-- Add more sections as needed -->
             </div>
-            <div class="section-item">
-                <img src="<?= base_url()?>/public/assets/images/1.png" alt="Description of Image 1" class="section-image">
-                <div class="section-title">Teacher 3</div>
-            </div>
-            <div class="section-item">
-                <img src="<?= base_url()?>/public/assets/images/2.png" alt="Description of Image 2" class="section-image">
-                <div class="section-title">Teacher 4</div>
-            </div>
-            <div class="section-item">
-                <img src="<?= base_url()?>/public/assets/images/1.png" alt="Description of Image 1" class="section-image">
-                <div class="section-title">Teacher 5</div>
-            </div>
-            <div class="section-item">
-                <img src="<?= base_url()?>/public/assets/images/2.png" alt="Description of Image 2" class="section-image">
-                <div class="section-title">Teacher 6</div>
-            </div>
-            <div class="section-item">
-                <img src="<?= base_url()?>/public/assets/images/1.png" alt="Description of Image 1" class="section-image">
-                <div class="section-title">Teacher 7</div>
-            </div>
-            <div class="section-item">
-                <img src="<?= base_url()?>/public/assets/images/2.png" alt="Description of Image 2" class="section-image">
-                <div class="section-title">Teacher 8</div>
-            </div>
-           
-            <!-- Add more sections as needed -->
-        </div>

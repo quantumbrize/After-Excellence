@@ -17,26 +17,32 @@ class Frontend_Controller extends Main_Controller
         $this->session = \Config\Services::session();
     }
 
-    public function index(): void
+    public function home()
     {
-        $data = PAGE_DATA_FRONTEND;
-        $data = [
-            'data_page' => [],
-            'data_header' => [
-                'header_link' => ['home_css.php'],
-                'title' => 'Home',
-                'header' => [],
-                'sidebar' => [],
-                'site' => 'frontend'
-            ],
-            'data_footer' => [
-                'footer_link' => ['home_js.php'],
-                'footer' => [],
-                'site' => 'frontend'
-            ]
-        ];
-        $this->load_page('/frontend/home', $data);
+        $user_id = $this->is_logedin();
+        if (!empty($user_id)) {
+            $data = PAGE_DATA_FRONTEND;
+            $data = [
+                'data_page' => [],
+                'data_header' => [
+                    'header_link' => ['home_css.php'],
+                    'title' => 'Home',
+                    'header' => [],
+                    'sidebar' => [],
+                    'site' => 'frontend'
+                ],
+                'data_footer' => [
+                    'footer_link' => ['home_js.php'],
+                    'footer' => [],
+                    'site' => 'frontend'
+                ]
+            ];
+            $this->load_page('/frontend/home', $data);
+        } else {
+           return redirect()->to('login');
+        }
     }
+
 
     public function about_us(): void
     {
@@ -435,6 +441,8 @@ class Frontend_Controller extends Main_Controller
 
     public function study_material()
     {
+        $user_id = $this->is_logedin();
+        if (!empty($user_id)) {
             $data = PAGE_DATA_FRONTEND;
             $data = [
                 'data_page' => [],
@@ -452,11 +460,16 @@ class Frontend_Controller extends Main_Controller
                 ]
             ];
             $this->load_page('/frontend/study_material', $data);
+        } else {
+            return redirect()->to('login');
+        }
 
     }
 
     public function paper()
     {
+        $user_id = $this->is_logedin();
+        if (!empty($user_id)) {
             $data = PAGE_DATA_FRONTEND;
             $data = [
                 'data_page' => [],
@@ -474,6 +487,36 @@ class Frontend_Controller extends Main_Controller
                 ]
             ];
             $this->load_page('/frontend/paper', $data);
+        } else {
+            return redirect()->to('login');
+        }
+
+    }
+
+    public function pdf_reader()
+    {
+        $user_id = $this->is_logedin();
+        if (!empty($user_id)) {
+            $data = PAGE_DATA_FRONTEND;
+            $data = [
+                'data_page' => [],
+                'data_header' => [
+                    'header_link' => [],
+                    'title' => 'pdf_reader',
+                    'header' => [],
+                    'sidebar' => [],
+                    'site' => 'frontend'
+                ],
+                'data_footer' => [
+                    'footer_link' => ['pdf_reader_js.php'],
+                    'footer' => [],
+                    'site' => 'frontend'
+                ]
+            ];
+            $this->load_page('/frontend/pdf_reader', $data);
+        } else {
+            return redirect()->to('login');
+        }
 
     }
 

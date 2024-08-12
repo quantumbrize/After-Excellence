@@ -1,6 +1,6 @@
 <div class="heading">
         <a href="<?= base_url()?>"><img src="<?= base_url()?>/public/assets/images/arrow.svg" alt="Back"></a>
-        <h2>Study</h2>
+        <h2>Home</h2>
     </div>
     <!-- Filters -->
     <div class="switch-buttons">
@@ -23,7 +23,7 @@
             <div class="study-material" id="study-material">
                  <!-- <img src="<?= base_url()?>/public/assets/images/save.svg" alt=""> -->
                  <div id="banner-container" class="banner-container">
-                    <div class="banner">
+                    <!-- <div class="banner">
                         <img src="<?= base_url()?>/public/assets/images/pdfimage.png" alt="Banner Image">
                         <div class="banner-content">
                             <h3>Graphic Design</h3>
@@ -38,7 +38,7 @@
                             <p>Advanced</p>
                             <p>Rating: 4.2</p>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="section-container">

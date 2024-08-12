@@ -2776,6 +2776,58 @@ class Class_Controller extends Api_Controller
         return $resp;
     }
 
+    public function popular_papers_by_student($data)
+    {
+        $resp = [
+            'status' => false,
+            'message' => 'Popular Paper Not Found',
+            'data' => null
+        ];
+
+        $CommonModel = new CommonModel();
+
+        $sql = "SELECT
+            student_class_roll.uid AS student_class_roll_id,
+            popular_paper.uid AS popular_paper_id,
+            popular_paper.title,
+            popular_paper.description,
+            popular_paper.keyword,
+            popular_paper.img,
+            popular_paper.pdf,
+            popular_paper.link,
+            popular_paper.type,
+            popular_paper.created_at,
+            classes.class_name,
+            classes.uid AS class_id,
+            branches.branch_name,
+            branches.uid AS branch_id
+        FROM
+            student_class_roll
+        JOIN
+            popular_paper ON student_class_roll.branch_id = popular_paper.branch_id
+        JOIN
+            classes ON classes.uid = popular_paper.class_id
+        JOIN
+            branches ON branches.uid = popular_paper.branch_id";
+
+        if (!empty($data['user_id'])) {
+            $user_id = $data['user_id'];
+            $sql .= " WHERE
+                student_class_roll.user_id = '{$user_id}';";
+        }
+
+        $popularPaper = $CommonModel->customQuery($sql);
+
+        if (count($popularPaper) > 0) {
+
+            $resp["status"] = true;
+            $resp["data"] = $popularPaper;
+            $resp["message"] = 'Popular Paper Found';
+        }
+        // $this->prd($resp);
+        return $resp;
+    }
+
 
 
 
@@ -2836,6 +2888,13 @@ class Class_Controller extends Api_Controller
     {
         $data = $this->request->getGet();
         $resp = $this->popular_papers($data);
+        return $this->response->setJSON($resp);
+    }
+
+    public function GET_popular_papers_by_student()
+    {
+        $data = $this->request->getGet();
+        $resp = $this->popular_papers_by_student($data);
         return $this->response->setJSON($resp);
     }
 
