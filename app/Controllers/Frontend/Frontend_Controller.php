@@ -527,13 +527,20 @@ class Frontend_Controller extends Main_Controller
     }
 
 
+    // public function logout()
+    // {
+    //     $session = \Config\Services::session();
+
+    //     $session->remove(SES_USER_USER_ID);
+    //     $session->remove(SES_USER_TYPE);
+    //     return redirect()->to('login');
+    // }
+
     public function logout()
     {
-        $session = \Config\Services::session();
-
-        $session->remove(SES_USER_USER_ID);
-        $session->remove(SES_USER_TYPE);
-        return redirect()->to('login');
+        $unsetId = $this->response->deleteCookie(SES_USER_USER_ID);
+        $unsetType = $this->response->deleteCookie(SES_USER_TYPE);
+        // return redirect()->to('login');
     }
 
     public function load_login()
@@ -951,8 +958,14 @@ class Frontend_Controller extends Main_Controller
         $student = $StudentModel->where('user_id', $this->request->getPost('user_id'))->first();
         if($student){
             if($student['login_code'] == $this->request->getPost('pin')){
-                $this->session->set(SES_USER_USER_ID, $this->request->getPost('user_id'));
-                $this->session->set(SES_USER_TYPE, $this->request->getPost('type'));
+                // $this->session->set(SES_USER_USER_ID, $this->request->getPost('user_id'));
+                // $this->session->set(SES_USER_TYPE, $this->request->getPost('type'));
+               // Set the user ID cookie
+                $this->response->setCookie(SES_USER_USER_ID, $this->request->getPost('user_id'), 365*24*60*60); // 1 year in seconds
+                $this->response->setCookie(SES_USER_TYPE, $this->request->getPost('type'), 365*24*60*60); // 1 year in seconds
+
+
+
                 $response = [
                     "status" => true,
                     "message" => "PIN MATCHED",

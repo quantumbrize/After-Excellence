@@ -1,11 +1,17 @@
 
 <script>
-    // $(document).ready(function () {
-    //     load_live_class('<?= $_SESSION[SES_USER_USER_ID] ?>')
-    // })
     $(document).ready(function () {
+        const userId = '<?= $_COOKIE[SES_USER_USER_ID] ?>';
+        if (userId) {
+            load_banners();
+            popular_papers(userId);
+            study_materials(userId);
+        } else {
+            console.error('User ID cookie not found.');
+        }
         load_banners()
-        popular_papers('<?= $_SESSION[SES_USER_USER_ID] ?>')
+        // popular_papers('<?= $_SESSION[SES_USER_USER_ID] ?>')
+        // study_materials('<?= $_SESSION[SES_USER_USER_ID] ?>')
     })
 
 
@@ -91,7 +97,48 @@
 
            }
        })
-   }
+    }
+
+    function study_materials(user_id) {
+       
+       $.ajax({
+           url: "<?= base_url('/api/user/study-material') ?>",
+           type: "GET",
+           data:{user_id:user_id},
+           beforeSend: function () {
+           },
+           success: function (resp) {
+               console.log(resp)
+               if (resp.status) {
+                   let html =``
+                //    let html2 =``
+                   $.each(resp.data, function (index, material) {
+                       let redirect_url = ``
+                       if(material.type == 'link'){
+                        redirect_url = material.link
+                       } else if(material.type == 'pdf'){
+                            redirect_url = '<?= base_url('pdf-reader?pdf_url=')?>'+material.pdf
+                       }
+                    html += `<div class="section-item">
+                                <a href="${redirect_url}" style="text-decoration:none;">
+                                    <img src="<?= base_url()?>/public/assets/images/pdfimage.png" alt="Description of Image 1" class="section-image">
+                                    <div class="section-title">${material.title}</div>
+                                </a>
+                            </div>`
+                   })
+                   $('#study_materials').html(html);
+               } else {
+               }
+
+           },
+           error: function (err) {
+               console.log(err)
+           },
+           complete: function () {
+
+           }
+       })
+    }
 
    
 

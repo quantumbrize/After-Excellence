@@ -10,7 +10,7 @@
     <header>
         <div class="search-bar">
             <img src="<?= base_url()?>/public/assets/images/Fill 1.png" alt="Search Icon" class="search-icon">
-            <input type="text" placeholder="Graphic Design...">
+            <input type="text" onkeyup="search_popular_papers()" id="searchStudyMaterial" placeholder="Search...">
             <img src="<?= base_url()?>/public/assets/images/FILTER.svg" alt="Filter Icon" class="filter-icon">
         </div>
     </header>

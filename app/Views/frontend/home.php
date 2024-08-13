@@ -1,9 +1,9 @@
 <header>
-    <div class="search-bar">
+    <!-- <div class="search-bar">
         <img src="<?= base_url()?>/public/assets/images/Fill 1.png" alt="Search Icon" class="search-icon">
         <input type="text" placeholder="search for...">
         <img src="<?= base_url()?>/public/assets/images/FILTER.svg" alt="Filter Icon" class="filter-icon">
-    </div>
+    </div> -->
 </header>
     <!-- carousel -->
     <div class="carousel">
@@ -31,8 +31,8 @@
                 <button class="see-all" id="see-all-material">See All ></button>
             </a>
         </div>
-        <div class="section-container">
-            <div class="section-item">
+        <div class="section-container" id="study_materials">
+            <!-- <div class="section-item">
                 <img src="<?= base_url()?>/public/assets/images/pdfimage.png" alt="Description of Image 1" class="section-image">
                 <div class="section-title">Title 1</div>
             </div>
@@ -63,7 +63,7 @@
             <div class="section-item">
                 <img src="<?= base_url()?>/public/assets/images/pdfimage.png" alt="Description of Image 2" class="section-image">
                 <div class="section-title">Title 8</div>
-            </div>
+            </div> -->
             <!-- Add more sections as needed -->
         </div>
         

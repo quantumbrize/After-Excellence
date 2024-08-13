@@ -80,7 +80,8 @@ class Main_Controller extends BaseController
 
 	public function is_logedin()
 	{
-		$userID = $this->session->get(SES_USER_USER_ID);
+		// $userID = $this->session->get(SES_USER_USER_ID);
+		$userID = $this->request->getCookie(SES_USER_USER_ID);
 		return $userID;
 	}
 

@@ -34,7 +34,7 @@ header {
     left: 7px;
     width: 20px;
     height: 20px;
-    top: 0px; /* Center vertically */
+    top: 10px; /* Center vertically */
     transform: translateY(-50%); /* Adjust for exact centering */
 }
 
@@ -53,7 +53,7 @@ header {
     right: 0px; /* Position to the right inside the search bar */
     width: 40px;
     height: 40px;
-    top: 0px; /* Center vertically */
+    top: 10px; /* Center vertically */
     transform: translateY(-50%); /* Adjust for exact centering */
 }
 

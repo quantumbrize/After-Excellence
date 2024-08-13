@@ -292,6 +292,9 @@ $routes->get('/api/delete/study-materials',             'Api\Class_Controller::G
 $routes->post('/api/add/popular-paper',                 'Api\Class_Controller::POST_add_popular_paper');
 $routes->get('/api/popular-papers',                     'Api\Class_Controller::GET_popular_papers');
 $routes->get('/api/user/popular-papers',                'Api\Class_Controller::GET_popular_papers_by_student');
+$routes->get('/api/user/study-material',                'Api\Class_Controller::GET_study_material_by_student');
+$routes->get('/api/search/study-material',              'Api\Class_Controller::GET_search_study_material');
+$routes->get('/api/search/popular-papers',              'Api\Class_Controller::GET_search_popular_papers');
 
 $routes->get('/api/delete/popular-paper',               'Api\Class_Controller::GET_delete_popular_paper');
 $routes->post('/api/update/popular-paper',              'Api\Class_Controller::POST_update_popular_paper');
