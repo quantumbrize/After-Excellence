@@ -74,10 +74,10 @@
         <div class="test-container">
             <div class="header">
                 <h3>Your Test</h3>
-                <a href="#"><button class="see-all" id="see-all-tests">See All ></button></a>
+                <!-- <a href="#"><button class="see-all" id="see-all-tests">See All ></button></a> -->
             </div>
-            <div class="card-container">
-                <div class="test-card">
+            <div class="card-container" id="online_tests">
+                <!-- <div class="test-card">
                     <div class="test-name">Test Card 1</div>
                     <div class="test-details">
                         <span>Detail 1</span>
@@ -111,7 +111,7 @@
                         <span>Detail 1</span>
                         <span>Detail 2</span>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <!-- test -->

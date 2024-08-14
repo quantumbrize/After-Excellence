@@ -63,6 +63,7 @@ $routes->get('/papers',                             'Frontend\Frontend_Controlle
 $routes->get('/login-pin',                          'Frontend\Frontend_Controller::login_pin');
 $routes->post('/verify-pin-action',                 'Frontend\Frontend_Controller::verify_pin'); // Handle PIN verification form submission
 $routes->get('/pdf-reader',                        'Frontend\Frontend_Controller::pdf_reader');
+$routes->get('/test',                              'Frontend\Frontend_Controller::test');
 
 
 

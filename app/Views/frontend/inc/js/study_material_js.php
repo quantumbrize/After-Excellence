@@ -8,7 +8,6 @@
             console.error('User ID cookie not found.');
         }
         
-        // study_materials('<?= $_SESSION[SES_USER_USER_ID] ?>')
     })
 
     function getCookie(name) {
@@ -45,6 +44,7 @@
                    })
                    $('#study_materials').html(html);
                } else {
+                $('#study_materials').html(`<span style="color: red; display: block; text-align: center; margin: 0 auto;">Study Materials Not Found!</span>`);
                }
 
            },
@@ -58,9 +58,10 @@
     }
 
     function search_study_materials() {
-       let user_id = getCookie('USER_user_id');
+       let user_id = '<?= $_COOKIE[SES_USER_USER_ID] ?>';
        let alphabet = $('#searchStudyMaterial').val()
-       
+    //    console.log(user_id)
+    //    console.log(alphabet)
        $.ajax({
            url: "<?= base_url('/api/search/study-material') ?>",
            type: "GET",
@@ -90,6 +91,7 @@
                    })
                    $('#study_materials').html(html);
                } else {
+                $('#study_materials').html(`<span style="color: red; display: block; text-align: center; margin: 0 auto;">Study Materials Not Found!</span>`);
                }
 
            },

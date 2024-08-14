@@ -1005,7 +1005,7 @@ class Class_Controller extends Api_Controller
                 }
             }
             $resp["status"] = true;
-            $resp["data"] = !empty($data['user_id']) ? $tests[0] : $tests;
+            $resp["data"] = $tests;
             $resp["message"] = 'Online Test Found';
         }
         return $resp;

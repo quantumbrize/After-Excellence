@@ -7,7 +7,6 @@
         } else {
             console.error('User ID cookie not found.');
         }
-        // popular_papers('<?= $_SESSION[SES_USER_USER_ID] ?>')
     })
 
     function popular_papers(user_id) {
@@ -44,6 +43,7 @@
                    })
                    $('#banner-container').html(html);
                } else {
+                $('#banner-container').html(`<span style="color: red; display: block; text-align: center; margin: 0 auto;">Papers Not Found!</span>`);
                }
 
            },
@@ -57,7 +57,7 @@
     }
 
     function search_popular_papers() {
-       let user_id = getCookie('USER_user_id');
+       let user_id = '<?= $_COOKIE[SES_USER_USER_ID] ?>';
        let alphabet = $('#searchStudyMaterial').val()
        $.ajax({
            url: "<?= base_url('/api/search/popular-papers') ?>",
@@ -93,6 +93,7 @@
                    })
                    $('#banner-container').html(html);
                } else {
+                $('#banner-container').html(`<span style="color: red; display: block; text-align: center; margin: 0 auto;">Papers Not Found!</span>`);
                }
 
            },
