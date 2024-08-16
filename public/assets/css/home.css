@@ -457,6 +457,7 @@ header h1 {
     width: 150px;
     height: 150px;
     object-fit: cover;
+    /* overflow:hidden; */
 }
 
 .banner-paper img {

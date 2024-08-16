@@ -20,13 +20,20 @@
 @media (max-width: 426px) {
         .pdf-viewer-container iframe {
         width: 100%;
-        height: 45vh;
+        height: 35vh;
+    }
+    .pdf-viewer-container{
+        height: 44vh !important;
     }
 }
 @media (max-width: 769px) {
         .pdf-viewer-container iframe {
         width: 100%;
-        height: 90vh;
+        height: 40vh;
+    }
+
+    .pdf-viewer-container{
+        height: 44vh !important;
     }
 }
 </style>
