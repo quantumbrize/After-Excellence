@@ -1037,7 +1037,7 @@
                             <ul class="nav nav-sm flex-column">
                                 <li class="nav-item">
                                     <a href="<?= base_url('/admin/users/staff') ?>" class="nav-link">
-                                        Staff
+                                        Teachers
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -1073,7 +1073,7 @@
                                     </li> -->
                                     <li class="nav-item">
                                         <a href="<?= base_url('/admin/users/staff') ?>" class="nav-link">
-                                            Staff
+                                            Teachers
                                         </a>
                                     </li>
                                     <li class="nav-item">

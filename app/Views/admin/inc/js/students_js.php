@@ -1,6 +1,6 @@
 
 <script>
-     $('#student_add_btn').on('click', function () {
+    $('#student_add_btn').on('click', function () {
         var formData = new FormData();
 
         formData.append('className', $('#className').val());
@@ -63,7 +63,65 @@
                 $('#student_add_btn').attr('disabled', false)
             }
         })
+    })
+
+    $('#student_update_btn').on('click', function () {
+        var formData = new FormData();
+
+        formData.append('className', $('#classNameUpdate').val());
+        formData.append('branchName', $('#branchNameUpdate').val());
+        formData.append('user_name', $('#nameUpdate').val());
+        formData.append('phone', $('#phoneUpdate').val());
+        formData.append('email', $('#emailUpdate').val());
+        formData.append('dob', $('#dobUpdate').val());
+        formData.append('roll', $('#rollUpdate').val());
+        formData.append('password', $('#passwordUpdate').val());
+        formData.append('user_id', $('#user_id').val());
+        var file1 = $('#file-input-update')[0].files[0];
+        if (file1) {
+            formData.append('user_image', file1);
+        }
+
+        $.ajax({
+            url: "<?= base_url('/api/update/student') ?>",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            beforeSend: function () {
+                $('#student_update_btn').html(`<div class="spinner-border" role="status"></div>`)
+                $('#student_update_btn').attr('disabled', true)
+
+            },
+            success: function (resp) {
+                let html = ''
+
+                if (resp.status) {
+                    html += `<div class="alert alert-success alert-dismissible alert-label-icon label-arrow fade show material-shadow" role="alert">
+                                <i class="ri-checkbox-circle-fill label-icon"></i>${resp.message}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>`
+                    $('#UpdateModal').modal('hide')
+                } else {
+                    html += `<div class="alert alert-warning alert-dismissible alert-label-icon label-arrow fade show material-shadow" role="alert">
+                                <i class="ri-alert-line label-icon"></i><strong>Warning</strong> - ${resp.message}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>`
+                }
+
+
+                $('#alert').html(html)
+                console.log(resp)
+            },
+            error: function (err) {
+                console.log(err)
+            },
+            complete: function () {
+                $('#student_update_btn').html(`submit`)
+                $('#student_update_btn').attr('disabled', false)
+            }
         })
+    })
 
     let $fileInput = $("#file-input");
     let $imageContainer = $("#images");
@@ -260,7 +318,7 @@
                         html += `<option value="${val.class_id}">${val.class_name}</option>`
                     })
                 }
-                $('#className').append(html)
+                $('#className').html(html)
                 $('#classNameUpdate').append(html)
             },
             error: function (err) {
@@ -284,7 +342,8 @@
                         html += `<option value="${val.branch_id}">${val.branch_name}</option>`
                     })
                 }
-                $('#branchName').append(html)
+                $('#branchNameUpdate').empty()
+                $('#branchName').html(html)
                 $('#branchNameUpdate').append(html)
             },
             error: function (err) {
@@ -305,9 +364,11 @@
                 success: function (resp) {
                     console.log(resp);
                     if (resp.status) {
-                        $('#classNameUpdate').append(`<option selected value="${resp.data.student_roll[0].class_id}">${resp.data.student_roll[0].class_name}</option>`)
+                        $('#classNameUpdate').empty()
+                        $('#branchNameUpdate').empty()
+                        $('#classNameUpdate').html(`<option selected value="${resp.data.student_roll[0].class_id}">${resp.data.student_roll[0].class_name}</option>`)
                         classes()
-                        $('#branchNameUpdate').append(`<option selected value="${resp.data.student_roll[0].branch_id}">${resp.data.student_roll[0].branch_name}</option>`)
+                        $('#branchNameUpdate').html(`<option selected value="${resp.data.student_roll[0].branch_id}">${resp.data.student_roll[0].branch_name}</option>`)
                         get_branches()
                         $('#imagesUpdate').html(`<img src="<?= base_url('public/uploads/user_images/')?>${resp.data.user_img}" alt="">`)
                         $('#nameUpdate').val(resp.data.user_name)
@@ -318,6 +379,7 @@
                         $('#passwordUpdate').val(resp.data.password)
                         $('#user_id').val(resp.data.user_id)
                         $('#UpdateModal').modal('show')
+                        load_products()
                     }
                 },
                 error: function (err) {

@@ -647,7 +647,7 @@ class User_Controller extends Api_Controller
         try {
             $AccessModel = new AccessModel();
             if (empty($data['staff_id'])) {
-                $allAccess = $AccessModel->findAll();
+                $allAccess = $AccessModel->where('status', 'active')->findAll();
                 if ($allAccess) {
                     $resp['status'] = true;
                     $resp['message'] = "All access data retrieved";
@@ -1680,6 +1680,90 @@ class User_Controller extends Api_Controller
         return $resp;
     }
 
+    private function update_student($data)
+    {
+        $resp = [
+            "status" => false,
+            "message" => "Failed to Update Student.",
+            "data" => []
+        ];
+
+        try {
+            $uploadedFiles = $this->request->getFiles();
+            if (empty($data['user_name'])) {
+                $resp['message'] = 'Please enter name';
+            } else if (empty($data['phone'])) {
+                $resp['message'] = 'Please enter phone';
+            } else if (empty($data['email'])) {
+                $resp['message'] = 'Please enter email';
+            } else if (empty($data['dob'])) {
+                $resp['message'] = 'Please enter date of birth';
+            } else if (empty($data['roll'])) {
+                $resp['message'] = 'Please enter roll';
+            } else if (empty($data['className'])) {
+                $resp['message'] = 'Please select class';
+            } else if (empty($data['branchName'])) {
+                $resp['message'] = 'Please select branch';
+            } else if (empty($data['password'])) {
+                $resp['message'] = 'Please enter password';
+            } else if (empty($data['user_id'])) {
+                $resp['message'] = 'User not found';
+            } else {
+
+                $user_data = [
+                    "user_name" => $data['user_name'],
+                    "email" => $data['email'],
+                    "number" => $data['phone'],
+                    "password" => md5($data['password']),
+                ];
+                $student_data = [
+                    "dob"                   => $data['dob'],
+                    "password"              => $data['password'],
+                    
+                ];
+
+                $class_roll = [
+                    "class_id"              => $data['className'],
+                    "branch_id"             => $data['branchName'],
+                    "roll"                  => $data['roll'],
+                ];
+                
+                $UsersModel = new UsersModel();
+                $UserImageModel = new UserImageModel();
+                $StudentModel = new StudentModel();
+                $StudentClassRollModel = new StudentClassRollModel();
+
+                $uploadedFiles = $this->request->getFiles();
+                if (!empty($uploadedFiles['user_image'])){
+                    $file_src = $this->single_upload($uploadedFiles['user_image'], PATH_USER_IMG);
+                    $user_image_data['img'] = $file_src;
+                    $UserImageModel->set($user_image_data)
+                        ->where('user_id', $data['user_id'])
+                        ->update();
+                }
+                // $this->prd($uploadedFiles['user_image']);
+                $UsersModel->set($user_data)
+                    ->where('uid', $data['user_id'])
+                    ->update();
+                $StudentModel->set($student_data)
+                    ->where('user_id', $data['user_id'])
+                    ->update();
+                $StudentClassRollModel->set($class_roll)
+                    ->where('user_id', $data['user_id'])
+                    ->update();
+                $resp['status'] = true;
+                $resp['message'] = 'Student Update Succesfully';
+                $resp['data'] = ['user_id' => $data['user_id']];
+            }
+
+        } catch (\Exception $e) {
+            // Catch any exceptions and set error message
+            $resp['message'] = $e->getMessage();
+        }
+
+        return $resp;
+    }
+
     private function update_user_status($data)
     {
         $resp = [
@@ -1914,6 +1998,13 @@ class User_Controller extends Api_Controller
     {
         $data = $this->request->getPost();
         $resp = $this->new_student_registration($data);
+        return $this->response->setJSON($resp);
+    }
+
+    public function POST_update_student()
+    {
+        $data = $this->request->getPost();
+        $resp = $this->update_student($data);
         return $this->response->setJSON($resp);
     }
 

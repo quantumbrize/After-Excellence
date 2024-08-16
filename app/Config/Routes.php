@@ -301,6 +301,7 @@ $routes->get('/api/search/popular-papers',              'Api\Class_Controller::G
 $routes->get('/api/delete/popular-paper',               'Api\Class_Controller::GET_delete_popular_paper');
 $routes->post('/api/update/popular-paper',              'Api\Class_Controller::POST_update_popular_paper');
 $routes->post('/api/update/study-materials',            'Api\Class_Controller::POST_update_study_material');
+$routes->post('/api/update/student',                    'Api\User_Controller::POST_update_student');
 
 
 

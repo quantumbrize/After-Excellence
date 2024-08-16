@@ -321,7 +321,7 @@
       <input type="hidden" id="user_id">
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" id="student_add_btn" class="btn btn-primary">Save changes</button>
+        <button type="button" id="student_update_btn" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>

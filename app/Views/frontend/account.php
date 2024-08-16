@@ -1,7 +1,7 @@
 <div class="acc-container-fluid">
         <div class="acc-profile-header">
         <!-- <img src="https://via.placeholder.com/1200x200" class="acc-cover-image" alt="Cover Image">  -->
-            <img src="<?= base_url('public/assets/images/account_banner.jpg')?>" class="acc-cover-image" alt="Cover Image">
+            <!-- <img src="<?= base_url('public/assets/images/account_banner.jpg')?>" class="acc-cover-image" alt="Cover Image"> -->
             <!-- <img src="<?= base_url('public/assets/images/account_banner2.jpg')?>" class="acc-cover-image" alt="Cover Image"> -->
         </div>
 

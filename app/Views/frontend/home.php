@@ -163,11 +163,11 @@
 
         <!-- teacher -->
             <div class="header">
-                <h3>Study Material</h3>
+                <h3>Teachers</h3>
                 <button class="see-all" id="see-all-material">See All ></button>
             </div>
-            <div class="section-container">
-                <div class="section-item">
+            <div class="section-container" id="staff_data">
+                <!-- <div class="section-item">
                     <img src="<?= base_url()?>/public/assets/images/1.png" alt="Description of Image 1" class="section-image">
                     <div class="section-title">Teacher 1</div>
                 </div>
@@ -198,7 +198,7 @@
                 <div class="section-item">
                     <img src="<?= base_url()?>/public/assets/images/2.png" alt="Description of Image 2" class="section-image">
                     <div class="section-title">Teacher 8</div>
-                </div>
+                </div> -->
             
                 <!-- Add more sections as needed -->
             </div>
