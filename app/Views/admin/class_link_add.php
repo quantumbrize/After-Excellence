@@ -53,8 +53,74 @@
                 <!-- end col -->
 
                 <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label class="form-label" for="product-title-input">Title</label>
+                                <!-- <input type="text" class="form-control" id="bannerTitle" value=""
+                                    placeholder="Enter product title" required=""> -->
+                                    <input type="text" class="form-control" id="title" value=""
+                                        placeholder="Add Title" required="">
+                                <div class="invalid-feedback">Please Enter a title.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+                
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <div>
+                                <label>Description</label>
+
+                                <div id="ckeditor-classic">
+
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label class="form-label" for="product-title-input">Keyword</label>
+                                <!-- <input type="text" class="form-control" id="bannerTitle" value=""
+                                    placeholder="Enter product title" required=""> -->
+                                    <input type="text" class="form-control" id="keyword" value=""
+                                        placeholder="Add Title" required="">
+                                <div class="invalid-feedback">Please Enter keyword.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label class="form-label" for="product-title-input">Image</label>
+                                <input type="file" id="file-input"  multiple>
+                                <label for="file-input" id="btn_upload" class="btn btn-success">
+                                     Upload Image
+                                </label>
+                                <p id="num-of-files"></p>
+                                <div id="images"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+
+                <div class="col-lg-12">
                     <div class="mb-3">
-                        <label class="form-label" for="product-title-input">Link </label><i class="ri-link"></i>
+                        <label class="form-label" for="product-title-input">Video Link </label><i class="ri-link"></i>
                         <input type="text" class="form-control" id="classLink" value=""
                             placeholder="Put a link here" required="">
                     </div>
@@ -63,15 +129,14 @@
                 </div>
                 <!-- end col -->
 
-                <div class="col-lg-12">
+                <!-- <div class="col-lg-12">
                     <div class="mb-3">
                         <label class="form-label" for="product-title-input">Short Description </label><i class="ri-link"></i>
                         <input type="text" class="form-control" id="classLinkDescription" value=""
                             placeholder="Add short description" required="">
                     </div>
-                    <!-- end card -->
 
-                </div>
+                </div> -->
                 <!-- end col -->
 
                 

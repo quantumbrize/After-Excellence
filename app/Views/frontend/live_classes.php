@@ -1,70 +1,67 @@
-<!--=====================================-->
-        <!--=       Breadcrumb Area Start      =-->
-        <!--=====================================-->
-
-
-        <div class="edu-breadcrumb-area">
-            <div class="container">
-                <div class="breadcrumb-inner">
-                    <div class="page-title">
-                        <h1 class="title">Live Classes</h1>
-                    </div>
-                </div>
-            </div>
-            <ul class="shape-group">
-                <li class="shape-1">
-                    <span></span>
-                </li>
-                <li class="shape-2 scene"><img data-depth="2" src="<?=base_url()?>public/assets/images/about/shape-13.png" alt="shape"></li>
-                <li class="shape-3 scene"><img data-depth="-2" src="<?=base_url()?>public/assets/images/about/shape-15.png" alt="shape"></li>
-                <li class="shape-4">
-                    <span></span>
-                </li>
-                <li class="shape-5 scene"><img data-depth="2" src="<?=base_url()?>public/assets/images/about/shape-07.png" alt="shape"></li>
-            </ul>
+<div class="heading">
+        <a href="<?= base_url()?>"><img src="<?= base_url()?>/public/assets/images/arrow.svg" alt="Back"></a>
+        <h2>Study</h2>
+    </div>
+    <!-- Filters -->
+    <header>
+        <div class="search-bar">
+            <img src="<?= base_url()?>/public/assets/images/Fill 1.png" alt="Search Icon" class="search-icon">
+            <input type="text" onkeyup="search_study_materials()" id="searchStudyMaterial" placeholder="Search...">
+            <img src="<?= base_url()?>/public/assets/images/FILTER.svg" alt="Filter Icon" class="filter-icon">
         </div>
+    </header>
+    <!-- <div class="switch-buttons">
+        <a href="<?= base_url('papers')?>" style="text-decoration:none" class="switch-button">Popular Paper</a>
+        <button class="switch-button active" id="studyMaterialBtn">Study Material</button>
+    </div> -->
+    
 
-        <!--=====================================-->
-        <!--=          Login Area Start         =-->
-        <!--=====================================-->
-        <section class="account-page-area section-gap-equal">
-            <div class="container position-relative">
-                <div class="row g-5 justify-content-center" id="examination_form">
-                    <!-- <div class="col-lg-5">
-                        <div class="login-form-box">
-                            <h3 class="title">Sign in</h3>
-                            <p>Don’t have an account? <a href="#">Sign up</a></p>
-                            <form>
-                                <div class="form-group">
-                                    <label for="current-log-email">Username or email*</label>
-                                    <input type="email" name="current-log-email" id="current-log-email" placeholder="Email or username">
-                                </div>
-                                <div class="form-group">
-                                    <label for="current-log-password">Password*</label>
-                                    <input type="password" name="current-log-password" id="current-log-password" placeholder="Password">
-                                    <span class="password-show"><i class="icon-76"></i></span>
-                                </div>
-                                <div class="form-group chekbox-area">
-                                    <div class="edu-form-check">
-                                        <input type="checkbox" id="remember-me">
-                                        <label for="remember-me">Remember Me</label>
-                                    </div>
-                                    <a href="#" class="password-reset">Lost your password?</a>
-                                </div>
-                                <div class="form-group">
-                                    <button type="button" class="edu-btn btn-medium">Sign in <i class="icon-4"></i></button>
-                                </div>
-                            </form>
-                        </div>
-                    </div> -->
-                    
-                        
-                    
-                </div>
-                <ul class="shape-group">
-                    <li class="shape-1 scene"><img data-depth="2" src="<?=base_url()?>public/assets/images/about/shape-07.png" alt="Shape"></li>
-                    <li class="shape-2 scene"><img data-depth="-2" src="<?=base_url()?>public/assets/images/about/shape-13.png" alt="Shape"></li>
-                    <li class="shape-3 scene"><img data-depth="2" src="<?=base_url()?>public/assets/images/counterup/shape-02.png" alt="Shape"></li>
-                </ul>
+    
+
+    <div class="content">
+        <!-- <div id="popularPaperContent" class="content-item ">
+            <div id="banner-container" class="banner-container">
             </div>
-        </section>
+        </div> -->
+        <!-- <div id="studyMaterialContent" class="content-item active">
+            <div class="study-material" id="study-material"> -->
+                <!-- Dynamic content will be inserted here -->
+                 <!-- <img src="<?= base_url()?>/public/assets/images/save.svg" alt=""> -->
+                 <div class="section-container" id="study_materials">
+                    <!-- <div class="section-item">
+                        <img src="<?= base_url()?>/public/assets/images/pdfimage.png" alt="Description of Image 1" class="section-image">
+                        <div class="section-title">Title 1</div>
+                    </div> -->
+                    <!-- <div class="section-item">
+                        <img src="<?= base_url()?>/public/assets/images/pdfimage.png" alt="Description of Image 2" class="section-image">
+                        <div class="section-title">Title 2</div>
+                    </div>
+                    <div class="section-item">
+                        <img src="<?= base_url()?>/public/assets/images/pdfimage.png" alt="Description of Image 1" class="section-image">
+                        <div class="section-title">Title 3</div>
+                    </div>
+                    <div class="section-item">
+                        <img src="<?= base_url()?>/public/assets/images/pdfimage.png" alt="Description of Image 2" class="section-image">
+                        <div class="section-title">Title 4</div>
+                    </div>
+                    <div class="section-item">
+                        <img src="<?= base_url()?>/public/assets/images/pdfimage.png" alt="Description of Image 1" class="section-image">
+                        <div class="section-title">Title 5</div>
+                    </div>
+                    <div class="section-item">
+                        <img src="<?= base_url()?>/public/assets/images/pdfimage.png" alt="Description of Image 2" class="section-image">
+                        <div class="section-title">Title 6</div>
+                    </div>
+                    <div class="section-item">
+                        <img src="<?= base_url()?>/public/assets/images/pdfimage.png" alt="Description of Image 1" class="section-image">
+                        <div class="section-title">Title 7</div>
+                    </div>
+                    <div class="section-item">
+                        <img src="<?= base_url()?>/public/assets/images/pdfimage.png" alt="Description of Image 2" class="section-image">
+                        <div class="section-title">Title 8</div>
+                    </div> -->
+                    <!-- Add more sections as needed -->
+                </div>
+            <!-- </div>
+        </div> -->
+    </div>

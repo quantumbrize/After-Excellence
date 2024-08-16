@@ -257,6 +257,7 @@ defined('PATH_QUESTION_IMG')        || define('PATH_QUESTION_IMG', ROOTPATH  . '
 defined('PATH_PROMOTION_CARD_IMG')  || define('PATH_PROMOTION_CARD_IMG', ROOTPATH  . 'public/uploads/promotion_card_images');
 defined('PATH_CITY_IMG')            || define('PATH_CITY_IMG', ROOTPATH  . 'public/uploads/cities_images');
 defined('PATH_CENTRE_IMG')          || define('PATH_CENTRE_IMG', ROOTPATH  . 'public/uploads/centres_images');
+defined('PATH_VIDEO_MATERIAL_IMG')  || define('PATH_VIDEO_MATERIAL_IMG', ROOTPATH  . 'public/uploads/video_material_images');
 
 
 //////////////////////////////////////////////__PAGEDATA

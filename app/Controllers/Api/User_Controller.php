@@ -1656,7 +1656,9 @@ class User_Controller extends Api_Controller
                         student_class_roll.roll AS student_roll,
                         student_class_roll.uid AS student_class_roll_id,
                         student_class_roll.created_at,
+                        classes.uid AS class_id,
                         classes.class_name,
+                        branches.uid AS branch_id,
                         branches.branch_name
                         
                     FROM

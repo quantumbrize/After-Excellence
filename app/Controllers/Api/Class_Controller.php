@@ -133,10 +133,17 @@ class Class_Controller extends Api_Controller
         ];
 
         try {
+            $uploadedFiles = $this->request->getFiles();
             if (empty($data['class_id'])) {
                 $resp['message'] = 'Please add a class';
             } else if (empty($data['branch_id'])) {
                 $resp['message'] = 'Please add a branch';
+            } else if (empty($data['title'])) {
+                $resp['message'] = 'Please add a title';
+            } else if (empty($data['keyword'])) {
+                $resp['message'] = 'Please add keyword';
+            } else if (empty($uploadedFiles['images'])) {
+                $resp['message'] = 'Please add a image';
             } else if (empty($data['class_link'])) {
                 $resp['message'] = 'Please add a link';
             } else if (empty($data['description'])) {
@@ -147,9 +154,17 @@ class Class_Controller extends Api_Controller
                     "uid" => $this->generate_uid(UID_LIVE_CLASS),
                     "class_id" => $data['class_id'],
                     "branch_id" => $data['branch_id'],
+                    "title" => $data['title'],
+                    "keyword" => $data['keyword'],
                     "link" => $data['class_link'],
                     "description" => $data['description'],
                 ];
+                if (!empty($uploadedFiles['images'])){
+                    foreach ($uploadedFiles['images'] as $file) {
+                        $file_src = $this->single_upload($file, PATH_VIDEO_MATERIAL_IMG);
+                        $live_class_data['img'] = $file_src;
+                    }
+                }
                 $LiveClassModel = new LiveClassModel();
 
                 // Insert live class data
@@ -186,6 +201,9 @@ class Class_Controller extends Api_Controller
 
         $sql = "SELECT
             live_class.uid AS live_class_id,
+            live_class.title,
+            live_class.keyword,
+            live_class.img,
             live_class.link AS class_link,
             live_class.description,
             live_class.created_at,
@@ -261,6 +279,10 @@ class Class_Controller extends Api_Controller
             $resp['message'] = 'Please add a branch';
         } else if (empty($data['class_link'])) {
             $resp['message'] = 'Please add a link';
+        } else if (empty($data['title'])) {
+            $resp['message'] = 'Please add a title';
+        } else if (empty($data['keyword'])) {
+            $resp['message'] = 'Please add keyword';
         } else if (empty($data['live_class_id'])) {
             $resp['message'] = 'Live class not found';
         } else if (empty($data['description'])) {
@@ -269,9 +291,18 @@ class Class_Controller extends Api_Controller
             $live_class_data = [
                 "class_id" => $data['class_id'],
                 "branch_id" => $data['branch_id'],
+                "title" => $data['title'],
+                "keyword" => $data['keyword'],
                 "link" => $data['class_link'],
                 "description" => $data['description'],
             ];
+            $uploadedFiles = $this->request->getFiles();
+            if (!empty($uploadedFiles['images'])){
+                foreach ($uploadedFiles['images'] as $file) {
+                    $file_src = $this->single_upload($file, PATH_VIDEO_MATERIAL_IMG);
+                    $live_class_data['img'] = $file_src;
+                }
+            }
 
 
             $LiveClassModel = new LiveClassModel();
@@ -914,8 +945,13 @@ class Class_Controller extends Api_Controller
 
         $sql = "SELECT
             student_class_roll.uid AS student_class_roll_id,
+            live_class.uid AS live_class_id,
+            live_class.title,
+            live_class.keyword,
+            live_class.img,
             live_class.link AS class_link,
-            live_class.description
+            live_class.description,
+            live_class.created_at
         FROM
             student_class_roll
         JOIN

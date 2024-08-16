@@ -63,7 +63,7 @@
                 $('#student_add_btn').attr('disabled', false)
             }
         })
-    })
+        })
 
     let $fileInput = $("#file-input");
     let $imageContainer = $("#images");
@@ -88,6 +88,30 @@
         });
     }
     $fileInput.change(preview);
+
+    let $fileInputUpdate = $("#file-input-update");
+    let $imageContainerUpdate = $("#imagesUpdate");
+    let $numOfFilesUpdate = $("#num-of-files-update");
+
+    function preview2() {
+        $imageContainerUpdate.html("");
+        $numOfFilesUpdate.text(`${$fileInputUpdate[0].files.length} Files Selected`);
+
+        $.each($fileInputUpdate[0].files, function (index, file) {
+            let reader = new FileReader();
+            let $figure = $("<figure>");
+            let $figCap = $("<figcaption>").text(file.name);
+            // $figure.append($figCap);
+            reader.onload = function () {
+                let $img = $("<img>").attr("src", reader.result).attr("id", "userImage");
+                $figure.prepend($img);
+                // $("#userImage").attr("src", reader.result);
+            }
+            $imageContainerUpdate.append($figure);
+            reader.readAsDataURL(file);
+        });
+    }
+    $fileInputUpdate.change(preview2);
 
     load_products();
     classes()
@@ -203,6 +227,9 @@
                                             <td >
                                                 ${student.status}
                                             </td>
+                                            <td >
+                                                <button onclick="event.stopPropagation(); update_student('${student.user_id}')" class="btn btn-info">Edit</button>
+                                            </td>
                                         </tr>`
                         })
                         $('#table-product-list-all-body').html(html)
@@ -233,7 +260,8 @@
                         html += `<option value="${val.class_id}">${val.class_name}</option>`
                     })
                 }
-                $('#className').html(html)
+                $('#className').append(html)
+                $('#classNameUpdate').append(html)
             },
             error: function (err) {
                 console.log(err)
@@ -256,12 +284,47 @@
                         html += `<option value="${val.branch_id}">${val.branch_name}</option>`
                     })
                 }
-                $('#branchName').html(html)
+                $('#branchName').append(html)
+                $('#branchNameUpdate').append(html)
             },
             error: function (err) {
                 console.log(err)
             }
         })
+    }
+
+    function update_student(user_id){
+        // alert(user_id)
+        $.ajax({
+                url: "<?= base_url('/api/students') ?>",
+                type: 'GET',
+                data: {
+                    user_id: user_id
+                },
+                beforeSend: function () { },
+                success: function (resp) {
+                    console.log(resp);
+                    if (resp.status) {
+                        $('#classNameUpdate').append(`<option selected value="${resp.data.student_roll[0].class_id}">${resp.data.student_roll[0].class_name}</option>`)
+                        classes()
+                        $('#branchNameUpdate').append(`<option selected value="${resp.data.student_roll[0].branch_id}">${resp.data.student_roll[0].branch_name}</option>`)
+                        get_branches()
+                        $('#imagesUpdate').html(`<img src="<?= base_url('public/uploads/user_images/')?>${resp.data.user_img}" alt="">`)
+                        $('#nameUpdate').val(resp.data.user_name)
+                        $('#emailUpdate').val(resp.data.email)
+                        $('#phoneUpdate').val(resp.data.number)
+                        $('#dobUpdate').val(resp.data.dob)
+                        $('#rollUpdate').val(resp.data.student_roll[0].student_roll)
+                        $('#passwordUpdate').val(resp.data.password)
+                        $('#user_id').val(resp.data.user_id)
+                        $('#UpdateModal').modal('show')
+                    }
+                },
+                error: function (err) {
+                    console.log(err)
+                }
+
+            })
     }
 
 

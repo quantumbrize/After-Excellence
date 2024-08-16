@@ -39,6 +39,12 @@
                                                 ${live_class.branch_name}
                                             </td>
                                             <td>
+                                                ${live_class.title}
+                                            </td>
+                                            <td>
+                                                <img src="<?= base_url('public/uploads/video_material_images/') ?>${live_class.img}" alt="" class="product-img">
+                                            </td>
+                                            <td>
                                                 ${live_class.class_link}
                                             </td>
                                             <td>

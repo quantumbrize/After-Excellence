@@ -1,7 +1,7 @@
 
 <script>
     $(document).ready(function () {
-        load_live_class('<?= $_SESSION[SES_USER_USER_ID] ?>')
+        load_live_class('<?= $_COOKIE[SES_USER_USER_ID] ?>')
     })
 
     function formatDate(dateString) {
@@ -26,37 +26,22 @@
                 if (resp.status) {
                     
                     var html = ``
-                    $.each(resp.data, function (index, class_link) {
-                        html += `<div class="col-lg-12" >
-                        
-                                    <div class="login-form-box registration-form">
-                                    <h5>${index+1}.</h5>
-                                    
-                                        <a href="${class_link.class_link}"  target="_blank" class="edu-btn" style="color: white;">Join Class<i class="icon-4"></i></a>
-                                        <!-- <form> -->
-                                            <div class="row mb-4" >
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="card">
-                                                        <div class="card-body">
-                                                                <label class="form-label" for="product-title-input">Short description:- ${class_link.description}</label>
-                                                                <div class="invalid-feedback">Please Enter a banner title.</div>
-                                                            </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            </div>
-                                    </div>
+                    $.each(resp.data, function (index, video) {
+                        html += `<div class="section-item">
+                                    <a href="<?= base_url('video-player?live_class_id=')?>${video.live_class_id}" style="text-decoration:none;">
+                                        <img src="<?= base_url()?>/public/uploads/video_material_images/${video.img}" alt="Description of Image 1" class="section-image">
+                                        <div class="section-title">${video.title}</div>
+                                    </a>
                                 </div>`
                     })
-                    $('#examination_form').html(html);
+                    $('#study_materials').html(html);
                 } else {
                     html = `<div class="col-lg-12" >
                                 <div class="login-form-box registration-form">
                                     <h3 class="title" style="text-align:center">${resp.message}!</h3>
                                 </div>
                             </div>`
-                        $('#examination_form').html(html);
+                        $('#study_materials').html(html);
                 }
 
             },

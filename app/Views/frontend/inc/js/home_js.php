@@ -5,6 +5,7 @@
         if (userId) {
             load_banners();
             popular_papers(userId);
+            video_materials(userId)
             study_materials(userId);
             tests(userId)
         } else {
@@ -188,6 +189,43 @@
 
            }
        })
+    }
+
+    function video_materials(user_id) {
+        // alert(user_id)
+        $.ajax({
+            url: "<?= base_url('/api/student/live/class') ?>",
+            type: "GET",
+            data:{user_id:user_id},
+            beforeSend: function () {
+            },
+            success: function (resp) {
+                console.log(resp)
+                if (resp.status) {
+                    
+                    var html = ``
+                    $.each(resp.data, function (index, video) {
+                        html += `<div class="section-item">
+                                    <a href="<?= base_url('video-player?live_class_id=')?>${video.live_class_id}" style="text-decoration:none;">
+                                        <img src="<?= base_url()?>/public/uploads/video_material_images/${video.img}" alt="Description of Image 1" class="section-image">
+                                        <div class="section-title">${video.title}</div>
+                                    </a>
+                                </div>`
+                    })
+                    $('#video_materials').html(html);
+                } else {
+                    html = `<span style="color: red; display: block; text-align: center; margin: 0 auto;">Video Materials Not Found!</span>`
+                        $('#video_materials').html(html);
+                }
+
+            },
+            error: function (err) {
+                console.log(err)
+            },
+            complete: function () {
+
+            }
+        })
     }
 
    

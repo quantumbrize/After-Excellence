@@ -25,7 +25,7 @@
                                         <a href="<?= base_url('/admin/live-classes/add') ?>" class="btn btn-success"
                                             id="addproduct-btn">
                                             <i class="ri-add-line align-bottom me-1"></i>
-                                            Add Class Link
+                                            Add Video Materials
                                         </a>
                                     </div>
                                 </div>
@@ -91,6 +91,8 @@
                                             <tr>
                                                 <th>Class</th>
                                                 <th>Branch</th>
+                                                <th>Title</th>
+                                                <th>Image</th>
                                                 <th>Live Class Link</th>
                                                 <th>Creation Date</th>
                                                 <th>Edit</th>

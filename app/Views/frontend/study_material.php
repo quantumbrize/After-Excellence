@@ -3,10 +3,6 @@
         <h2>Study</h2>
     </div>
     <!-- Filters -->
-    <div class="switch-buttons">
-        <!-- <button class="switch-button active" id="popularPaperBtn">Popular Paper</button> -->
-        <button class="switch-button active" id="studyMaterialBtn">Study Material</button>
-    </div>
     <header>
         <div class="search-bar">
             <img src="<?= base_url()?>/public/assets/images/Fill 1.png" alt="Search Icon" class="search-icon">
@@ -14,6 +10,10 @@
             <img src="<?= base_url()?>/public/assets/images/FILTER.svg" alt="Filter Icon" class="filter-icon">
         </div>
     </header>
+    <div class="switch-buttons">
+        <a href="<?= base_url('papers')?>" style="text-decoration:none" class="switch-button">Popular Paper</a>
+        <button class="switch-button active" id="studyMaterialBtn">Study Material</button>
+    </div>
     
 
     

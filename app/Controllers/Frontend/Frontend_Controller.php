@@ -520,6 +520,33 @@ class Frontend_Controller extends Main_Controller
 
     }
 
+    public function video_player()
+    {
+        $user_id = $this->is_logedin();
+        if (!empty($user_id)) {
+            $data = PAGE_DATA_FRONTEND;
+            $data = [
+                'data_page' => [],
+                'data_header' => [
+                    'header_link' => ['video_player_css.php'],
+                    'title' => 'video_player',
+                    'header' => [],
+                    'sidebar' => [],
+                    'site' => 'frontend'
+                ],
+                'data_footer' => [
+                    'footer_link' => ['video_player_js.php'],
+                    'footer' => [],
+                    'site' => 'frontend'
+                ]
+            ];
+            $this->load_page('/frontend/video_player', $data);
+        } else {
+            return redirect()->to('login');
+        }
+
+    }
+
     public function test()
     {
         $user_id = $this->is_logedin();

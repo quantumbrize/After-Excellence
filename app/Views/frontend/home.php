@@ -66,9 +66,17 @@
             </div> -->
             <!-- Add more sections as needed -->
         </div>
-        
-
         <!-- study-material-->
+
+         <!-- study material -->
+         <div class="header">
+            <h3>Video Material</h3>
+            <a href="<?= base_url('live-classes')?>">
+                <button class="see-all" id="see-all-material">See All ></button>
+            </a>
+        </div>
+        <div class="section-container" id="video_materials">
+        </div>
 
         <!-- test -->
         <div class="test-container">
@@ -121,7 +129,7 @@
             <h3>Popular Paper</h3>
             <a href="<?= base_url('papers')?>"><button class="see-all" id="see-all-papers">See All ></button></a>
         </div>
-        <div class="button-container">
+        <!-- <div class="button-container">
             <button class="btn">All</button>
             <button class="btn">Graphic Design</button>
             <button class="btn">3D Design</button>
@@ -129,7 +137,7 @@
             <button class="btn">Photography</button>
             <button class="btn">Web Dev</button>
             <button class="btn">UI/UX Design</button>
-        </div>
+        </div> -->
         <!-- popular paper -->
         <!-- card -->
         <div class="banner-container" id="banner-container">

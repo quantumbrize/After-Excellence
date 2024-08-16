@@ -1,16 +1,53 @@
 <script>
-  
+     var editor;
     $(document).ready(function () {
         get_live_class_data()
+
+        ClassicEditor.create(document.querySelector("#ckeditor-classic")).then(function (createdEditor) {
+            editor = createdEditor;
+            editor.ui.view.editable.element.style.height = "200px";
+        }).catch(function (error) {
+            console.error(error);
+        });
+
+        let $fileInput = $("#file-input");
+        let $imageContainer = $("#images");
+        let $numOfFiles = $("#num-of-files");
+
+        function preview() {
+            $imageContainer.html("");
+            $numOfFiles.text(`${$fileInput[0].files.length} Files Selected`);
+
+            $.each($fileInput[0].files, function (index, file) {
+                let reader = new FileReader();
+                let $figure = $("<figure>");
+                let $figCap = $("<figcaption>").text(file.name);
+                $figure.append($figCap);
+                reader.onload = function () {
+                    let $img = $("<img>").attr("src", reader.result);
+                    $figure.prepend($img);
+                }
+                $imageContainer.append($figure);
+                reader.readAsDataURL(file);
+            });
+        }
+        $fileInput.change(preview);
 
         $('#live_class_update_btn').on('click', function () {
             var formData = new FormData();
 
             formData.append('class_id', $('#className').val());
             formData.append('branch_id', $('#branchName').val());
+            formData.append('description', editor.getData());
+            formData.append('title', $('#title').val());
+            formData.append('keyword', $('#keyword').val());
             formData.append('class_link', $('#classLink').val());
-            formData.append('description', $('#classLinkDescription').val());
+            // formData.append('description', $('#classLinkDescription').val());
             formData.append('live_class_id', $('#live_class_id').val());
+
+            $.each($('#file-input')[0].files, function (index, file) {
+                formData.append('images[]', file);
+            });
 
             $.ajax({
                 url: "<?= base_url('/api/live-class-link/update') ?>",
@@ -67,7 +104,10 @@
                 classes(resp.data.class_id, resp.data.branch_id)
                 $('#classLink').val(resp.data.class_link)
                 $('#live_class_id').val(resp.data.live_class_id)
-                $('#classLinkDescription').val(resp.data.description)
+                $('#title').val(resp.data.title)
+                $('#keyword').val(resp.data.keyword)
+                $('#images').html(`<img src="<?= base_url('public/uploads/video_material_images/') ?>${resp.data.img}">`)
+                editor.setData(resp.data.description);
             },
             error: function (err) {
                 console.log(err)
