@@ -29,17 +29,18 @@
                        } else if(paper.type == 'pdf'){
                             redirect_url = '<?= base_url('pdf-reader?pdf_url=')?>'+paper.pdf
                        }
-                       html += `<a href="${redirect_url}" style="text-decoration:none;">
-                                    <div class="banner">
+                       html += `<div onclick="window.location.href='${redirect_url}'" class="banner-paper">
+                                    <div class="img-cont">
                                         <img src="<?= base_url()?>public/uploads/popular_paper/${paper.img}" alt="Banner Image">
-                                        <div class="banner-content">
-                                            <h3>${paper.keyword}</h3>
-                                            <p>${paper.title}</p>
-                                            <h3 style="color:black;">${paper.class_name}</h3>
-                                            <h3 style="color:black;">${paper.branch_name}</h3>
-                                        </div>
                                     </div>
-                                </a>`
+                                    <div class="banner-content-paper">
+                                        <h3>${paper.keyword}</h3>
+                                        <p>${paper.title}</p>
+                                        <h3 style="color:black;">${paper.class_name}</h3>
+                                        <h3 style="color:black;">${paper.branch_name}</h3>
+                                    </div>
+                                </div>
+                                `
                    })
                    $('#banner-container').html(html);
                } else {

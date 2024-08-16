@@ -22,23 +22,28 @@
         <div id="studyMaterialContent" class="content-item active">
             <div class="study-material" id="study-material">
                  <!-- <img src="<?= base_url()?>/public/assets/images/save.svg" alt=""> -->
-                 <div id="banner-container" class="banner-container">
-                    <!-- <div class="banner">
-                        <img src="<?= base_url()?>/public/assets/images/pdfimage.png" alt="Banner Image">
-                        <div class="banner-content">
+                 <div id="banner-container" class="banner-container-paper">
+                    <!-- <div class="banner-paper">
+                        <div class="img-cont">
+                            <img src="<?= base_url()?>/public/assets/images/pdfimage.png" alt="Banner Image">
+                        </div>
+                        <div class="banner-content-paper">
                             <h3>Graphic Design</h3>
                             <p>Advanced</p>
                             <p>Rating: 4.2</p>
                         </div>
                     </div>
-                    <div class="banner">
-                        <img src="<?= base_url()?>/public/assets/images/pdfimage.png" alt="Banner Image">
-                        <div class="banner-content">
+                    <div class="banner-paper">
+                        <div class="img-cont">
+                            <img src="<?= base_url()?>/public/assets/images/pdfimage.png" alt="Banner Image">
+                        </div>
+                        <div class="banner-content-paper">
                             <h3>Graphic Design</h3>
                             <p>Advanced</p>
                             <p>Rating: 4.2</p>
                         </div>
                     </div> -->
+                    
                 </div>
 
                 <div class="section-container">
