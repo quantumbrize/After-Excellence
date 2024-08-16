@@ -172,15 +172,25 @@ header {
 /* Ensure layout consistency across all devices */
 @media (min-width: 600px) {
     .section-item {
-        flex: 1 1 calc(66.33% - 20px); /* Maintain 3 items per row */
-        max-width: calc(66.33% - 20px); /* Basis width minus the gap for 3 items per row */
+        flex: 1 1 calc(66.33% - 20px); 
+        /* max-width: calc(66.33% - 20px);  */
+    }
+    .section-container {
+        gap: 5px;
+    }
+}
+
+/* sj */
+@media (min-width: 650px) and (min-width: 768px){
+    .section-item {
+        flex: 1 1 calc(25.33% - 30px); 
     }
 }
 
 @media (min-width: 900px) {
     .section-item {
-        flex: 1 1 calc(11.11% - 20px); /* Maintain 3 items per row */
-        max-width: calc(11.11% - 20px); /* Basis width minus the gap for 3 items per row */
+        flex: 1 1 calc(11.11% - 20px); 
+        max-width: calc(11.11% - 20px); 
     }
 }
 
@@ -419,7 +429,44 @@ header h1 {
     color: #000000;
 }
 
-/* cards  */
+/* sj */
+/* paper cards  */
+.banner-container-paper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+}
+
+.banner-paper {
+    /* width: 280px; */
+    /* height: auto; */
+    display: flex;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.banner-content-paper {
+    padding: 15px;
+    text-align: center;
+}
+
+.banner-paper .img-cont {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+.banner-paper img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    margin-top: 5px;
+}
+/* paper cards  */
 
 /* Navbar */
 .navbar {

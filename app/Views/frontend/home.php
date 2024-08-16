@@ -31,8 +31,9 @@
                 <button class="see-all" id="see-all-material">See All ></button>
             </a>
         </div>
-        <div class="section-container" id="study_materials">
-            <!-- <div class="section-item">
+        <!-- <div class="section-container" id="study_materials"> -->
+        <div class="section-container">
+            <div class="section-item">
                 <img src="<?= base_url()?>/public/assets/images/pdfimage.png" alt="Description of Image 1" class="section-image">
                 <div class="section-title">Title 1</div>
             </div>
@@ -63,7 +64,7 @@
             <div class="section-item">
                 <img src="<?= base_url()?>/public/assets/images/pdfimage.png" alt="Description of Image 2" class="section-image">
                 <div class="section-title">Title 8</div>
-            </div> -->
+            </div>
             <!-- Add more sections as needed -->
         </div>
         <!-- study-material-->

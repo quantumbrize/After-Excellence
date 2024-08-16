@@ -5,16 +5,29 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin-bottom: 70px;
     /* Use the full height of the viewport */
 }
 
 .pdf-viewer-container iframe {
-    width: 80%;
+    width: 70%;
     /* or any percentage or fixed width you prefer */
-    height: 80vh;
+    height: 100vh;
     /* 80% of the viewport height, adjust as needed */
     border: none;
     /* Removes the border */
+}
+@media (max-width: 426px) {
+        .pdf-viewer-container iframe {
+        width: 100%;
+        height: 45vh;
+    }
+}
+@media (max-width: 769px) {
+        .pdf-viewer-container iframe {
+        width: 100%;
+        height: 90vh;
+    }
 }
 </style>
 <div class="heading">
