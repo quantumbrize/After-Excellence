@@ -56,14 +56,13 @@
                         <div class="card-body">
                             <div class="mb-3">
                                 <label class="form-label" for="product-title-input">Select Time</label>
-                                <!-- <input type="text" class="form-control" id="bannerTitle" value=""
-                                    placeholder="Enter product title" required=""> -->
-                                <select class="form-control" name="testTime" id="testTime">
+                                <input type="text" class="form-control" id="testTime" value="" required="">
+                                <!-- <select class="form-control" name="testTime" id="testTime">
                                     <option value="">select-time</option>
                                     <option value="30">30</option>
                                     <option value="45">45</option>
                                     <option value="60">60</option>
-                                </select>
+                                </select> -->
                                 <div class="invalid-feedback">Please Enter a banner title.</div>
                             </div>
                         </div>

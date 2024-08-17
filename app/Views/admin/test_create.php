@@ -55,14 +55,14 @@
                         <div class="card-body">
                             <div class="mb-3">
                                 <label class="form-label" for="product-title-input">Select Time</label>
-                                <!-- <input type="text" class="form-control" id="bannerTitle" value=""
-                                    placeholder="Enter product title" required=""> -->
-                                <select class="form-control" name="testTime" id="testTime">
+                                <input type="number" class="form-control" id="testTime" value=""
+                                    placeholder="Enter time" required="">
+                                <!-- <select class="form-control" name="testTime" id="testTime">
                                     <option value="">select-time</option>
                                     <option value="30">30</option>
                                     <option value="45">45</option>
                                     <option value="60">60</option>
-                                </select>
+                                </select> -->
                                 <div class="invalid-feedback">Please Enter a banner title.</div>
                             </div>
                         </div>
@@ -96,11 +96,11 @@
                                 style="display: flex;align-items: flex-end; justify-content: flex-end;">
                                 <h4>Total Marks - <span id="total_marks">0</span></h4>
                             </div>
-                            <div class="col-lg-8 mb-3">
+                            <div class="col-lg-12 mb-3">
                                 <label class="form-label">Questions</label>
                                 <textarea id="editor_qst"></textarea>
                             </div>
-                            <div class="col-lg-4 mb-3">
+                            <!-- <div class="col-lg-4 mb-3">
                                 <label class="form-label">Image(Optional*)</label>
                                 <input type="file" id="file-input"  multiple>
                                 <label for="file-input" id="btn_upload" class="btn btn-success">
@@ -108,7 +108,7 @@
                                 </label>
                                 <p id="num-of-files"></p>
                                 <div id="images"></div>
-                            </div>
+                            </div> -->
                             
 
                             <div class="col-lg-12 mb-3" id="ans_mcq_con" style="display:none;">

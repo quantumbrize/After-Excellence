@@ -1,5 +1,8 @@
-<script src="<?= base_url()?>/public/assets/js/index.js"></script>
-<script src="<?= base_url()?>/public/assets/js/study.js"></script>
+    <!-- <script src="<?= base_url()?>/public/assets/js/index.js"></script> -->
+    <script src="<?= base_url()?>/public/assets/js/study.js"></script>
+
+    <script src="<?= base_url()?>/public/assets/js/scripts.js"></script>
+    <script src="<?= base_url()?>/public/assets/js/test.js"></script>
 
   <?php
         if (!empty ($footer_asset_link)) {

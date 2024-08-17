@@ -1,6 +1,38 @@
 
+
 <script>
-    $(document).ready(function () {
+function initializeCarousel() {
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
+    const images = document.querySelectorAll('.carousel-images img');
+    const indicators = document.querySelectorAll('.carousel-indicators span');
+    let currentIndex = 0;
+
+    function updateCarousel() {
+        const offset = -currentIndex * 100;
+        document.querySelector('.carousel-images').style.transform = `translateX(${offset}%)`;
+        indicators.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === currentIndex);
+        });
+    }
+
+    function showNext() {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateCarousel();
+    }
+
+    function showPrev() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateCarousel();
+    }
+
+    nextButton.addEventListener('click', showNext);
+    prevButton.addEventListener('click', showPrev);
+
+    updateCarousel(); // Initialize the carousel
+}
+
+$(document).ready(function () {
         const userId = '<?= $_COOKIE[SES_USER_USER_ID] ?>';
         if (userId) {
             load_banners();
@@ -48,6 +80,7 @@
                     })
                     $('#banner_container').html(html);
                     $('#banner_indicators').html(html2);
+                    initializeCarousel();
                 } else {
                 }
 
@@ -248,7 +281,7 @@
                 if (resp) {
                     let html = ''
                     $.each(resp.data, function (index, item) {
-                        console.log(item.user_image)
+                        console.log(item.staff_name)
                         // html += `<tr>
                         //         <td>${item.staff_name}</td>
                         //         <td><img src="<?= base_url('public/uploads/user_images/') ?>${item.user_image}" alt="" class="product-img"></td>

@@ -123,7 +123,7 @@
                 $('#responseUrl').val(test.response_url)
                 $('#testId').val(test_id)
                 classes(test.class_id, test.branch_id)
-                $('#testTime').val(`${test.timer}`)
+                $('#testTime').val(test.timer)
 
                 if (test.questions.length > 0) {
                     html = ``

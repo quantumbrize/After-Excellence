@@ -635,12 +635,12 @@ class Class_Controller extends Api_Controller
                             'marks' => $item['marks']
                         ];
                         $uploadedFiles = $this->request->getFiles();
-                        if(isset($uploadedFiles[$item['images']])){
-                            foreach ($uploadedFiles[$item['images']] as $file) {
-                                $file_src = $this->single_upload($file, PATH_QUESTION_IMG);
-                                $question_add_data['img'] = $file_src;
-                            }
-                        }
+                        // if(isset($uploadedFiles[$item['images']])){
+                        //     foreach ($uploadedFiles[$item['images']] as $file) {
+                        //         $file_src = $this->single_upload($file, PATH_QUESTION_IMG);
+                        //         $question_add_data['img'] = $file_src;
+                        //     }
+                        // }
                         if ($item['qstType'] == 'mcq') {
                             $right = '';
                             if ($item['qstAnsOpt']['right']['a'] == 1) {

@@ -28,13 +28,22 @@
 }
 @media (max-width: 769px) {
         .pdf-viewer-container iframe {
-        width: 100%;
-        height: 40vh;
-    }
+            width: 100%;
+            height: 40vh;
+        }
 
     .pdf-viewer-container{
         height: 44vh !important;
     }
+}
+@media (min-width: 600px) and (max-width: 1024px) {
+    .pdf-viewer-container{
+        height: 70vh !important;
+    }
+    .pdf-viewer-container iframe {
+            width: 100%;
+            height: 60vh;
+        }
 }
 </style>
 <div class="heading">

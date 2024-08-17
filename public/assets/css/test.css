@@ -37,7 +37,7 @@ header {
     left: 7px;
     width: 20px;
     height: 20px;
-    top: 15px; /* Center vertically */
+    top: 0px; /* Center vertically */
     transform: translateY(-50%); /* Adjust for exact centering */
 }
 
@@ -53,10 +53,10 @@ header {
 
 .search-bar .filter-icon {
     position: absolute;
-    right: 10px; /* Position to the right inside the search bar */
+    right: 0px; /* Position to the right inside the search bar */
     width: 40px;
     height: 40px;
-    top: 12px; /* Center vertically */
+    top: 0px; /* Center vertically */
     transform: translateY(-50%); /* Adjust for exact centering */
 }
 

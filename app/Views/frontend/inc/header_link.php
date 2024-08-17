@@ -7,6 +7,10 @@
     <title>Responsive Design</title>
     <link rel="stylesheet" href="<?= base_url()?>/public/assets/css/home.css">
     <link rel="stylesheet" href="<?= base_url()?>/public/assets/css/study.css">
+
+    <link rel="stylesheet" href="<?= base_url()?>/public/assets/css/global.css">
+    <link rel="stylesheet" href="<?= base_url()?>/public/assets/css/test.css">
+    <script src="<?= base_url()?>/public/assets/js/index.js"></script>
     
      <!-- External Stylesheets -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -18,6 +22,8 @@
     <script src="https://cdn.jsdelivr.net/npm/choices.js@9.0.1/public/assets/scripts/choices.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+
+ 
 
     <?php
     if (!empty($header_asset_link)) {

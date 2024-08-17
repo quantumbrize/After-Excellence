@@ -1,3 +1,71 @@
+<style>
+.carousel {
+    position: relative;
+    width: 100%;
+    height: 500px; /* Adjust this height as needed */
+    overflow: hidden;
+}
+
+.carousel-images {
+    display: flex;
+    transition: transform 0.5s ease;
+    width: 100%;
+    height: 100%; /* Ensure the container takes up the full height */
+}
+
+.carousel-images img {
+    flex-shrink: 0; /* Prevent shrinking */
+    width: 100%; /* Ensure images cover the width of the container */
+    height: 100%; /* Ensure images cover the height of the container */
+    object-fit: cover; /* Adjust the image fitting to cover the container */
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1; /* Ensure buttons are above other content */
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.carousel-indicators span {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #bbb;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.carousel-indicators .active {
+    background-color: #717171;
+}
+
+
+</style>
 <header>
     <!-- <div class="search-bar">
         <img src="<?= base_url()?>/public/assets/images/Fill 1.png" alt="Search Icon" class="search-icon">
@@ -6,23 +74,59 @@
     </div> -->
 </header>
     <!-- carousel -->
-    <div class="carousel">
-        <div class="carousel-images" id="banner_container">
-            <!-- <img src="<?= base_url()?>/public/assets/images/banner.png" alt="Image 1">
-            <img src="<?= base_url()?>/public/assets/images/banner.png" alt="Image 2">
-            <img src="<?= base_url()?>/public/assets/images/banner.png" alt="Image 3">
-            <img src="<?= base_url()?>/public/assets/images/banner.png" alt="Image 4"> -->
-        </div>
+    <!-- <div class="carousel"> -->
+        <!-- <div class="carousel-images"> -->
+        <!-- <div class="carousel-images" id="banner_container"> -->
+                <!-- <img src="<?= base_url()?>/public/assets/images/banner.png" alt="Image 1">
+                <img src="<?= base_url()?>/public/assets/images/banner.png" alt="Image 2">
+                <img src="<?= base_url()?>/public/assets/images/banner.png" alt="Image 3">
+                <img src="<?= base_url()?>/public/assets/images/banner.png" alt="Image 4"> -->
+        <!-- </div>
         <button class="carousel-button prev">‹</button>
-        <button class="carousel-button next">›</button>
-        <div class="carousel-indicators" id="banner_indicators">
+        <button class="carousel-button next">›</button> -->
+        <!-- <div class="carousel-indicators"> -->
+        <!-- <div class="carousel-indicators" id="banner_indicators"> -->
             <!-- <span data-index="0" class="active"></span>
             <span data-index="1"></span>
             <span data-index="2"></span>
             <span data-index="3"></span> -->
-        </div>
-    </div>
+        <!-- </div>
+    </div> -->
     <!-- carousel -->
+    <div class="carousel">
+    <div class="carousel-images" id="banner_container">
+        <!-- <img src="https://via.placeholder.com/800x400?text=Image+1" alt="Image 1">
+        <img src="https://via.placeholder.com/800x400?text=Image+2" alt="Image 2">
+        <img src="https://via.placeholder.com/800x400?text=Image+3" alt="Image 3">
+        <img src="https://via.placeholder.com/800x400?text=Image+4" alt="Image 4"> -->
+    </div>
+    <button class="carousel-button prev">‹</button>
+    <button class="carousel-button next">›</button>
+    <div class="carousel-indicators" id="banner_indicators">
+        <!-- <span data-index="0" class="active"></span>
+        <span data-index="1"></span>
+        <span data-index="2"></span>
+        <span data-index="3"></span> -->
+    </div>
+</div>
+    <!-- carousel -->
+    <!-- <div class="carousel">
+            <div class="carousel-images">
+            <img src="<?= base_url()?>/public/assets/images/banner.png" alt="Image 1">
+                <img src="<?= base_url()?>/public/assets/images/banner.png" alt="Image 2">
+                <img src="<?= base_url()?>/public/assets/images/banner.png" alt="Image 3">
+                <img src="<?= base_url()?>/public/assets/images/banner.png" alt="Image 4">
+            </div>
+            <button class="carousel-button prev">‹</button>
+            <button class="carousel-button next">›</button>
+            <div class="carousel-indicators">
+                <span data-index="0" class="active"></span>
+                <span data-index="1"></span>
+                <span data-index="2"></span>
+                <span data-index="3"></span>
+            </div>
+        </div> -->
+        <!-- carousel -->
 
         <!-- study material -->
         <div class="header">
