@@ -42,7 +42,7 @@
     }
     .pdf-viewer-container iframe {
             width: 100%;
-            height: 60vh;
+            height: 80vh;
         }
 }
 </style>

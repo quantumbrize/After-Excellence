@@ -574,6 +574,33 @@ class Frontend_Controller extends Main_Controller
 
     }
 
+    public function all_test()
+    {
+        $user_id = $this->is_logedin();
+        if (!empty($user_id)) {
+            $data = PAGE_DATA_FRONTEND;
+            $data = [
+                'data_page' => [],
+                'data_header' => [
+                    'header_link' => ['all_tests_css.php'],
+                    'title' => 'all_tests',
+                    'header' => [],
+                    'sidebar' => [],
+                    'site' => 'frontend'
+                ],
+                'data_footer' => [
+                    'footer_link' => ['all_tests_js.php'],
+                    'footer' => [],
+                    'site' => 'frontend'
+                ]
+            ];
+            $this->load_page('/frontend/all_tests', $data);
+        } else {
+            return redirect()->to('login');
+        }
+
+    }
+
     public function login_pin()
     {
         echo view('/frontend/login_code');

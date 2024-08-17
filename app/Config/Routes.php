@@ -65,6 +65,7 @@ $routes->post('/verify-pin-action',                 'Frontend\Frontend_Controlle
 $routes->get('/pdf-reader',                         'Frontend\Frontend_Controller::pdf_reader');
 $routes->get('/test',                               'Frontend\Frontend_Controller::test');
 $routes->get('/video-player',                       'Frontend\Frontend_Controller::video_player');
+$routes->get('/all-tests',                          'Frontend\Frontend_Controller::all_test');
 
 
 
