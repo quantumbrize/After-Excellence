@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 150vh;
     margin-bottom: 70px;
     /* Use the full height of the viewport */
 }
@@ -12,7 +12,7 @@
 .pdf-viewer-container iframe {
     width: 70%;
     /* or any percentage or fixed width you prefer */
-    height: 100vh;
+    height: 150vh;
     /* 80% of the viewport height, adjust as needed */
     border: none;
     /* Removes the border */
@@ -20,20 +20,38 @@
 @media (max-width: 426px) {
         .pdf-viewer-container iframe {
         width: 100%;
-        height: 35vh;
+        height: 65vh;
     }
     .pdf-viewer-container{
         height: 44vh !important;
     }
+
 }
 @media (max-width: 769px) {
         .pdf-viewer-container iframe {
             width: 100%;
-            height: 40vh;
+            height: 70vh;
         }
 
     .pdf-viewer-container{
-        height: 44vh !important;
+        height: 70vh !important;
+    }
+
+    .download-button {
+        display: block;
+        width: 100% !important;
+        text-align: center;
+        padding: 15px;
+        background-color: #4CAF50;
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+    }
+    .download-button:hover {
+        background-color: #45a049;
     }
 }
 @media (min-width: 600px) and (max-width: 1024px) {
@@ -44,7 +62,27 @@
             width: 100%;
             height: 80vh;
         }
-}
+
+    }
+    .download-button {
+        display: block;
+        width: 70%;
+        text-align: center;
+        padding: 15px;
+        background-color: #4CAF50;
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .download-button:hover {
+        background-color: #45a049;
+    }
+
 </style>
 <div class="heading">
         <a href="<?= base_url()?>"><img src="<?= base_url()?>/public/assets/images/arrow.svg" alt="Back"></a>
@@ -62,6 +100,7 @@
     <div class="content">
     <div id="studyMaterialContent" class="content-item active">
         <!-- PDF Viewer Start -->
+        <a href="" id="download_url" download class="download-button">Download PDF</a>
         <div class="pdf-viewer-container">
             <iframe id="iframe_url" src="" frameborder="0"></iframe>
         </div>
@@ -73,5 +112,7 @@
 </br>
 <script>
     let url = '<?= $_GET['pdf_url'] ?>';
-    document.getElementById('iframe_url').src = '<?= base_url()?>public/uploads/study_material/'+url;
+    document.getElementById('iframe_url').src = 'https://docs.google.com/viewer?url=<?= base_url()?>public/uploads/study_material/'+url+'&embedded=true';
+        document.getElementById('download_url').href = '<?= base_url('public/uploads/study_material/') ?>' + url;
+
 </script>
