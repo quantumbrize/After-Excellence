@@ -1,6 +1,8 @@
 <script>
+    let test_id = ''
     $(document).ready(function () {
-        load_online_tests('<?= $_COOKIE[SES_USER_USER_ID] ?>', '<?= $_GET['test_id'] ?>')
+        test_id = '<?= $_GET['test_id'] ?>'
+        load_online_tests('<?= $_COOKIE[SES_USER_USER_ID] ?>', test_id)
     });
 
     function formatDate(dateString) {

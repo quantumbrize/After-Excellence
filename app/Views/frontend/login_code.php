@@ -28,10 +28,10 @@
         </div>
         <p class="instruction">Add a Pin Number to Make Your Account more Secure</p>
         <div class="pin-inputs">
-            <input type="text"  onkeyup="moveToNext(1, event)" maxLength="1" id="digit1-input" class="pin-box" >
-            <input type="text"  onkeyup="moveToNext(2, event)" maxLength="1" id="digit2-input" class="pin-box" >
-            <input type="text"  onkeyup="moveToNext(3, event)" maxLength="1" id="digit3-input" class="pin-box"  >
-            <input type="text"  onkeyup="moveToNext(4, event)" maxLength="1" id="digit4-input" class="pin-box" >
+            <input type="tel"  onkeyup="moveToNext(1, event)" maxLength="1" id="digit1-input" class="pin-box" >
+            <input type="tel"  onkeyup="moveToNext(2, event)" maxLength="1" id="digit2-input" class="pin-box" >
+            <input type="tel"  onkeyup="moveToNext(3, event)" maxLength="1" id="digit3-input" class="pin-box"  >
+            <input type="tel"  onkeyup="moveToNext(4, event)" maxLength="1" id="digit4-input" class="pin-box" >
         </div>
         <button class="login-action" id="confirm-btn">Continue <div class="imgs"><img src="<?= base_url()?>/public/assets/images/arrow.png" alt=""></div></button>
         <div class="keypad">
