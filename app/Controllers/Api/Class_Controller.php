@@ -984,53 +984,65 @@ class Class_Controller extends Api_Controller
         ];
 
         // $CommonModel = new CommonModel();
-
-        // $sql = "SELECT
-        //     student_class_roll.uid AS student_class_roll_id,
-        //     tests.uid AS test_id,
-        //     tests.test_url,
-        //     tests.timer
-        // FROM
-        //     student_class_roll
-        // JOIN
-        //     tests ON student_class_roll.branch_id = tests.branch_id
-        // WHERE
-        //     tests.status = 'active'";
+        // $user_id = $data['user_id'];
+        // $sql = "SELECT DISTINCT
+        //         tests.uid AS test_id
+        //     FROM
+        //         test_submission
+        //     JOIN
+        //         questions ON test_submission.q_id = questions.uid
+        //     JOIN
+        //         tests ON questions.test_id = tests.uid
+        //     WHERE
+        //         test_submission.student_id = '{$user_id}'";
 
         $CommonModel = new CommonModel();
 
+        $user_id = !empty($data['user_id']) ? $data['user_id'] : null;
+        
         $sql = "SELECT
-            student_class_roll.uid AS student_class_roll_id,
-            tests.uid AS test_id,
-            tests.created_at,
-            tests.timer,
-            classes.class_name,
-            classes.uid AS class_id,
-            branches.branch_name,
-            branches.uid AS branch_id,
-            users.user_name
-        FROM
-            student_class_roll
-        JOIN
-            tests ON student_class_roll.branch_id = tests.branch_id
-        JOIN
-            classes ON classes.uid = tests.class_id
-        JOIN
-            branches ON branches.uid = tests.branch_id
-        JOIN
-            users ON users.uid = tests.user_id
-        WHERE
-            tests.status = 'active'";
-
-        if (!empty($data['user_id'])) {
-            $user_id = $data['user_id'];
-            $sql .= " AND
-                student_class_roll.user_id = '{$user_id}';";
+                student_class_roll.uid AS student_class_roll_id,
+                tests.uid AS test_id,
+                tests.created_at,
+                tests.timer,
+                classes.class_name,
+                classes.uid AS class_id,
+                branches.branch_name,
+                branches.uid AS branch_id,
+                users.user_name
+            FROM
+                student_class_roll
+            JOIN
+                tests ON student_class_roll.branch_id = tests.branch_id
+            JOIN
+                classes ON classes.uid = tests.class_id
+            JOIN
+                branches ON branches.uid = tests.branch_id
+            JOIN
+                users ON users.uid = tests.user_id
+            WHERE
+                tests.status = 'active'
+                AND tests.uid NOT IN (
+                    SELECT DISTINCT
+                        tests.uid
+                    FROM
+                        test_submission
+                    JOIN
+                        questions ON test_submission.q_id = questions.uid
+                    JOIN
+                        tests ON questions.test_id = tests.uid
+                    WHERE
+                        test_submission.student_id = '{$user_id}'
+                )";
+        
+        if ($user_id) {
+            $sql .= " AND student_class_roll.user_id = '{$user_id}'";
         }
-
+        $sql .= ";";
+        
         $tests = $CommonModel->customQuery($sql);
         $tests = json_decode(json_encode($tests), true);
-
+            // $this->prd($tests);
         if (count($tests) > 0) {
             $QuestionsModel = new QuestionsModel();
             $AnswersModel = new AnswersModel();

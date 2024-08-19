@@ -22,8 +22,8 @@
         <div id="studyMaterialContent" class="content-item active">
             <div class="study-material" id="study-material">
                  <!-- <img src="<?= base_url()?>/public/assets/images/save.svg" alt=""> -->
-                 <div id="banner-container" class="banner-container-paper">
-                    <!-- <div class="banner-paper">
+                 <!-- <div id="banner-container" class="banner-container-paper">
+                    <div class="banner-paper">
                         <div class="img-cont">
                             <img src="<?= base_url()?>/public/assets/images/pdfimage.png" alt="Banner Image">
                         </div>
@@ -43,6 +43,44 @@
                             <p>Rating: 4.2</p>
                         </div>
                     </div> -->
+
+                    <!-- popular paper -->
+        <!-- <div class="header">
+            <h3>Popular Paper</h3>
+            <a href="<?= base_url('papers')?>"><button class="see-all" id="see-all-papers">See All ></button></a>
+        </div> -->
+        <!-- <div class="button-container">
+            <button class="btn">All</button>
+            <button class="btn">Graphic Design</button>
+            <button class="btn">3D Design</button>
+            <button class="btn">Arts & Crafts</button>
+            <button class="btn">Photography</button>
+            <button class="btn">Web Dev</button>
+            <button class="btn">UI/UX Design</button>
+        </div> -->
+        <!-- popular paper -->
+        <!-- card -->
+        <div class="banner-container" id="banner-container">
+            <!-- Static banner for reference -->
+            <!-- <div class="banner">
+                <img src="<?= base_url()?>/public/assets/images/pdfimage.png" alt="Banner Image">
+                <div class="banner-content">
+                    <h3>Graphic Design</h3>
+                    <p>Advanced</p>
+                    <p>Rating: 4.2</p>
+                </div>
+            </div>
+            <div class="banner">
+                <img src="<?= base_url()?>/public/assets/images/pdfimage.png" alt="Banner Image">
+                <div class="banner-content">
+                    <h3>Graphic Design</h3>
+                    <p>Advanced</p>
+                    <p>Rating: 4.2</p>
+                </div>
+            </div> -->
+        </div>
+        <!-- card -->
+
                     
                 </div>
 

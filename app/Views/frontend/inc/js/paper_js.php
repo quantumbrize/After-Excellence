@@ -29,11 +29,11 @@
                        } else if(paper.type == 'pdf'){
                             redirect_url = '<?= base_url('pdf-reader?pdf_url=')?>'+paper.pdf
                        }
-                       html += `<div onclick="window.location.href='${redirect_url}'" class="banner-paper">
+                       html += `<div onclick="window.location.href='${redirect_url}'" class="banner">
                                     <div class="img-cont">
                                         <img src="<?= base_url()?>public/uploads/popular_paper/${paper.img}" alt="Banner Image">
                                     </div>
-                                    <div class="banner-content-paper">
+                                    <div class="banner-content">
                                         <h3>${paper.keyword}</h3>
                                         <p>${paper.title}</p>
                                         <h3 style="color:black;">${paper.class_name}</h3>
