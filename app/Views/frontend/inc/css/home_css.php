@@ -420,6 +420,17 @@ header p {
         color: black;
     }
 
+    @media (max-width: 426px) {
+        .carousel-images img {
+          height: Auto !important;
+          object-fit: contain !important;
+          margin: 0 auto !important;
+        }
+
+        .carousel {
+          height: auto !important;
+        }
+    }
 
 
     
