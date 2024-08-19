@@ -601,4 +601,14 @@ header h1 {
 }
 
 
+@media (max-width: 426px) {
+    .carousel-images img {
+        flex-shrink: 0 !important;
+        width: 100% !important;
+        /* height: 100%; */
+        object-fit: contain !important;
+    }
+}
+
+
 

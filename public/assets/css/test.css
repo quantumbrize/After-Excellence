@@ -160,6 +160,7 @@ header {
     justify-content: center; /* Center the navbar content */
     padding: 10px 0;
     margin: 0; /* Remove margin */
+    z-index: 99999 !important;
 }
 
 .navbar ul {
