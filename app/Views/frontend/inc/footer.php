@@ -9,9 +9,9 @@
                 </ul>
             </nav>
         </div>
-        <footer>
+        <!-- <footer>
             <br>
             <br>
             <br>
             <br>
-        </footer>
+        </footer> -->

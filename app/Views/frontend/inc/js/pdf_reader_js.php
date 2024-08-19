@@ -68,7 +68,9 @@
         <!-- PDF Viewer End -->
     </div>
 </div>
-
+</br>
+</br>
+</br>
 <script>
     let url = '<?= $_GET['pdf_url'] ?>';
     document.getElementById('iframe_url').src = '<?= base_url()?>public/uploads/study_material/'+url;
