@@ -307,6 +307,84 @@
             
                 <!-- Add more sections as needed -->
             </div>
+<!-- Trigger Button -->
+<!-- <button id="openModalBtn">Open Modal</button> -->
+            <!-- Modal -->
+            <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .feedback-form-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+    </style>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="close_modal()">&times;</span>
+            <h2>Student Feedback Form</h2>
+            <div class="feedback-form-container">
+                <!-- <h2>Student Feedback Form</h2> -->
+                <div>
+                    <div class="form-group">
+                        <label for="teacher-name">Teacher Name: <b id="teacher_name"></b></label>
+                    </div>
+                    <div class="form-group">
+                        <label for="feedback-message">Feedback Message:</label>
+                        <textarea id="feedback-message" name="feedback-message" rows="4"></textarea>
+                        <span style="color:red;" id="messageInput_val"></span>
+                    </div>
+                    <input type="hidden" id="teachers_id">
+                    <div class="form-group">
+                        <button type="button" id="submit_feedback">Submit Feedback</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
             </br>
 </br>
 </br>

@@ -196,24 +196,14 @@ class User_Controller extends Api_Controller
             'message' => 'Faild!',
             'data' => null
         ];
-
-        if (empty($data['name'])) {
-            $resp['message'] = 'Please Enter Name';
-        } else if (empty($data['email'])) {
-            $resp['message'] = 'Please Enter Email';
-        } else if (empty($data['phone'])) {
-            $resp['message'] = 'Please Enter Phone No.';
-        } else if (empty($data['subject'])) {
-            $resp['message'] = 'Please Enter Subject';
-        } else if (empty($data['message'])) {
+        // $this->prd($data['teachers_id']);
+        if (empty($data['message'])) {
             $resp['message'] = 'Please Enter Message';
         } else {
             $insert_message = [
                 'uid' => $this->generate_uid(UID_MESSAGE),
-                'name' => $data['name'],
-                'email' => $data['email'],
-                'phone' => $data['phone'],
-                'subject' => $data['subject'],
+                'student_id' => $data['student_id'],
+                'teacher_id' => $data['teachers_id'],
                 'message' => $data['message'],
             ];
             $MessageModel = new MessageModel();
@@ -1357,6 +1347,8 @@ class User_Controller extends Api_Controller
 
     }
 
+    
+
     // private function new_student_registration($data)
     // {
     //     $resp = [
@@ -1814,6 +1806,51 @@ class User_Controller extends Api_Controller
         return $resp;
     }
 
+    private function is_tescher_feedback_submitted($data)
+    {
+        $resp = [
+            "status" => true,
+            "message" => "No feedback found for this teacher",
+            "data" => []
+        ];
+        $user_id = $data['user_id'];
+        $teacher_id = $data['teacher_id'];
+        // $this->prd($data['user_id']);
+
+        try {
+
+            $sql = "SELECT
+                        message.uid AS message_id,
+                        message.student_id,
+                        message.teacher_id
+                    FROM
+                        message
+                    WHERE
+                        message.student_id = '{$user_id}'
+                    AND
+                        message.teacher_id = '{$teacher_id}'";
+
+            $CommonModel = new CommonModel();
+            $message = $CommonModel->customQuery($sql);
+
+            $message = json_decode(json_encode($message), true);
+            if (!empty($message)) {
+                $resp['status'] = false;
+                $resp['message'] = "Already Submitted for this teacher!";
+                $resp['data'] = $message[0];
+            } else {
+                // If no access data found at all
+                $resp['message'] = "No feedback found for this teacher";
+            }
+
+        } catch (\Exception $e) {
+            // Catch any exceptions and set error message
+            $resp['message'] = $e->getMessage();
+        }
+
+        return $resp;
+
+    }
 
     private function message_all()
     {
@@ -1823,8 +1860,25 @@ class User_Controller extends Api_Controller
             'data' => []
         ];
         try {
-            $MessageModel = new MessageModel();
-            $messages = $MessageModel->findAll();
+            // $MessageModel = new MessageModel();
+            // $messages = $MessageModel->findAll();
+            $CommonModel = new CommonModel();
+            $sql = "SELECT
+            message.uid AS message_id,
+            message.message,
+            message.created_at,
+            users.uid AS student_id,
+            users.user_name AS student_name,
+            teacher.uid AS teacher_id,
+            teacher.user_name AS teacher_name
+        FROM
+            message
+        JOIN
+            users ON message.student_id = users.uid
+        JOIN
+            users AS teacher ON message.teacher_id = teacher.uid";
+
+            $messages = $CommonModel->customQuery($sql);
             if (count($messages) > 0) {
                 $resp = [
                     'status' => true,
@@ -1859,6 +1913,13 @@ class User_Controller extends Api_Controller
     {
         $data = $this->request->getGet();
         $resp = $this->seller_list($data);
+        return $this->response->setJSON($resp);
+    }
+
+    public function GET_is_tescher_feedback_submitted()
+    {
+        $data = $this->request->getGet();
+        $resp = $this->is_tescher_feedback_submitted($data);
         return $this->response->setJSON($resp);
     }
 

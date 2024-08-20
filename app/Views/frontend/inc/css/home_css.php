@@ -135,7 +135,11 @@
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 3;
       overflow: hidden;
-    }    
+    }
+
+    .teacher-section{
+      cursor:pointer;
+    }
 </style>
 <style>
     .ag-format-container {
@@ -432,47 +436,118 @@ header p {
         }
     }
 
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
+</style>
+<style>
+  .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
 
+        .modal-content {
+            background-color: #ffffff;
+            margin: 5% auto;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
 
-    
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .feedback-form-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+            .modal-content {
+                margin: 15% auto;
+                max-width: 90%;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                font-size: 14px;
+            }
+
+            .form-group button {
+                font-size: 14px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .modal-content {
+                margin: 20% auto;
+                max-width: 95%;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                font-size: 12px;
+            }
+
+            .form-group button {
+                font-size: 14px;
+            }
+        }
 
 </style>

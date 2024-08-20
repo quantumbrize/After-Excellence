@@ -45,6 +45,81 @@ $(document).ready(function () {
             console.error('User ID cookie not found.');
         }
         load_banners()
+
+        $("#submit_feedback").click(function(){
+            let student_id = '<?= $_COOKIE[SES_USER_USER_ID] ?>';
+            // alert("hello")
+            var message = $("#feedback-message").val()
+            var teachers_id = $("#teachers_id").val()
+            
+            
+            if(message == ""){
+                $('#messageInput_val').text('Please enter a message.')
+            }else{
+                $('#messageInput_val').text('')
+            }
+
+            if(message != "" && teachers_id != "" && student_id != ""){
+                var formData = new FormData();
+
+                formData.append('message', message);
+                formData.append('teachers_id', teachers_id);
+                formData.append('student_id', student_id);
+
+                    $.ajax({
+                        url: "<?= base_url('/api/message') ?>",
+                        type: "POST",
+                        data: formData,
+                        contentType: false,
+                        processData: false,
+                        beforeSend: function () {
+                            $('#submit_feedback').html(`<div class="spinner-border" role="status"></div>`)
+                            $('#submit_feedback').attr('disabled', true)
+
+                        },
+                        success: function (resp) {
+                            console.log(resp)
+
+                            if (resp.status) {
+                                Toastify({
+                                    text: resp.message.toUpperCase(),
+                                    duration: 3000,
+                                    position: "center",
+                                    stopOnFocus: true,
+                                    style: {
+                                        background: resp.status ? 'darkgreen' : 'darkred',
+                                    },
+
+                                }).showToast();
+                                $("#feedback-message").val("")
+                                $("#teachers_id").val("")
+                                close_modal()
+                            } else {
+                                Toastify({
+                                    text: resp.message.toUpperCase(),
+                                    duration: 3000,
+                                    position: "center",
+                                    stopOnFocus: true,
+                                    style: {
+                                        background: resp.status ? 'darkgreen' : 'darkred',
+                                    },
+
+                                }).showToast();
+                                
+                            }
+                            console.log(resp)
+                        },
+                        error: function (err) {
+                            console.log(err)
+                        },
+                        complete: function () {
+                            $('#submit_feedback').html(`Send Message <i class="bi bi-arrow-right-short align-middle fs-16 ms-1"></i>`)
+                            $('#submit_feedback').attr('disabled', false)
+                        }
+                    })
+            }
+
+        })
     })
 
     function formatDate(dateString) {
@@ -277,7 +352,7 @@ $(document).ready(function () {
                                         </tr>`)
             },
             success: function (resp) {
-                // console.log(resp)
+                console.log(resp)
                 if (resp) {
                     let html = ''
                     $.each(resp.data, function (index, item) {
@@ -302,7 +377,7 @@ $(document).ready(function () {
                         //         </td>
                         //     </tr>`
 
-                            html += `<div class="section-item">
+                            html += `<div onclick="teacher_feedback_form('${item.user_id}', '${item.staff_name}')" class="section-item teacher-section">
                                         <img src="<?= base_url('public/uploads/user_images/') ?>${item.user_image}" alt="Description of Image 1" class="section-image">
                                         <div class="section-title">${item.staff_name}</div>
                                     </div>`
@@ -318,6 +393,69 @@ $(document).ready(function () {
         })
     }
 
-   
+// var modal = document.getElementById("myModal");
+// var openModalBtn = document.getElementById("openModalBtn");
+// var closeBtn = document.getElementsByClassName("close")[0];
+// openModalBtn.addEventListener("click", function() {
+//     modal.style.display = "block";
+// });
+// closeBtn.addEventListener("click", function() {
+//     modal.style.display = "none";
+// });
+
+// window.addEventListener("click", function(event) {
+//     if (event.target == modal) {
+//         modal.style.display = "none";
+//     }
+// });
+
+    function teacher_feedback_form(teacher_id, teacher_name){
+        let user_id = '<?= $_COOKIE[SES_USER_USER_ID] ?>';
+        $.ajax({
+           url: "<?= base_url('/api/is-tescher-feedback-submitted') ?>",
+           type: "GET",
+           data:{user_id:user_id,
+                teacher_id:teacher_id
+            },
+           beforeSend: function () {
+           },
+           success: function (resp) {
+               console.log(resp)
+               if (resp.status) {
+                var modal = document.getElementById("myModal");
+                modal.style.display = "block";
+                $('#teacher_name').text(teacher_name)
+                $('#teachers_id').val(teacher_id)
+               } else {
+                    Toastify({
+                        text: resp.message.toUpperCase(),
+                        duration: 3000,
+                        position: "center",
+                        stopOnFocus: true,
+                        style: {
+                            background: resp.status ? 'darkgreen' : 'darkred',
+                        },
+
+                    }).showToast();
+
+               }
+
+           },
+           error: function (err) {
+               console.log(err)
+           },
+           complete: function () {
+
+           }
+       })
+    }
+
+    function close_modal(){
+        var modal = document.getElementById("myModal");
+        modal.style.display = "none";
+    }
+
+
+
 
 </script>

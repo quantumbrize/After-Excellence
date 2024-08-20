@@ -202,6 +202,7 @@ $routes->get('/api/all/messages',                   'Api\User_Controller::GET_me
 $routes->get('/api/get/admin',                      'Api\User_Controller::GET_get_admin');  // GET Admin Update
 $routes->post('/api/update/admin',                   'Api\User_Controller::POST_update_admin');  // POST Admin Data
 $routes->post('/api/change/admin/password',          'Api\User_Controller::POST_change_admin_password');  // POST Change Admin Password
+$routes->get('/api/is-tescher-feedback-submitted',    'Api\User_Controller::GET_is_tescher_feedback_submitted');  // POST Change Admin Password
 
 $routes->get('/api/user/cart',                      'Api\Cart_Controller::GET_cart'); // Get user cart
 $routes->post('/api/user/cart/add',                 'Api\Cart_Controller::POST_cart_add'); // Add item to cart

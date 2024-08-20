@@ -96,11 +96,9 @@
                                         <thead>
                                             <tr>
                                                 <th>Sl No.</th>
-                                                <th>Name</th>
-                                                <th>Phone</th>
-                                                <th>Email</th>
-                                                <th>Subject</th>
-                                                <th>Message</th>
+                                                <th>Student Name</th>
+                                                <th>Teacher</th>
+                                                <th>Feedback Message</th>
                                                 <th>Date</th>
                                             </tr>
                                         </thead>

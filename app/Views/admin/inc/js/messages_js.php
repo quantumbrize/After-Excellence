@@ -37,16 +37,10 @@
                                                 ${index+1}
                                             </td>
                                             <td>
-                                                ${msg.name}
+                                                ${msg.student_name}
                                             </td>
                                             <td>
-                                                ${msg.phone}
-                                            </td>
-                                            <td>
-                                                ${msg.email}
-                                            </td>
-                                            <td>
-                                                ${msg.subject}
+                                                ${msg.teacher_name}
                                             </td>
                                             <td>
                                                 ${msg.message}
