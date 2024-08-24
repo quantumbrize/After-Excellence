@@ -1,7 +1,10 @@
 <script>
   
     $(document).ready(function () {
+        let user_id = '<?= isset($_SESSION['STAFF_user_id']) ? $_SESSION['STAFF_user_id'] : $_SESSION['ADMIN_user_id'] ?>'
+        let user_type = '<?= isset($_SESSION['STAFF_user_type']) ? $_SESSION['STAFF_user_type'] : $_SESSION['ADMIN_user_type'] ?>'
         classes()
+        get_all_staff(user_id, user_type)
         load_study_material('<?= $_GET['study_material_id']?>')
 
         let $pdfFileInput = $("#pdf-input");
@@ -47,6 +50,7 @@
             formData.append('study_material_id', $('#study_material_id').val());
             formData.append('class_id', $('#className').val());
             formData.append('branch_id', $('#branchName').val());
+            formData.append('teacherName', $('#teacherName').val());
             formData.append('title', $('#title').val());
             // formData.append('description', $('#classLinkDescription').val());
 
@@ -113,6 +117,7 @@
                     $('#study_material_id').val(resp.data.study_material_id)
                     $('#className').append(`<option selected value="${resp.data.class_id}">${resp.data.class_name}</option>`)
                     $('#branchName').html(`<option value="${resp.data.branch_id}">${resp.data.branch_name}</option>`)
+                    $('#teacherName').append(`<option selected value="${resp.data.user_id}">${resp.data.user_name}</option>`)
                     $('#title').val(resp.data.title)
                     if(resp.data.type == 'pdf'){
                         $("#option1").prop("checked", true);
@@ -183,5 +188,47 @@
                 console.log(err)
             }
         })
+    }
+
+    function get_all_staff(userId, user_type){
+        if(user_type == 'staff'){
+            // $.ajax({
+            //     url: "<?= base_url('/api/get/admin') ?>",
+            //     type: "GET",
+            //     data:{user_id:userId},
+            //     beforeSend: function () { },
+            //     success: function (resp) {
+            //         if (resp.status) {
+            //             console.log(resp)
+            //             $('#teacherName').html(`<option selected value="${resp.user_data.uid}">${resp.user_data.user_name}</option>`)
+            //         }
+            //     },
+            //     error: function (err) {
+            //         console.log(err)
+            //     }
+            // })
+        } else {
+            $.ajax({
+                url: "<?= base_url('/api/user/staff') ?>",
+                type: "GET",
+                beforeSend: function () { },
+                success: function (resp) {
+                    // console.log(resp)
+                    let html = '<option disabled value="">Select-teacher</option>'
+                    if (resp.status) {
+                        console.log(resp)
+                        $.each(resp.data, function (key, staff) {
+                            html += `<option value="${staff.user_id}">${staff.staff_name}</option>`
+                        })
+                    }
+                    $('#teacherName').append(html)
+                },
+                error: function (err) {
+                    console.log(err)
+                }
+            })
+        }
+        // alert(s_id)
+        
     }
 </script>

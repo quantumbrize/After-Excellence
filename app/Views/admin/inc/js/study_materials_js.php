@@ -49,6 +49,9 @@
                                                 ${study_materials.branch_name}
                                             </td>
                                             <td>
+                                                ${study_materials.user_name}
+                                            </td>
+                                            <td>
                                                 ${study_materials.title}
                                             </td>
                                             <td>

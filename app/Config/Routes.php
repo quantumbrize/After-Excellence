@@ -66,6 +66,7 @@ $routes->get('/pdf-reader',                         'Frontend\Frontend_Controlle
 $routes->get('/test',                               'Frontend\Frontend_Controller::test');
 $routes->get('/video-player',                       'Frontend\Frontend_Controller::video_player');
 $routes->get('/all-tests',                          'Frontend\Frontend_Controller::all_test');
+$routes->get('/teachers',                           'Frontend\Frontend_Controller::teachers');
 
 
 
@@ -299,6 +300,7 @@ $routes->get('/api/user/popular-papers',                'Api\Class_Controller::G
 $routes->get('/api/user/study-material',                'Api\Class_Controller::GET_study_material_by_student');
 $routes->get('/api/search/study-material',              'Api\Class_Controller::GET_search_study_material');
 $routes->get('/api/search/popular-papers',              'Api\Class_Controller::GET_search_popular_papers');
+$routes->get('/api/search/teacher',              'Api\User_Controller::GET_search_staff');
 
 $routes->get('/api/delete/popular-paper',               'Api\Class_Controller::GET_delete_popular_paper');
 $routes->post('/api/update/popular-paper',              'Api\Class_Controller::POST_update_popular_paper');

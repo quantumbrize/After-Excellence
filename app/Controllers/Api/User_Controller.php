@@ -1347,6 +1347,57 @@ class User_Controller extends Api_Controller
 
     }
 
+    private function search_staff($data)
+    {
+
+        $response = [
+            "status" => false,
+            "message" => "Staff Not Found",
+            "data" => []
+        ];
+
+        try {
+            $CommonModel = new CommonModel();
+            $sql = "SELECT 
+                    staff.uid AS staff_id,
+                    staff.role AS staff_role,
+                    users.user_name AS staff_name,
+                    users.uid AS user_id,
+                    users.email AS staff_email,
+                    users.number AS staff_number,
+                    user_img.img AS user_image
+                FROM
+                    staff
+                JOIN 
+                    users ON staff.user_id = users.uid
+                JOIN 
+                    user_img ON user_img.user_id = users.uid";
+
+                if (!empty($data['alph'])) {
+                    $alph = $data['alph'];
+                    $sql .= " AND
+                        users.user_name LIKE '%{$alph}%';";
+                }
+            $staff = $CommonModel->customQuery($sql);
+            $staff = json_decode(json_encode($staff), true);
+
+
+            $response = [
+                "status" => !empty($staff),
+                "message" => !empty($staff) ? "Staff Found" : "Staff Not Found",
+                "data" => $staff
+            ];
+
+
+        } catch (\Exception $e) {
+            // Catch any exceptions and set error message
+            $response['message'] = $e->getMessage();
+        }
+
+
+
+        return $response;
+    }
     
 
     // private function new_student_registration($data)
@@ -1913,6 +1964,13 @@ class User_Controller extends Api_Controller
     {
         $data = $this->request->getGet();
         $resp = $this->seller_list($data);
+        return $this->response->setJSON($resp);
+    }
+
+    public function GET_search_staff()
+    {
+        $data = $this->request->getGet();
+        $resp = $this->search_staff($data);
         return $this->response->setJSON($resp);
     }
 

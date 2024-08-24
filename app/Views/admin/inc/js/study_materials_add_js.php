@@ -1,7 +1,10 @@
 <script>
   
     $(document).ready(function () {
+        let user_id = '<?= isset($_SESSION['STAFF_user_id']) ? $_SESSION['STAFF_user_id'] : $_SESSION['ADMIN_user_id'] ?>'
+        let user_type = '<?= isset($_SESSION['STAFF_user_type']) ? $_SESSION['STAFF_user_type'] : $_SESSION['ADMIN_user_type'] ?>'
         classes()
+        get_all_staff(user_id, user_type)
 
         let $pdfFileInput = $("#pdf-input");
         let $pdfContainer = $("#pdfs");
@@ -44,6 +47,7 @@
 
             formData.append('class_id', $('#className').val());
             formData.append('branch_id', $('#branchName').val());
+            formData.append('teacherName', $('#teacherName').val());
             formData.append('title', $('#title').val());
             // formData.append('description', $('#classLinkDescription').val());
 
@@ -139,4 +143,53 @@
             }
         })
     }
+
+    function get_all_staff(userId, user_type){
+        if(user_type == 'staff'){
+            $.ajax({
+                url: "<?= base_url('/api/get/admin') ?>",
+                type: "GET",
+                data:{user_id:userId},
+                beforeSend: function () { },
+                success: function (resp) {
+                    // console.log(resp)
+                    // let html = '<option value="">Select-Class</option>'
+                    if (resp.status) {
+                        console.log(resp)
+                        $('#teacherName').html(`<option selected value="${resp.user_data.uid}">${resp.user_data.user_name}</option>`)
+                        // $.each(resp.data, function (key, val) {
+                        //     html += `<option value="${val.class_id}">${val.class_name}</option>`
+                        // })
+                    }
+                    // $('#className').html(html)
+                },
+                error: function (err) {
+                    console.log(err)
+                }
+            })
+        } else {
+            $.ajax({
+                url: "<?= base_url('/api/user/staff') ?>",
+                type: "GET",
+                beforeSend: function () { },
+                success: function (resp) {
+                    // console.log(resp)
+                    let html = '<option value="">Select-teacher</option>'
+                    if (resp.status) {
+                        console.log(resp)
+                        $.each(resp.data, function (key, staff) {
+                            html += `<option value="${staff.user_id}">${staff.staff_name}</option>`
+                        })
+                    }
+                    $('#teacherName').html(html)
+                },
+                error: function (err) {
+                    console.log(err)
+                }
+            })
+        }
+        // alert(s_id)
+        
+    }
+
 </script>

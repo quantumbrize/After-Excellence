@@ -15,7 +15,7 @@
 
         <div id="createproduct-form">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <div class="card">
                         <div class="card-body">
                             <div class="mb-3">
@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <!-- end col -->
-                <div class="col-lg-6">
+                <div class="col-lg-4">
                     <div class="card">
                         <div class="card-body">
                             <div class="mb-3">
@@ -42,6 +42,24 @@
                                     placeholder="Enter product title" required=""> -->
                                     <select class="form-control" name="branchName" id="branchName">
                                         <option value="">Branch Not Found</option>
+                                        <!-- <option value="">hello</option>
+                                        <option value="">hii</option>
+                                        <option value="">what</option> -->
+                                    </select>
+                                <div class="invalid-feedback">Please Enter a banner title.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label class="form-label" for="product-title-input">Teacher</label>
+                                <!-- <input type="text" class="form-control" id="bannerTitle" value=""
+                                    placeholder="Enter product title" required=""> -->
+                                    <select class="form-control" name="teacherName" id="teacherName">
                                         <!-- <option value="">hello</option>
                                         <option value="">hii</option>
                                         <option value="">what</option> -->

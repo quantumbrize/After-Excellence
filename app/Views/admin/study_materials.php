@@ -90,6 +90,7 @@
                                             <tr>
                                                 <th>Class</th>
                                                 <th>Branch</th>
+                                                <th>Teacher</th>
                                                 <th>Title</th>
                                                 <th>Study Material</th>
                                                 <th>Creation Date</th>

@@ -2408,6 +2408,8 @@ class Class_Controller extends Api_Controller
                 $resp['message'] = 'Please add a class';
             } else if (empty($data['branch_id'])) {
                 $resp['message'] = 'Please add a branch';
+            } else if (empty($data['teacherName'])) {
+                $resp['message'] = 'Please select a teacher';
             } else if (empty($data['title'])) {
                 $resp['message'] = 'Please add a title';
             } else if ($data['type'] == 'pdf' && empty($uploadedFiles['pdf'])) {
@@ -2418,6 +2420,7 @@ class Class_Controller extends Api_Controller
                 // $this->pr($data['material_link']);
                 $study_material_data = [
                     "uid" => $this->generate_uid('STMT'),
+                    "user_id" => $data['teacherName'],
                     "class_id" => $data['class_id'],
                     "branch_id" => $data['branch_id'],
                     "title" => $data['title'],
@@ -2479,13 +2482,20 @@ class Class_Controller extends Api_Controller
             classes.class_name,
             classes.uid AS class_id,
             branches.branch_name,
-            branches.uid AS branch_id
+            branches.uid AS branch_id,
+            users.uid AS user_id,
+            users.user_name,
+            users.email,
+            users.number
+
         FROM
             study_material
         JOIN
             classes ON classes.uid = study_material.class_id
         JOIN
-            branches ON branches.uid = study_material.branch_id";
+            branches ON branches.uid = study_material.branch_id
+        JOIN
+            users ON study_material.user_id = users.uid";
 
         if (!empty($data['study_material_id'])) {
             $study_material_id = $data['study_material_id'];
@@ -2531,6 +2541,73 @@ class Class_Controller extends Api_Controller
         }
 
         return $response;
+    }
+
+    private function update_study_material($data)
+    {
+        $resp = [
+            "status" => false,
+            "message" => "Failed to update study material.",
+            "data" => []
+        ];
+
+        try {
+            $uploadedFiles = $this->request->getFiles();
+            if (empty($data['class_id'])) {
+                $resp['message'] = 'Please add a class';
+            } else if (empty($data['branch_id'])) {
+                $resp['message'] = 'Please add a branch';
+            } else if (empty($data['teacherName'])) {
+                $resp['message'] = 'Please select a teacher';
+            } else if (empty($data['title'])) {
+                $resp['message'] = 'Please add a title';
+            } else if ($data['type'] == 'link' && empty($data['material_link'])) {
+                    $resp['message'] = 'Please add a Link';
+            } else if (empty($data['study_material_id'])) {
+                $resp['message'] = 'Study material not found';
+            } else {
+                // $this->pr($data['material_link']);
+                $update_data = [
+                    "user_id" => $data['teacherName'],
+                    "class_id" => $data['class_id'],
+                    "branch_id" => $data['branch_id'],
+                    "title" => $data['title'],
+                    "link" => $data['material_link'],
+                    "type" => $data['type'],
+                ];
+                
+                if(isset($uploadedFiles['pdf'])){
+                // if (!empty($uploadedFiles['pdf'])){
+                    foreach ($uploadedFiles['pdf'] as $file) {
+                        $file_src = $this->single_upload($file, PATH_STUDY_MATERIAL);
+                        $update_data['pdf'] = $file_src;
+                    }
+                } else if($data['type'] == 'link'){
+                    $update_data['pdf'] = '';
+                }
+                
+                $StudyMaterialModel = new StudyMaterialModel();
+                $update_study_material_data = $StudyMaterialModel->set($update_data)
+                ->where('uid', $data['study_material_id'])
+                ->update();
+                // $this->prd($insert_data);
+                if ($update_study_material_data) {
+                    $resp['status'] = true;
+                    $resp['message'] = 'Study material update successfully';
+                    $resp['data'] = [];
+                } else {
+                    $resp['status'] = false;
+                    $resp['message'] = 'Faild to update Study material';
+                    $resp['data'] = [];
+                }
+            }
+
+        } catch (\Exception $e) {
+            // Catch any exceptions and set error message
+            $resp['message'] = $e->getMessage();
+        }
+
+        return $resp;
     }
 
     private function add_popular_paper($data)
@@ -2760,70 +2837,6 @@ class Class_Controller extends Api_Controller
         return $resp;
     }
 
-    private function update_study_material($data)
-    {
-        $resp = [
-            "status" => false,
-            "message" => "Failed to update study material.",
-            "data" => []
-        ];
-
-        try {
-            $uploadedFiles = $this->request->getFiles();
-            if (empty($data['class_id'])) {
-                $resp['message'] = 'Please add a class';
-            } else if (empty($data['branch_id'])) {
-                $resp['message'] = 'Please add a branch';
-            } else if (empty($data['title'])) {
-                $resp['message'] = 'Please add a title';
-            } else if ($data['type'] == 'link' && empty($data['material_link'])) {
-                    $resp['message'] = 'Please add a Link';
-            } else if (empty($data['study_material_id'])) {
-                $resp['message'] = 'Study material not found';
-            } else {
-                // $this->pr($data['material_link']);
-                $update_data = [
-                    "class_id" => $data['class_id'],
-                    "branch_id" => $data['branch_id'],
-                    "title" => $data['title'],
-                    "link" => $data['material_link'],
-                    "type" => $data['type'],
-                ];
-                
-                if(isset($uploadedFiles['pdf'])){
-                // if (!empty($uploadedFiles['pdf'])){
-                    foreach ($uploadedFiles['pdf'] as $file) {
-                        $file_src = $this->single_upload($file, PATH_STUDY_MATERIAL);
-                        $update_data['pdf'] = $file_src;
-                    }
-                } else if($data['type'] == 'link'){
-                    $update_data['pdf'] = '';
-                }
-                
-                $StudyMaterialModel = new StudyMaterialModel();
-                $update_study_material_data = $StudyMaterialModel->set($update_data)
-                ->where('uid', $data['study_material_id'])
-                ->update();
-                // $this->prd($insert_data);
-                if ($update_study_material_data) {
-                    $resp['status'] = true;
-                    $resp['message'] = 'Study material update successfully';
-                    $resp['data'] = [];
-                } else {
-                    $resp['status'] = false;
-                    $resp['message'] = 'Faild to update Study material';
-                    $resp['data'] = [];
-                }
-            }
-
-        } catch (\Exception $e) {
-            // Catch any exceptions and set error message
-            $resp['message'] = $e->getMessage();
-        }
-
-        return $resp;
-    }
-
     public function popular_papers_by_student($data)
     {
         $resp = [
@@ -2897,7 +2910,11 @@ class Class_Controller extends Api_Controller
             classes.class_name,
             classes.uid AS class_id,
             branches.branch_name,
-            branches.uid AS branch_id
+            branches.uid AS branch_id,
+            users.uid AS user_id,
+            users.user_name,
+            users.email,
+            users.number
         FROM
             student_class_roll
         JOIN
@@ -2905,13 +2922,26 @@ class Class_Controller extends Api_Controller
         JOIN
             classes ON classes.uid = study_material.class_id
         JOIN
-            branches ON branches.uid = study_material.branch_id";
+            branches ON branches.uid = study_material.branch_id
+        JOIN
+            users ON study_material.user_id = users.uid";
 
         if (!empty($data['user_id'])) {
             $user_id = $data['user_id'];
             $sql .= " WHERE
-                student_class_roll.user_id = '{$user_id}';";
+                student_class_roll.user_id = '{$user_id}'";
+            if (!empty($data['teacher_id']) && $data['teacher_id'] != null) {
+                $teacher_id = $data['teacher_id'];
+                $sql .= "AND
+                    users.uid = '{$teacher_id}';";
+            }
+        } else if (!empty($data['teacher_id']) && $data['teacher_id'] != null) {
+            $teacher_id = $data['teacher_id'];
+            $sql .= " WHERE
+                users.uid = '{$teacher_id}';";
+
         }
+        
 
         $popularPaper = $CommonModel->customQuery($sql);
 
