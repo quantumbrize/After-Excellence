@@ -436,6 +436,20 @@ header p {
         }
     }
 
+    @media (max-width: 1024px) {
+        .carousel-images img {
+          height: Auto !important;
+          object-fit: contain !important;
+          margin: 0 auto !important;
+        }
+
+        .carousel {
+          height: auto !important;
+        }
+    }
+
+
+
 }
 </style>
 <style>

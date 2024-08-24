@@ -1,3 +1,16 @@
+<style>
+     @media (max-width: 426px) {
+        .nav-link {
+            display: block;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 10px;
+            text-decoration: none;
+            color: #757575;
+            font-weight: bold;
+        }
+    }
+</style>
 <div class="teacher-container">
             <nav class="navbar">
                 <ul>
