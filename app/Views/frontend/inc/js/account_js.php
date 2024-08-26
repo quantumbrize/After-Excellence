@@ -1,7 +1,38 @@
 <script>
+    function initializeCarousel() {
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
+    const images = document.querySelectorAll('.carousel-images img');
+    const indicators = document.querySelectorAll('.carousel-indicators span');
+    let currentIndex = 0;
+
+    function updateCarousel() {
+        const offset = -currentIndex * 100;
+        document.querySelector('.carousel-images').style.transform = `translateX(${offset}%)`;
+        indicators.forEach((indicator, index) => {
+            indicator.classList.toggle('active', index === currentIndex);
+        });
+    }
+
+    function showNext() {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateCarousel();
+    }
+
+    function showPrev() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateCarousel();
+    }
+
+    nextButton.addEventListener('click', showNext);
+    prevButton.addEventListener('click', showPrev);
+
+    updateCarousel(); // Initialize the carousel
+}
     $(document).ready(function () {
         // alert("hello")
         get_user_data();
+        load_banners()
 
         $("#update_profile").click(function () {
             var user_id = $("#user_id").val()
@@ -261,6 +292,44 @@
         const year = date.getFullYear();
         return `${day} ${month} ${year}`;
     }
+
+    function load_banners() {
+       
+       $.ajax({
+           url: "<?= base_url('/api/banners') ?>",
+           type: "GET",
+           beforeSend: function () {
+           },
+           success: function (resp) {
+               console.log(resp)
+               if (resp.status) {
+                   let html =``
+                   let html2 =``
+                   $.each(resp.data, function (index, banner) {
+                       isActive = index === 0 ? 'active' : ''
+                       // console.log(banner);
+                       var shop_now = ``
+                       if (banner.title != "") {
+                           shop_now = ` <a href="${banner.link}" class="btn btn-danger btn-hover"><i class="ph-shopping-cart align-middle me-1"></i> ShopNow</a>`
+                       }
+                       html += `<img src="<?= base_url('public/uploads/banner_images/') ?>${banner.img}" alt="Image ${index+1}">`
+                       html2 += `<span data-index="${index}" class="${index == 0 ? 'active' : ''}"></span>`
+                   })
+                   $('#banner_container').html(html);
+                   $('#banner_indicators').html(html2);
+                   initializeCarousel();
+               } else {
+               }
+
+           },
+           error: function (err) {
+               console.log(err)
+           },
+           complete: function () {
+
+           }
+       })
+   }
 
     function get_user_data() {
         let user_id = '<?= $_COOKIE[SES_USER_USER_ID] ?>';

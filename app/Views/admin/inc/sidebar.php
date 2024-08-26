@@ -1092,21 +1092,67 @@
                 <?php
                 if (isset($_SESSION[SES_STAFF_USER_ID]) && in_array('messages', $_SESSION[SES_STAFF_ACCESS])) {
                     ?>
-                    <li class="nav-item ">
+                    <!-- <li class="nav-item ">
                         <a class="nav-link menu-link <?= isset($sidebar['messages']) ? 'active' : '' ?>"
                             href="<?= base_url('admin/messages') ?>">
                             <i class="ri-message-2-line"></i> <span data-key="t-widgets">Messages</span>
                         </a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link menu-link <?= isset($sidebar['messages']) ? 'active' : '' ?>" href="#sidebarMessage"
+                            data-bs-toggle="collapse" role="button"
+                            aria-expanded="<?= isset($sidebar['messages']) ? 'true' : 'false' ?>" aria-controls="sidebarMessage">
+                            <i class="ri-message-2-line"></i>
+                            <span  data-key="t-widgets">Messages</span>
+                        </a>
+                        <div class="<?= isset($sidebar['messages']) ? '' : 'collapse' ?> menu-dropdown" id="sidebarMessage">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a href="<?= base_url('/admin/messages') ?>" class="nav-link">
+                                        Feedback
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= base_url('/admin/doubts') ?>" class="nav-link">
+                                        Doubts
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
                     </li>
                     <?php
                 } else if (isset($_SESSION[SES_ADMIN_USER_ID])) {
                     ?>
-                        <li class="nav-item ">
+                        <!-- <li class="nav-item ">
                             <a class="nav-link menu-link <?= isset($sidebar['messages']) ? 'active' : '' ?>"
                                 href="<?= base_url('admin/messages') ?>">
                                 <i class="ri-message-2-line"></i> <span data-key="t-widgets">Messages</span>
                             </a>
-                        </li>
+                        </li> -->
+                        <li class="nav-item">
+                        <a class="nav-link menu-link <?= isset($sidebar['messages']) ? 'active' : '' ?>" href="#sidebarMessage"
+                            data-bs-toggle="collapse" role="button"
+                            aria-expanded="<?= isset($sidebar['messages']) ? 'true' : 'false' ?>" aria-controls="sidebarMessage">
+                            <i class="ri-message-2-line"></i>
+                            <span data-key="t-widgets">Messages</span>
+                        </a>
+                        <div class="<?= isset($sidebar['messages']) ? '' : 'collapse' ?> menu-dropdown" id="sidebarMessage">
+                            <ul class="nav nav-sm flex-column">
+                                <li class="nav-item">
+                                    <a href="<?= base_url('/admin/messages') ?>" class="nav-link">
+                                        Feedback
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= base_url('/admin/doubts') ?>" class="nav-link">
+                                        Doubts
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </li>
                     <?php
                 }
                 ?>

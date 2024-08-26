@@ -73,7 +73,7 @@ $(document).ready(function () {
                         contentType: false,
                         processData: false,
                         beforeSend: function () {
-                            $('#submit_feedback').html(`<div class="spinner-border" role="status"></div>`)
+                            $('#submit_feedback').html(`<div class="spinner-border" role="status">wait...</div>`)
                             $('#submit_feedback').attr('disabled', true)
 
                         },
@@ -115,6 +115,81 @@ $(document).ready(function () {
                         complete: function () {
                             $('#submit_feedback').html(`Send Message <i class="bi bi-arrow-right-short align-middle fs-16 ms-1"></i>`)
                             $('#submit_feedback').attr('disabled', false)
+                        }
+                    })
+            }
+
+        })
+
+        $("#submit_doubt").click(function(){
+            let student_id = '<?= $_COOKIE[SES_USER_USER_ID] ?>';
+            // alert("hello")
+            var doubt_message = $("#doubt-message").val()
+            var doubt_teachers_id = $("#doubt_teachers_id").val()
+            
+            
+            if(doubt_message == ""){
+                $('#doubtmessageInput_val').text('Please enter a doubt.')
+            }else{
+                $('#doubtmessageInput_val').text('')
+            }
+
+            if(doubt_message != "" && doubt_teachers_id != "" && student_id != ""){
+                var formData = new FormData();
+
+                formData.append('doubt', doubt_message);
+                formData.append('teachers_id', doubt_teachers_id);
+                formData.append('student_id', student_id);
+
+                    $.ajax({
+                        url: "<?= base_url('/api/add/doubt') ?>",
+                        type: "POST",
+                        data: formData,
+                        contentType: false,
+                        processData: false,
+                        beforeSend: function () {
+                            $('#submit_doubt').html(`<div class="spinner-border" role="status">wait...</div>`)
+                            $('#submit_doubt').attr('disabled', true)
+
+                        },
+                        success: function (resp) {
+                            console.log(resp)
+
+                            if (resp.status) {
+                                Toastify({
+                                    text: resp.message.toUpperCase(),
+                                    duration: 3000,
+                                    position: "center",
+                                    stopOnFocus: true,
+                                    style: {
+                                        background: resp.status ? 'darkgreen' : 'darkred',
+                                    },
+
+                                }).showToast();
+                                $("#doubt-message").val("")
+                                $("#doubt_teachers_id").val("")
+                                close_doubt_modal()
+                            } else {
+                                Toastify({
+                                    text: resp.message.toUpperCase(),
+                                    duration: 3000,
+                                    position: "center",
+                                    stopOnFocus: true,
+                                    style: {
+                                        background: resp.status ? 'darkgreen' : 'darkred',
+                                    },
+
+                                }).showToast();
+                                
+                            }
+                            console.log(resp)
+                        },
+                        error: function (err) {
+                            console.log(err)
+                        },
+                        complete: function () {
+                            $('#submit_doubt').html(`Send Message <i class="bi bi-arrow-right-short align-middle fs-16 ms-1"></i>`)
+                            $('#submit_doubt').attr('disabled', false)
                         }
                     })
             }
@@ -377,7 +452,7 @@ $(document).ready(function () {
                         //         </td>
                         //     </tr>`
 
-                            html += `<div onclick="teacher_feedback_form('${item.user_id}', '${item.staff_name}')" class="section-item teacher-section">
+                            html += `<div onclick="form_options('${item.user_id}', '${item.staff_name}')" class="section-item teacher-section">
                                         <img src="<?= base_url('public/uploads/user_images/') ?>${item.user_image}" alt="Description of Image 1" class="section-image">
                                         <div class="section-title">${item.staff_name}</div>
                                     </div>`
@@ -408,14 +483,22 @@ $(document).ready(function () {
 //         modal.style.display = "none";
 //     }
 // });
+let glob_teacher_id =''
+let glob_teacher_name =''
+function form_options(teacher_id, teacher_name){
+    glob_teacher_id = teacher_id
+    glob_teacher_name = teacher_name
+    var modal = document.getElementById("optionModal");
+    modal.style.display = "block";
+}
 
-    function teacher_feedback_form(teacher_id, teacher_name){
-        let user_id = '<?= $_COOKIE[SES_USER_USER_ID] ?>';
+    function teacher_feedback_form(){
+        let user_id = '<?= $_COOKIE[SES_USER_USER_ID] ?>'
         $.ajax({
            url: "<?= base_url('/api/is-tescher-feedback-submitted') ?>",
            type: "GET",
            data:{user_id:user_id,
-                teacher_id:teacher_id
+                teacher_id:glob_teacher_id
             },
            beforeSend: function () {
            },
@@ -423,9 +506,11 @@ $(document).ready(function () {
                console.log(resp)
                if (resp.status) {
                 var modal = document.getElementById("myModal");
+                var option_modal = document.getElementById("optionModal");
                 modal.style.display = "block";
-                $('#teacher_name').text(teacher_name)
-                $('#teachers_id').val(teacher_id)
+                option_modal.style.display = "none";
+                $('#teacher_name').text(glob_teacher_name)
+                $('#teachers_id').val(glob_teacher_id)
                } else {
                     Toastify({
                         text: resp.message.toUpperCase(),
@@ -450,8 +535,28 @@ $(document).ready(function () {
        })
     }
 
+    function student_doubt_form(){
+        let user_id = '<?= $_COOKIE[SES_USER_USER_ID] ?>'
+        var modal = document.getElementById("doubtModal");
+        var option_modal = document.getElementById("optionModal");
+        modal.style.display = "block";
+        option_modal.style.display = "none";
+        $('#doubt_teacher_name').text(glob_teacher_name)
+        $('#doubt_teachers_id').val(glob_teacher_id)
+    }
+
     function close_modal(){
         var modal = document.getElementById("myModal");
+        modal.style.display = "none";
+    }
+
+    function close_option_modal(){
+        var modal = document.getElementById("optionModal");
+        modal.style.display = "none";
+    }
+
+    function close_doubt_modal(){
+        var modal = document.getElementById("doubtModal");
         modal.style.display = "none";
     }
 

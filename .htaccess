@@ -47,3 +47,8 @@ Options -Indexes
 # Disable server signature start
 	ServerSignature Off
 # Disable server signature end
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "https://www.quantumbrize.in/website/edu/"
+</IfModule>
+Access-Control-Allow-Origin: *
+

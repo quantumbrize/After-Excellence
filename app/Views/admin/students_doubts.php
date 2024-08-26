@@ -5,12 +5,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between bg-galaxy-transparent">
-                    <h4 class="mb-sm-0">Feedbacks</h4>
+                    <h4 class="mb-sm-0">Doubts</h4>
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">Ecommerce</a></li>
-                            <li class="breadcrumb-item active">Feedbacks</li>
+                            <li class="breadcrumb-item active">Doubts</li>
                         </ol>
                     </div>
 
@@ -98,7 +98,7 @@
                                                 <th>Sl No.</th>
                                                 <th>Student Name</th>
                                                 <th>Teacher</th>
-                                                <th>Feedback Message</th>
+                                                <th>Doubts</th>
                                                 <th>Date</th>
                                             </tr>
                                         </thead>

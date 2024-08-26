@@ -219,6 +219,27 @@ class User_Controller extends Admin_Controller{
         $this->isAuth('/admin/admin_profile',$data);
     }
 
+    public function load_doubts(){
+        $data = PAGE_DATA_ADMIN;
+        $data = [
+            'data_page' => [],
+            'data_header' => [
+                'header_link' => ['students_doubts_css.php'],
+                'title' => 'Doubts',
+                'header' => [],
+                'sidebar' => ['messages'=>true],
+                'site' => 'admin'
+            ],
+            'data_footer' => [
+                'footer_link' => ['students_doubts_js.php'],
+                'footer' => [],
+                'site' => 'admin'
+            ]
+        ];
+
+        $this->isAuth('/admin/students_doubts',$data);
+    }
+
 
 
 }

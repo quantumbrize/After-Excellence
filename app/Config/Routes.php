@@ -108,7 +108,8 @@ $routes->get('/admin/classes-branches/update',      'Admin\Admin_Controller::cla
 $routes->get('/admin/test/create',                  'Admin\Admin_Controller::test_create'); // Admin Create Test page
 $routes->get('/admin/test/list',                    'Admin\Admin_Controller::test_list'); // Admin Test List page
 $routes->get('/admin/test/update',                  'Admin\Admin_Controller::test_update'); // Admin Test Update page
-$routes->get('/admin/messages',                     'Admin\User_Controller::load_messages'); // Admin Test Update page
+$routes->get('/admin/messages',                     'Admin\User_Controller::load_messages'); // Admin Message page
+$routes->get('/admin/doubts',                       'Admin\User_Controller::load_doubts'); // Admin TDoubts page
 $routes->get('/admin/check/answers',                'Admin\Admin_Controller::check_answers_all'); // Admin Check Answers page
 $routes->get('/admin/user/answers',                 'Admin\Admin_Controller::user_answers'); // Admin User Answers page
 $routes->get('/admin/check/answers/anonymous',      'Admin\Admin_Controller::check_answers_anonymous_all'); // Admin Check Answers Anonymous page
@@ -189,6 +190,7 @@ $routes->post('/api/user/update',                   'Api\User_Controller::POST_u
 $routes->get('/api/user/orders',                    'Api\Order_Controller::GET_user_orders'); // Get user orders
 $routes->post('/api/change/password',               'Api\User_Controller::POST_change_password'); // Change user password
 $routes->post('/api/message',                       'Api\User_Controller::POST_message'); // Send message
+$routes->post('/api/add/doubt',                       'Api\User_Controller::POST_add_doubt'); // Send Doubt
 $routes->get('/api/user',                           'Api\User_Controller::GET_get_user'); // Get user
 $routes->get('/api/total/customer',                 'Api\User_Controller::GET_total_customer'); // Get total customer
 $routes->get('/api/user/staff/',                    'Api\User_Controller::GET_staff'); // Get All Staff
@@ -200,10 +202,11 @@ $routes->get('/api/user/staff/access/add',          'Api\User_Controller::GET_ac
 $routes->get('/api/user/staff/access/update',       'Api\User_Controller::GET_access_update');  // Get Update User Access 
 $routes->post('/api/user/student/add',              'Api\User_Controller::POST_new_student_registration');  // Add staff access
 $routes->get('/api/all/messages',                   'Api\User_Controller::GET_message_all');  // GET all messages
+$routes->get('/api/all/doubts',                     'Api\User_Controller::GET_doubts_all');  // GET all doubts
 $routes->get('/api/get/admin',                      'Api\User_Controller::GET_get_admin');  // GET Admin Update
-$routes->post('/api/update/admin',                   'Api\User_Controller::POST_update_admin');  // POST Admin Data
-$routes->post('/api/change/admin/password',          'Api\User_Controller::POST_change_admin_password');  // POST Change Admin Password
-$routes->get('/api/is-tescher-feedback-submitted',    'Api\User_Controller::GET_is_tescher_feedback_submitted');  // POST Change Admin Password
+$routes->post('/api/update/admin',                  'Api\User_Controller::POST_update_admin');  // POST Admin Data
+$routes->post('/api/change/admin/password',         'Api\User_Controller::POST_change_admin_password');  // POST Change Admin Password
+$routes->get('/api/is-tescher-feedback-submitted',  'Api\User_Controller::GET_is_tescher_feedback_submitted');  // POST Change Admin Password
 
 $routes->get('/api/user/cart',                      'Api\Cart_Controller::GET_cart'); // Get user cart
 $routes->post('/api/user/cart/add',                 'Api\Cart_Controller::POST_cart_add'); // Add item to cart

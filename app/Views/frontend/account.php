@@ -1,9 +1,29 @@
+
 <div class="acc-container-fluid">
-        <div class="acc-profile-header">
+    <!-- carousel -->
+    <div class="carousel">
+                <div class="carousel-images" id="banner_container">
+                    <!-- <img src="https://via.placeholder.com/800x400?text=Image+1" alt="Image 1">
+                    <img src="https://via.placeholder.com/800x400?text=Image+2" alt="Image 2">
+                    <img src="https://via.placeholder.com/800x400?text=Image+3" alt="Image 3">
+                    <img src="https://via.placeholder.com/800x400?text=Image+4" alt="Image 4"> -->
+                </div>
+                <button class="carousel-button prev">‹</button>
+                <button class="carousel-button next">›</button>
+                <div class="carousel-indicators" id="banner_indicators">
+                    <!-- <span data-index="0" class="active"></span>
+                    <span data-index="1"></span>
+                    <span data-index="2"></span>
+                    <span data-index="3"></span> -->
+                </div>
+            </div>
+            <!-- carousel -->
+        <!-- <div class="acc-profile-header"> -->
         <!-- <img src="https://via.placeholder.com/1200x200" class="acc-cover-image" alt="Cover Image">  -->
             <!-- <img src="<?= base_url('public/assets/images/account_banner.jpg')?>" class="acc-cover-image" alt="Cover Image"> -->
             <!-- <img src="<?= base_url('public/assets/images/account_banner2.jpg')?>" class="acc-cover-image" alt="Cover Image"> -->
-        </div>
+            
+        <!-- </div> -->
 
         <div class="acc-container">
             <div class="acc-profile-info">

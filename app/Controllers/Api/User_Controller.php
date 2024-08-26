@@ -15,6 +15,7 @@ use App\Models\StaffModel;
 use App\Models\VendorModel;
 use App\Models\StudentModel;
 use App\Models\StudentClassRollModel;
+use App\Models\StudentDoubtModel;
 
 class User_Controller extends Api_Controller
 {
@@ -218,7 +219,7 @@ class User_Controller extends Api_Controller
 
             if ($messageData) {
                 $resp['status'] = true;
-                $resp['message'] = 'Message Submit Successful';
+                $resp['message'] = 'Message Submitted Successfully';
                 $resp['data'] = "";
             }
 
@@ -1943,6 +1944,84 @@ class User_Controller extends Api_Controller
         return $resp;
     }
 
+    private function add_doubt($data)
+    {
+
+        $resp = [
+            'status' => false,
+            'message' => 'Faild!',
+            'data' => null
+        ];
+        // $this->prd($data['teachers_id']);
+        if (empty($data['doubt'])) {
+            $resp['doubt'] = 'Please Enter Message';
+        } else {
+            $insert_doubt = [
+                'uid' => $this->generate_uid(UID_DOUBT),
+                'student_id' => $data['student_id'],
+                'teacher_id' => $data['teachers_id'],
+                'doubt' => $data['doubt'],
+            ];
+            $StudentDoubtModel = new StudentDoubtModel();
+            $StudentDoubtModel->transStart();
+            try {
+                $messageData = $StudentDoubtModel->insert($insert_doubt);
+                $StudentDoubtModel->transCommit();
+            } catch (\Exception $e) {
+                $StudentDoubtModel->transRollback();
+                throw $e;
+            }
+
+            if ($messageData) {
+                $resp['status'] = true;
+                $resp['message'] = 'Doubt Submitted Successfully';
+                $resp['data'] = "";
+            }
+
+        }
+        return $resp;
+    }
+
+    private function doubts_all()
+    {
+        $resp = [
+            'status' => false,
+            'message' => 'No doubt found',
+            'data' => []
+        ];
+        try {
+            // $MessageModel = new MessageModel();
+            // $messages = $MessageModel->findAll();
+            $CommonModel = new CommonModel();
+            $sql = "SELECT
+            student_doubt.uid AS doubt_id,
+            student_doubt.doubt,
+            student_doubt.created_at,
+            users.uid AS student_id,
+            users.user_name AS student_name,
+            teacher.uid AS teacher_id,
+            teacher.user_name AS teacher_name
+        FROM
+            student_doubt
+        JOIN
+            users ON student_doubt.student_id = users.uid
+        JOIN
+            users AS teacher ON student_doubt.teacher_id = teacher.uid";
+
+            $doubts = $CommonModel->customQuery($sql);
+            if (count($doubts) > 0) {
+                $resp = [
+                    'status' => true,
+                    'message' => 'Messages found',
+                    'data' => $doubts
+                ];
+            }
+        } catch (\Exception $e) {
+            $resp['message'] = $e;
+        }
+        return $resp;
+    }
+
 
 
 
@@ -2075,6 +2154,14 @@ class User_Controller extends Api_Controller
 
     }
 
+    public function POST_add_doubt()
+    {
+        $data = $this->request->getPost();
+        $resp = $this->add_doubt($data);
+        return $this->response->setJSON($resp);
+
+    }
+
     public function GET_get_user()
     {
 
@@ -2147,6 +2234,14 @@ class User_Controller extends Api_Controller
     {
         $data = $this->request->getGet();
         $resp = $this->message_all($data);
+        return $this->response->setJSON($resp);
+
+    }
+
+    public function GET_doubts_all()
+    {
+        $data = $this->request->getGet();
+        $resp = $this->doubts_all($data);
         return $this->response->setJSON($resp);
 
     }

@@ -424,6 +424,10 @@ header p {
         color: black;
     }
 
+    .modal-btn{
+      cursor:pointer;
+    }
+
     @media (max-width: 426px) {
         .carousel-images img {
           height: Auto !important;

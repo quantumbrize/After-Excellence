@@ -219,3 +219,96 @@
             }
         }
     </style>
+
+
+<style>
+    .carousel {
+        position: relative;
+        width: 100%;
+        height: 500px; /* Adjust this height as needed */
+        overflow: hidden;
+    }
+
+    .carousel-images {
+        display: flex;
+        transition: transform 0.5s ease;
+        width: 100%;
+        height: 100%; /* Ensure the container takes up the full height */
+    }
+
+    .carousel-images img {
+        flex-shrink: 0; /* Prevent shrinking */
+        width: 100%; /* Ensure images cover the width of the container */
+        height: 100%; /* Ensure images cover the height of the container */
+        object-fit: cover; /* Adjust the image fitting to cover the container */
+    }
+
+    .carousel-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+        z-index: 1; /* Ensure buttons are above other content */
+    }
+
+    .prev {
+        left: 10px;
+    }
+
+    .next {
+        right: 10px;
+    }
+
+    .carousel-indicators {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .carousel-indicators span {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        background-color: #bbb;
+        border-radius: 50%;
+        margin: 0 5px;
+        cursor: pointer;
+    }
+
+    .carousel-indicators .active {
+        background-color: #717171;
+    }
+
+    @media (max-width: 426px) {
+        .carousel-images img {
+          height: Auto !important;
+          object-fit: contain !important;
+          margin: 0 auto !important;
+        }
+
+        .carousel {
+          height: auto !important;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .carousel-images img {
+          height: Auto !important;
+          object-fit: contain !important;
+          margin: 0 auto !important;
+        }
+
+        .carousel {
+          height: auto !important;
+        }
+    }
+
+</style>

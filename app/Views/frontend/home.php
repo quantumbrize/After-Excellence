@@ -379,7 +379,7 @@
                     </div>
                     <input type="hidden" id="teachers_id">
                     <div class="form-group">
-                        <button type="button" id="submit_feedback">Submit Feedback</button>
+                        <button type="button" class="modal-btn" id="submit_feedback">Submit Feedback</button>
                     </div>
                 </div>
             </div>
@@ -389,3 +389,59 @@
 </br>
 </br>
 </br>
+
+<div id="optionModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="close_option_modal()">&times;</span>
+        <h2>Choose A Option</h2>
+        <div class="feedback-form-container">
+            <!-- <h2>Student Feedback Form</h2> -->
+            <!-- <div class="form-group">
+                <div class="row">
+                    <div class="col-6">
+                        <button type="button" id="submit_feedback">Submit Feedback</button>
+                    </div>
+                    <div class="col-6">
+                        <button type="button" id="submit_feedback">Submit Feedback</button>
+                    </div>
+                </div>
+            </div> -->
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <button type="button" class="modal-btn" onclick="teacher_feedback_form()">Feedback Form</button>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <button type="button" class="modal-btn" onclick="student_doubt_form()">Doubt Form</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="doubtModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="close_doubt_modal()">&times;</span>
+        <h2>Ask A Doubt</h2>
+        <div class="feedback-form-container">
+            <!-- <h2>Student Feedback Form</h2> -->
+            <div>
+                <div class="form-group">
+                    <label for="teacher-name">Teacher Name: <b id="doubt_teacher_name"></b></label>
+                </div>
+                <div class="form-group">
+                    <label for="feedback-message">Ask Doubt:</label>
+                    <textarea id="doubt-message" name="doubt-message" rows="4"></textarea>
+                    <span style="color:red;" id="doubtmessageInput_val"></span>
+                </div>
+                <input type="hidden" id="doubt_teachers_id">
+                <div class="form-group">
+                    <button type="button" class="modal-btn" id="submit_doubt">Submit Doubt</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

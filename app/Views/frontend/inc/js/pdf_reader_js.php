@@ -110,9 +110,18 @@
 </br>
 </br>
 </br>
+<!-- <script src="https://documentcloud.adobe.com/view-sdk/viewer.js"></script> -->
 <script>
     let url = '<?= $_GET['pdf_url'] ?>';
     document.getElementById('iframe_url').src = 'https://docs.google.com/viewer?url=<?= base_url()?>public/uploads/study_material/'+url+'&embedded=true';
+        // document.getElementById('iframe_url').src = 'https://view.officeapps.live.com/op/embed.aspx?src=<?= base_url()?>public/uploads/study_material/' + url;
+            // document.getElementById('iframe_url').src = 'https://documentcloud.adobe.com/viewerembed/?file=https://<?= base_url()?>public/uploads/study_material/'+url;
+                // document.getElementById('iframe_url').src = 'https://www.docdroid.net/embed/<?= base_url()?>public/uploads/study_material/' + url;
+                    // document.getElementById('iframe_url').src = 'https://viewer.zoho.com/docs/urlview.do?url=<?= base_url()?>/public/uploads/study_material/' + url;
+                        // document.getElementById('iframe_url').src = 'https://mozilla.github.io/pdf.js/web/viewer.html?file=<?= base_url()?>/public/uploads/study_material/' + url;
+
+
+
         document.getElementById('download_url').href = '<?= base_url('public/uploads/study_material/') ?>' + url;
 
 </script>

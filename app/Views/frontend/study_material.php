@@ -11,7 +11,7 @@
         </div>
     </header>
     <div class="switch-buttons">
-        <a href="<?= base_url('papers')?>" style="text-decoration:none" class="switch-button">Popular Paper</a>
+        <a href="<?= isset($_GET['teacher_id']) ? base_url('papers?teacher_id=').$_GET['teacher_id'] : base_url('papers') ?>" style="text-decoration:none" class="switch-button">Popular Paper</a>
         <button class="switch-button active" id="studyMaterialBtn">Study Material</button>
     </div>
     
