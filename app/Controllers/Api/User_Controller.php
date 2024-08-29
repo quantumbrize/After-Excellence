@@ -1880,7 +1880,11 @@ class User_Controller extends Api_Controller
                     WHERE
                         message.student_id = '{$user_id}'
                     AND
-                        message.teacher_id = '{$teacher_id}'";
+                        message.teacher_id = '{$teacher_id}'
+                    AND
+                        MONTH(message.created_at) = MONTH(CURRENT_DATE)
+                    AND
+                        YEAR(message.created_at) = YEAR(CURRENT_DATE)";
 
             $CommonModel = new CommonModel();
             $message = $CommonModel->customQuery($sql);

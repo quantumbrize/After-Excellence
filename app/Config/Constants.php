@@ -124,7 +124,7 @@ define('EVENT_PRIORITY_HIGH', 10);
 
 
 //////////////////////////////////////////////__URL
-// defined('BASE_URL') || define('BASE_URL', 'https://atomz.in/' );
+// defined('BASE_URL') || define('BASE_URL', 'https://quantumbrize.in/website/edu/' );
 defined('BASE_URL') || define('BASE_URL', 'http://localhost/Flora-LMS');
 
 

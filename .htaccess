@@ -50,5 +50,5 @@ Options -Indexes
 <IfModule mod_headers.c>
     Header set Access-Control-Allow-Origin "https://www.quantumbrize.in/website/edu/"
 </IfModule>
-Access-Control-Allow-Origin: *
+# Access-Control-Allow-Origin: *
 

@@ -483,14 +483,14 @@ $(document).ready(function () {
 //         modal.style.display = "none";
 //     }
 // });
-let glob_teacher_id =''
-let glob_teacher_name =''
-function form_options(teacher_id, teacher_name){
-    glob_teacher_id = teacher_id
-    glob_teacher_name = teacher_name
-    var modal = document.getElementById("optionModal");
-    modal.style.display = "block";
-}
+    let glob_teacher_id =''
+    let glob_teacher_name =''
+    function form_options(teacher_id, teacher_name){
+        glob_teacher_id = teacher_id
+        glob_teacher_name = teacher_name
+        var modal = document.getElementById("optionModal");
+        modal.style.display = "block";
+    }
 
     function teacher_feedback_form(){
         let user_id = '<?= $_COOKIE[SES_USER_USER_ID] ?>'
