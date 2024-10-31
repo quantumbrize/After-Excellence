@@ -21,11 +21,11 @@
                                 <label class="form-label" for="product-title-input">Select Class</label>
                                 <!-- <input type="text" class="form-control" id="bannerTitle" value=""
                                     placeholder="Enter product title" required=""> -->
-                                    <select class="form-control" name="className" id="className" onchange="get_branches()">
-                                        <!-- <option value="">hello</option>
+                                <select class="form-control" name="className" id="className" onchange="get_branches()">
+                                    <!-- <option value="">hello</option>
                                         <option value="">hii</option>
                                         <option value="">what</option> -->
-                                    </select>
+                                </select>
                                 <div class="invalid-feedback">Please Enter a banner title.</div>
                             </div>
                         </div>
@@ -39,12 +39,12 @@
                                 <label class="form-label" for="product-title-input">Select Branch</label>
                                 <!-- <input type="text" class="form-control" id="bannerTitle" value=""
                                     placeholder="Enter product title" required=""> -->
-                                    <select class="form-control" name="branchName" id="branchName">
-                                        <option value="">Branch Not Found</option>
-                                        <!-- <option value="">hello</option>
+                                <select class="form-control" name="branchName" id="branchName">
+                                    <option value="">Branch Not Found</option>
+                                    <!-- <option value="">hello</option>
                                         <option value="">hii</option>
                                         <option value="">what</option> -->
-                                    </select>
+                                </select>
                                 <div class="invalid-feedback">Please Enter a banner title.</div>
                             </div>
                         </div>
@@ -59,26 +59,26 @@
                                 <label class="form-label" for="product-title-input">Title</label>
                                 <!-- <input type="text" class="form-control" id="bannerTitle" value=""
                                     placeholder="Enter product title" required=""> -->
-                                    <input type="text" class="form-control" id="title" value=""
-                                        placeholder="Add Title" required="">
+                                <input type="text" class="form-control" id="title" value="" placeholder="Add Title"
+                                    required="">
                                 <div class="invalid-feedback">Please Enter a title.</div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- end col -->
-                
+
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
                             <div class="mb-3">
                                 <div>
-                                <label>Description</label>
+                                    <label>Description</label>
 
-                                <div id="ckeditor-classic">
+                                    <div id="ckeditor-classic">
 
+                                    </div>
                                 </div>
-                            </div>
                             </div>
                         </div>
                     </div>
@@ -92,8 +92,8 @@
                                 <label class="form-label" for="product-title-input">Keyword</label>
                                 <!-- <input type="text" class="form-control" id="bannerTitle" value=""
                                     placeholder="Enter product title" required=""> -->
-                                    <input type="text" class="form-control" id="keyword" value=""
-                                        placeholder="Add Title" required="">
+                                <input type="text" class="form-control" id="keyword" value="" placeholder="Add Title"
+                                    required="">
                                 <div class="invalid-feedback">Please Enter keyword.</div>
                             </div>
                         </div>
@@ -106,9 +106,9 @@
                         <div class="card-body">
                             <div class="mb-3">
                                 <label class="form-label" for="product-title-input">Image</label>
-                                <input type="file" id="file-input"  multiple>
+                                <input type="file" id="file-input" multiple>
                                 <label for="file-input" id="btn_upload" class="btn btn-success">
-                                     Upload Image
+                                    Upload Image
                                 </label>
                                 <p id="num-of-files"></p>
                                 <div id="images"></div>
@@ -120,14 +120,12 @@
 
                 <div class="col-lg-12">
                     <div class="mb-3">
-                        <label class="form-label" for="product-title-input">Video Link </label><i class="ri-link"></i>
-                        <input type="text" class="form-control" id="classLink" value=""
-                            placeholder="Put a link here" required="">
+                        <label class="form-label" for="product-title-input">Upload Video </label><i class="ri-link"></i>
+                        <input type="file" class="form-control" id="videoFile" value="" placeholder="Put a link here"  accept="video/*" required="">
                     </div>
                     <!-- end card -->
-
                 </div>
-                <!-- end col -->
+
 
                 <!-- <div class="col-lg-12">
                     <div class="mb-3">
@@ -139,7 +137,7 @@
                 </div> -->
                 <!-- end col -->
 
-                
+
                 <!-- end col -->
             </div>
             <!-- end row -->

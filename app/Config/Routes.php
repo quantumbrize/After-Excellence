@@ -67,7 +67,7 @@ $routes->get('/test',                               'Frontend\Frontend_Controlle
 $routes->get('/video-player',                       'Frontend\Frontend_Controller::video_player');
 $routes->get('/all-tests',                          'Frontend\Frontend_Controller::all_test');
 $routes->get('/teachers',                           'Frontend\Frontend_Controller::teachers');
-
+$routes->get('/live_class',                         'Frontend\Frontend_Controller::live_class');
 
 
 

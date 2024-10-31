@@ -1,5 +1,5 @@
 <script>
-  
+
     $(document).ready(function () {
         classes()
         var editor;
@@ -47,7 +47,10 @@
             $.each($('#file-input')[0].files, function (index, file) {
                 formData.append('images[]', file);
             });
-
+            const videoFile = $('#videoFile')[0].files[0];
+            if (videoFile) {
+                formData.append('video_file', videoFile);
+            }
             $.ajax({
                 url: "<?= base_url('/api/live-class-link/add') ?>",
                 type: "POST",
@@ -57,7 +60,6 @@
                 beforeSend: function () {
                     $('#live_class_add_btn').html(`<div class="spinner-border" role="status"></div>`)
                     $('#live_class_add_btn').attr('disabled', true)
-
                 },
                 success: function (resp) {
                     let html = ''
@@ -90,7 +92,7 @@
         })
     });
 
-    function classes(){
+    function classes() {
         $.ajax({
             url: "<?= base_url('/api/class-list') ?>",
             type: "GET",
@@ -111,12 +113,12 @@
         })
     }
 
-    function get_branches(){
+    function get_branches() {
         var class_id = $('#className').val()
         $.ajax({
             url: "<?= base_url('/api/branches') ?>",
             type: "GET",
-            data: {class_id:class_id},
+            data: { class_id: class_id },
             beforeSend: function () { },
             success: function (resp) {
                 // console.log(resp)

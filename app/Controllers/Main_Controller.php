@@ -127,6 +127,37 @@ class Main_Controller extends BaseController
 			return null;
 		}
 	}
+
+	public function upload_video_file($file, $uploadPath)
+	{
+		$allowedTypes = ['video/mp4', 'video/mkv', 'video/avi', 'video/mov']; // Specify allowed video formats
+		$maxSize = 100 * 1024 * 1024; // Max size in bytes (e.g., 100 MB)
+
+		// Check if file is valid
+		if (!$file->isValid()) {
+			throw new \RuntimeException('Invalid video file.');
+		}
+
+		// Check MIME type
+		if (!in_array($file->getMimeType(), $allowedTypes)) {
+			throw new \RuntimeException('Invalid file type. Allowed types are: mp4, mkv, avi, mov.');
+		}
+
+		// Check file size
+		if ($file->getSize() > $maxSize) {
+			throw new \RuntimeException('File size exceeds the maximum limit of 100MB.');
+		}
+
+		// Generate a unique name for the file
+		$fileName = uniqid('video_', true) . '.' . $file->getClientExtension();
+
+		// Move the file to the upload path
+		$file->move($uploadPath, $fileName);
+
+		// Return the file path for database storage
+		return $fileName;
+	}
+
 	private function log($message)
 	{
 		// You can implement your logging mechanism here, such as writing to a file or database

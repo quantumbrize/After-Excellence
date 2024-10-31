@@ -159,6 +159,11 @@ class Class_Controller extends Api_Controller
                     "link" => $data['class_link'],
                     "description" => $data['description'],
                 ];
+                if (!empty($uploadedFiles['video_file'])) {
+                    $videoFile = $uploadedFiles['video_file'];
+                    $video_src = $this->upload_video_file($videoFile, PATH_VIDEO_MATERIAL);
+                    $live_class_data['video_path'] = $video_src;
+                }
                 if (!empty($uploadedFiles['images'])){
                     foreach ($uploadedFiles['images'] as $file) {
                         $file_src = $this->single_upload($file, PATH_VIDEO_MATERIAL_IMG);
@@ -204,6 +209,7 @@ class Class_Controller extends Api_Controller
             live_class.title,
             live_class.keyword,
             live_class.img,
+            live_class.video_path AS video,
             live_class.link AS class_link,
             live_class.description,
             live_class.created_at,

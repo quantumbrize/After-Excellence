@@ -124,21 +124,21 @@ define('EVENT_PRIORITY_HIGH', 10);
 
 
 //////////////////////////////////////////////__URL
-// defined('BASE_URL') || define('BASE_URL', 'https://quantumbrize.in/website/edu/' );
-defined('BASE_URL') || define('BASE_URL', 'http://localhost/Flora-LMS');
+// defined('BASE_URL') || define('BASE_URL', 'https://afterexcellence.com/app' );
+defined('BASE_URL') || define('BASE_URL', 'http://localhost/After-Excellence' );
 
-
-defined('DB_TEST_hostname') || define('DB_TEST_hostname', '103.92.235.18');
-defined('DB_TEST_username') || define('DB_TEST_username', 'jungleef');
-defined('DB_TEST_password') || define('DB_TEST_password', '@er)@kdw10Q');
-defined('DB_TEST_database') || define('DB_TEST_database', 'jungleef_flora_lms');
-defined('DB_TEST_DBDriver') || define('DB_TEST_DBDriver', 'MySQLi');
 
 // defined('DB_TEST_hostname') || define('DB_TEST_hostname', 'localhost');
-// defined('DB_TEST_username') || define('DB_TEST_username', 'root');
-// defined('DB_TEST_password') || define('DB_TEST_password', '');
-// defined('DB_TEST_database') || define('DB_TEST_database', 'new_education_db');
+// defined('DB_TEST_username') || define('DB_TEST_username', 'u865002673_afteruser');
+// defined('DB_TEST_password') || define('DB_TEST_password', '@er)@kdw10Q');
+// defined('DB_TEST_database') || define('DB_TEST_database', 'u865002673_afterdb');
 // defined('DB_TEST_DBDriver') || define('DB_TEST_DBDriver', 'MySQLi');
+
+defined('DB_TEST_hostname') || define('DB_TEST_hostname', 'localhost');
+defined('DB_TEST_username') || define('DB_TEST_username', 'root');
+defined('DB_TEST_password') || define('DB_TEST_password', '');
+defined('DB_TEST_database') || define('DB_TEST_database', 'excellence_db');
+defined('DB_TEST_DBDriver') || define('DB_TEST_DBDriver', 'MySQLi');
 
 //////////////////////////////////////////////__TABLE
 defined('TABLE_USERS')              || define('TABLE_USERS',                'users');
@@ -259,6 +259,7 @@ defined('PATH_PROMOTION_CARD_IMG')  || define('PATH_PROMOTION_CARD_IMG', ROOTPAT
 defined('PATH_CITY_IMG')            || define('PATH_CITY_IMG', ROOTPATH  . 'public/uploads/cities_images');
 defined('PATH_CENTRE_IMG')          || define('PATH_CENTRE_IMG', ROOTPATH  . 'public/uploads/centres_images');
 defined('PATH_VIDEO_MATERIAL_IMG')  || define('PATH_VIDEO_MATERIAL_IMG', ROOTPATH  . 'public/uploads/video_material_images');
+defined('PATH_VIDEO_MATERIAL')      || define('PATH_VIDEO_MATERIAL', ROOTPATH  . 'public/uploads/video_material_video');
 
 
 //////////////////////////////////////////////__PAGEDATA

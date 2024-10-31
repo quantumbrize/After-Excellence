@@ -18,9 +18,9 @@
         box-shadow: 0 20px 35px rgba(0, 0, 0, 0.05);
     }
 
-    input[type="file"] {
+    /* input[type="file"] {
         display: none;
-    }
+    } */
 
     #btn_upload {
         display: block;

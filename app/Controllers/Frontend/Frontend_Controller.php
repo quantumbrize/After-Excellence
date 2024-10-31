@@ -231,6 +231,36 @@ class Frontend_Controller extends Main_Controller
 
     }
 
+    public function live_class(): void
+    {
+        $user_id = $this->is_logedin();
+        if (!empty($user_id)) {
+            $data = PAGE_DATA_FRONTEND;
+            $data = [
+                'data_page' => [],
+                'data_header' => [
+                    'header_link' => [],
+                    'title' => 'Live Class',
+                    'header' => [],
+                    'sidebar' => [],
+                    'site' => 'frontend'
+                ],
+                'data_footer' => [
+                    'footer_link' => [],
+                    'footer' => [],
+                    'site' => 'frontend'
+                ]
+            ];
+            $this->load_page('/frontend/live_class', $data);
+        } else {
+            // return redirect()->to('login');
+            $this->index();
+        }
+
+    }
+
+    
+
     public function faq(): void
     {
         $data = PAGE_DATA_FRONTEND;
