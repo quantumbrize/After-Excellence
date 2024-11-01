@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 31, 2024 at 05:39 PM
+-- Generation Time: Nov 01, 2024 at 02:44 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -101,6 +101,24 @@ CREATE TABLE `admin` (
 
 INSERT INTO `admin` (`id`, `name`, `email`, `phone_number`, `user_name`, `password`, `registration_no`, `type`, `status`) VALUES
 (1, 'atomz', 'atomz@yopmail.com', 9867545673, 'atomz123', 'a1c46c36bf5c2e1b9cc1aea3cbdf7f75', 'reg_867584', 'S', 'A');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_settings`
+--
+
+CREATE TABLE `admin_settings` (
+  `id` int(11) NOT NULL,
+  `feedback_show` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admin_settings`
+--
+
+INSERT INTO `admin_settings` (`id`, `feedback_show`) VALUES
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -1265,9 +1283,7 @@ CREATE TABLE `study_material` (
 
 INSERT INTO `study_material` (`id`, `uid`, `user_id`, `class_id`, `branch_id`, `title`, `pdf`, `link`, `type`, `created_at`, `updated_at`) VALUES
 (15, 'STMT628B4C5920240914', 'USRD6E5CDBE20240822', 'CLS8B12DCE720240819', 'BRNCH82777A7E20240819', 'Study material ', '1726319787_f515c59e841dfe8b731b.pdf', '', 'pdf', '2024-09-14 13:16:27', '2024-09-14 13:16:27'),
-(21, 'STMT1B810A4620241020', 'USRD6E5CDBE20240822', 'CLSC4FBFE0B20240919', 'BRNCHAD5C047E20240919', 'sdhjbkxb', '1729410217_9c54f67c5535cb807d1d.pdf', '', 'pdf', '2024-10-20 07:43:37', '2024-10-20 07:43:37'),
-(22, 'STMTFDF274F420241021', 'USRDCB4F3A920240822', 'CLS57FCD1D520240916', 'BRNCHD5E8BC2020240916', 'Board notes 16 oct NEW', '1729513463_52026e10a1b6413d0602.pdf', '', 'pdf', '2024-10-21 12:24:23', '2024-10-21 12:24:23'),
-(24, 'STMT1E20238C20241021', 'USRF94EAA0F20240822', 'CLS57FCD1D520240916', 'BRNCHD5E8BC2020240916', 'C5.Medi.BOOKLET 5 Ch 13-17', '', 'https://drive.google.com/file/d/16QODZWsCO4uzBkPDVGXQpxmhhRNwMirs/view?usp=sharing', 'link', '2024-10-21 14:45:03', '2024-10-21 14:45:03');
+(28, 'STMT2D30963720241101', 'USR7863D07020240822', 'CLSC4FBFE0B20240919', 'BRNCHAD5C047E20240919', 'pdf', '1730449727_5b7a87b682efc006e78f.pdf', '', 'pdf', '2024-11-01 13:58:47', '2024-11-01 13:58:47');
 
 -- --------------------------------------------------------
 
@@ -2076,6 +2092,12 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `admin_settings`
+--
+ALTER TABLE `admin_settings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `admit_form`
 --
 ALTER TABLE `admit_form`
@@ -2380,6 +2402,12 @@ ALTER TABLE `admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `admin_settings`
+--
+ALTER TABLE `admin_settings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `admit_form`
 --
 ALTER TABLE `admit_form`
@@ -2587,7 +2615,7 @@ ALTER TABLE `student_doubt`
 -- AUTO_INCREMENT for table `study_material`
 --
 ALTER TABLE `study_material`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `submit_admit_data`

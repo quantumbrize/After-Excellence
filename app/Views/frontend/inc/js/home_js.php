@@ -1,4 +1,24 @@
 <script>
+    get_admin_settings()
+
+    function get_admin_settings() {
+        $.ajax({
+            url: '<?= base_url('/api/user/admin/settings') ?>',
+            type: 'GET',
+            dataType: 'json',
+            success: function (response) {
+                console.log(response);
+                if (response.status && response.data.feedback_show) {
+                   
+                    $('#feedBackButton').hide()
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("An error occurred: " + status + " " + error);
+            }
+        });
+
+    }
     function initializeCarousel() {
         const prevButton = document.querySelector('.prev');
         const nextButton = document.querySelector('.next');
@@ -378,7 +398,7 @@
         $.ajax({
             url: "<?= base_url('/api/live-classes') ?>",
             type: "GET",
-            beforeSend: function () {},
+            beforeSend: function () { },
             success: function (resp) {
                 console.log(resp)
                 if (resp.status) {

@@ -3,6 +3,7 @@
 namespace App\Controllers\Api;
 
 use App\Controllers\BaseController;
+use CodeIgniter\CLI\Console;
 use CodeIgniter\HTTP\ResponseInterface;
 use App\Models\CommonModel;
 use App\Models\UsersModel;
@@ -42,7 +43,7 @@ class User_Controller extends Api_Controller
             $resp['message'] = 'Please Enter Email';
         } else if (empty($data['city'])) {
             $resp['message'] = 'Please Enter City';
-        }  else if (empty($data['block'])) {
+        } else if (empty($data['block'])) {
             $resp['message'] = 'Please Enter Block';
         } else if (empty($data['post_office'])) {
             $resp['message'] = 'Please Enter Post Office';
@@ -90,10 +91,10 @@ class User_Controller extends Api_Controller
             $UserAddressModel = new AddressModel();
             $UserAddressModel->transStart();
             try {
-                    $UserAddressModel
-                        ->where('user_id', $data['user_id'])
-                        ->set($update_address_data)
-                        ->update();
+                $UserAddressModel
+                    ->where('user_id', $data['user_id'])
+                    ->set($update_address_data)
+                    ->update();
                 $UserAddressModel->transCommit();
             } catch (\Exception $e) {
                 $UserAddressModel->transRollback();
@@ -252,7 +253,7 @@ class User_Controller extends Api_Controller
             //     ->get()
             //     ->getResultArray();
             // $UsersRollData = !empty($UsersRollData[0]) ? $UsersRollData[0] : null;
-            if($UsersData['came_from'] == 'online'){
+            if ($UsersData['came_from'] == 'online') {
                 $UserAddressModel = new AddressModel();
                 $AddressData = $UserAddressModel
                     ->where('user_id', $user_id)
@@ -290,7 +291,7 @@ class User_Controller extends Api_Controller
                     WHERE
                         student_class_roll.user_id = '{$user_id}'";
 
-                    $UsersRollData = $CommonModel->customQuery($sql_roll);
+                $UsersRollData = $CommonModel->customQuery($sql_roll);
                 $resp = [
                     "status" => true,
                     "message" => "Data fetched",
@@ -301,7 +302,7 @@ class User_Controller extends Api_Controller
                     "user_img" => $ImageData,
                     "all_address" => $AllAddressData,
                 ];
-            } else{
+            } else {
                 $CommonModel = new CommonModel();
 
                 $sql = "SELECT
@@ -336,18 +337,18 @@ class User_Controller extends Api_Controller
                         WHERE
                             users.uid = '{$user_id}'";
 
-                        $StudentData = $CommonModel->customQuery($sql);
-                        $StudentData = json_decode(json_encode($StudentData), true);
+                $StudentData = $CommonModel->customQuery($sql);
+                $StudentData = json_decode(json_encode($StudentData), true);
 
-                        $resp = [
-                            "status" => true,
-                            "message" => "Data fetched",
-                            "user_id" => $user_id,
-                            "user_data" => $UsersData,
-                            "student_data" => $StudentData,
-                        ];
+                $resp = [
+                    "status" => true,
+                    "message" => "Data fetched",
+                    "user_id" => $user_id,
+                    "user_data" => $UsersData,
+                    "student_data" => $StudentData,
+                ];
             }
-            
+
         }
         return $resp;
     }
@@ -368,13 +369,13 @@ class User_Controller extends Api_Controller
                 ->getResultArray();
             $UsersData = !empty($UsersData[0]) ? $UsersData[0] : null;
             $UsersImageData = '';
-            if($UsersData && $UsersData['type'] == 'staff'){
+            if ($UsersData && $UsersData['type'] == 'staff') {
                 $UserImageModel = new UserImageModel();
                 $UsersImageData = $UserImageModel
-                ->where('user_id', $data['user_id'])
-                ->get()
-                ->getResultArray();
-            $UsersImageData = !empty($UsersImageData[0]) ? $UsersImageData[0] : null;
+                    ->where('user_id', $data['user_id'])
+                    ->get()
+                    ->getResultArray();
+                $UsersImageData = !empty($UsersImageData[0]) ? $UsersImageData[0] : null;
             }
             $resp = [
                 "status" => true,
@@ -384,7 +385,8 @@ class User_Controller extends Api_Controller
             ];
         } else {
             $resp = [
-                "user_data" => $data['user_id'],];
+                "user_data" => $data['user_id'],
+            ];
         }
         return $resp;
     }
@@ -465,7 +467,7 @@ class User_Controller extends Api_Controller
                         ->set(['password' => md5($data['new_password'])])
                         ->update();
                     $updated = $UserModel->transCommit();
-                    if($updated){
+                    if ($updated) {
                         $resp['status'] = true;
                         $resp['message'] = 'Password Changed Successfully';
                         $resp['data'] = "";
@@ -474,7 +476,7 @@ class User_Controller extends Api_Controller
                     $UserModel->transRollback();
                     throw $e;
                 }
-                
+
             } else {
                 $resp['message'] = 'Old password did not match!';
             }
@@ -609,10 +611,10 @@ class User_Controller extends Api_Controller
         try {
             $UsersModel = new UsersModel();
             $totalUsers = $UsersModel
-            ->distinct()
-            ->select('email')
-            ->where('type', 'student')
-            ->countAllResults();
+                ->distinct()
+                ->select('email')
+                ->where('type', 'student')
+                ->countAllResults();
             if (!empty($totalUsers)) {
                 $resp = [
                     'status' => true,
@@ -730,8 +732,8 @@ class User_Controller extends Api_Controller
                     ];
 
                     $user_image_data = [
-                        "uid"               => $this->generate_uid(UID_USER_IMG),
-                        "user_id"           => $userData['uid'],
+                        "uid" => $this->generate_uid(UID_USER_IMG),
+                        "user_id" => $userData['uid'],
                     ];
 
                     foreach ($uploadedFiles['images'] as $file) {
@@ -742,10 +744,10 @@ class User_Controller extends Api_Controller
                     // Insert user data
                     $isUsersAdded = $UsersModel->insert($userData);
 
-                    if($isUsersAdded){
+                    if ($isUsersAdded) {
                         $UserImageModel->insert($user_image_data);
                     }
-                    
+
 
                     // If user added successfully, proceed to add staff
                     if ($isUsersAdded) {
@@ -761,7 +763,7 @@ class User_Controller extends Api_Controller
 
                         // If staff added successfully and access rights are provided, insert staff access
                         if ($isStaffAdded && !empty($data['selectedAccess'])) {
-                            foreach (explode(",",$data['selectedAccess']) as $index => $item) {
+                            foreach (explode(",", $data['selectedAccess']) as $index => $item) {
                                 $StaffAccessModel = new StaffAccessModel();
                                 $accessData = [
                                     "uid" => $this->generate_uid(UID_STAFF_ACCESS),
@@ -882,6 +884,65 @@ class User_Controller extends Api_Controller
         return $response;
     }
 
+    private function admin_settings()
+    {
+        $response = [
+            "status" => false,
+            "message" => "Staff Not Found",
+            "data" => []
+        ];
+        try {
+            $CommonModel = new CommonModel();
+            $sql = "SELECT * FROM admin_settings";
+            $settings = $CommonModel->customQuery($sql);
+            $settings = json_decode(json_encode($settings), true);
+            // $this->prd($settings);
+            $response = [
+                "status" => !empty($settings),
+                "message" => !empty($settings) ? "Staff Found" : "Staff Not Found",
+                "data" => !empty($settings) ? $settings[0] : []
+            ];
+        } catch (\Exception $e) {
+            // Catch any exceptions and set error message
+            $response['message'] = $e->getMessage();
+        }
+        return $response;
+
+    }
+
+
+    private function admin_settings_update($data)
+    {
+        $response = [
+            "status" => false,
+            "message" => "Staff Not Found",
+            "data" => []
+        ];
+        
+        try {
+            $CommonModel = new CommonModel();
+            
+            // Prepare the SQL update statement using parameterized query
+            $sql = "UPDATE admin_settings SET feedback_show = ". $data['status'] ." WHERE id = 1";
+            
+            // Execute the query with the status value from $data
+            $isInserted = $CommonModel->customQuery($sql);
+            // Prepare the response based on the execution result
+            $response = [
+                "status" => true,
+                "message" => $isInserted['affected_rows'] > 0 ? "Settings updated successfully" : "Settings Is Same",
+            ];
+
+        } catch (\Exception $e) {
+            // Catch any exceptions and set error message
+            $response['message'] = $e->getMessage();
+        }
+
+        return $response;
+    }
+
+
+
     private function delete_staff($data)
     {
 
@@ -896,8 +957,8 @@ class User_Controller extends Api_Controller
             $StaffModel = new StaffModel();
             $StaffAccessModel = new StaffAccessModel();
             $UsersModel = new UsersModel();
-                $staff_id = $data['staff_id'];
-                $sql = "SELECT 
+            $staff_id = $data['staff_id'];
+            $sql = "SELECT 
                     users.uid AS user_id
                 FROM
                     staff
@@ -905,25 +966,25 @@ class User_Controller extends Api_Controller
                     users ON staff.user_id = users.uid 
                 WHERE
                     staff.uid = '{$staff_id}';";
-                $user_id = $CommonModel->customQuery($sql);
-                $user_id = json_decode(json_encode($user_id), true);
-                if($user_id){
-                    $delete_staff = $StaffModel->where('uid', $staff_id)->delete();
-                    if($delete_staff){
-                        $delete_user = $UsersModel->where('uid', $user_id[0])->delete();
-                        if($delete_user){
-                            $delete_staff_access = $StaffAccessModel->where('staff_id', $staff_id)->delete();
-                            if($delete_staff_access){
-                                $response = [
-                                    "status" => true,
-                                    "message" => "Staff deleted successfully",
-                                    "data" => [],
-                                ];
-                    
-                            }
+            $user_id = $CommonModel->customQuery($sql);
+            $user_id = json_decode(json_encode($user_id), true);
+            if ($user_id) {
+                $delete_staff = $StaffModel->where('uid', $staff_id)->delete();
+                if ($delete_staff) {
+                    $delete_user = $UsersModel->where('uid', $user_id[0])->delete();
+                    if ($delete_user) {
+                        $delete_staff_access = $StaffAccessModel->where('staff_id', $staff_id)->delete();
+                        if ($delete_staff_access) {
+                            $response = [
+                                "status" => true,
+                                "message" => "Staff deleted successfully",
+                                "data" => [],
+                            ];
+
                         }
                     }
                 }
+            }
 
         } catch (\Exception $e) {
             // Catch any exceptions and set error message
@@ -1029,11 +1090,11 @@ class User_Controller extends Api_Controller
                 $isStaffUpdated = $StaffModel->where(['user_id' => $user_id])->set($updateStaffData)->update();
 
                 $uploadedFiles = $this->request->getFiles();
-                if(isset($uploadedFiles['images'])){
+                if (isset($uploadedFiles['images'])) {
                     foreach ($uploadedFiles['images'] as $file) {
                         $file_src = $this->single_upload($file, PATH_USER_IMG);
                         $banner_data['img'] = $file_src;
-                        if($banner_data['img'] !=""){
+                        if ($banner_data['img'] != "") {
                             $isUserImageUpdated = $UserImageModel->where(['user_id' => $user_id])->set($banner_data)->update();
                         }
                     }
@@ -1127,13 +1188,13 @@ class User_Controller extends Api_Controller
                 $resp['message'] = 'Please add password';
             } else if (empty($uploadedFiles['user_img'])) {
                 $resp['message'] = 'Please add user image';
-            }else if (empty($uploadedFiles['signature'])) {
+            } else if (empty($uploadedFiles['signature'])) {
                 $resp['message'] = 'Please add signature';
-            }else if (empty($uploadedFiles['pan_img'])) {
+            } else if (empty($uploadedFiles['pan_img'])) {
                 $resp['message'] = 'Please add pan card image';
-            }else if (empty($uploadedFiles['aadhar_img'])) {
+            } else if (empty($uploadedFiles['aadhar_img'])) {
                 $resp['message'] = 'Please add aadhar card image';
-            }else {
+            } else {
 
                 $user_data = [
                     "uid" => $this->generate_uid(UID_USER),
@@ -1261,25 +1322,25 @@ class User_Controller extends Api_Controller
 
                 $updateVendorDoc = [];
                 $uploadedFiles = $this->request->getFiles();
-                if(isset($uploadedFiles['user_img'])){
+                if (isset($uploadedFiles['user_img'])) {
                     foreach ($uploadedFiles['user_img'] as $file) {
                         $file_src = $this->single_upload($file, PATH_USER_IMG);
                         $updateVendorDoc['user_img'] = $file_src;
                     }
                 }
-                if(isset($uploadedFiles['signature'])){
+                if (isset($uploadedFiles['signature'])) {
                     foreach ($uploadedFiles['signature'] as $file) {
                         $file_src = $this->single_upload($file, PATH_USER_DOC);
                         $updateVendorDoc['signature_img'] = $file_src;
                     }
                 }
-                if(isset($uploadedFiles['pan_img'])){
+                if (isset($uploadedFiles['pan_img'])) {
                     foreach ($uploadedFiles['pan_img'] as $file) {
                         $file_src = $this->single_upload($file, PATH_USER_DOC);
                         $updateVendorDoc['pan_img'] = $file_src;
                     }
                 }
-                if(isset($uploadedFiles['aadhar_img'])){
+                if (isset($uploadedFiles['aadhar_img'])) {
                     foreach ($uploadedFiles['aadhar_img'] as $file) {
                         $file_src = $this->single_upload($file, PATH_USER_DOC);
                         $updateVendorDoc['aadhar_img'] = $file_src;
@@ -1290,9 +1351,9 @@ class User_Controller extends Api_Controller
 
                 // Update user details
                 $isUserUpdated = $UsersModel->where(['uid' => $data['user_id']])->set($updateUserData)->update();
-                if($isUserUpdated){
+                if ($isUserUpdated) {
                     $isVendorUpdated = $VendorModel->where(['user_id' => $data['user_id']])->set($updateVendorDoc)->update();
-                    if($isVendorUpdated){
+                    if ($isVendorUpdated) {
                         $resp['status'] = true;
                         $resp['message'] = 'Seller update successfully';
                         $resp['data'] = "";
@@ -1300,8 +1361,8 @@ class User_Controller extends Api_Controller
                 }
                 // Insert user data
                 // $UsersModel->insert($user_data);
-                
-                
+
+
             }
 
         } catch (\Exception $e) {
@@ -1327,7 +1388,7 @@ class User_Controller extends Api_Controller
             $UsersModel = new UsersModel();
             $VendorModel = new VendorModel();
             $deleteUser = $UsersModel->where('uid', $data['user_id'])->delete();
-            if($deleteUser){
+            if ($deleteUser) {
                 $deleteVendor = $VendorModel->where('user_id', $data['user_id'])->delete();
             }
             if ($deleteVendor) {
@@ -1374,11 +1435,11 @@ class User_Controller extends Api_Controller
                 JOIN 
                     user_img ON user_img.user_id = users.uid";
 
-                if (!empty($data['alph'])) {
-                    $alph = $data['alph'];
-                    $sql .= " AND
+            if (!empty($data['alph'])) {
+                $alph = $data['alph'];
+                $sql .= " AND
                         users.user_name LIKE '%{$alph}%';";
-                }
+            }
             $staff = $CommonModel->customQuery($sql);
             $staff = json_decode(json_encode($staff), true);
 
@@ -1399,7 +1460,7 @@ class User_Controller extends Api_Controller
 
         return $response;
     }
-    
+
 
     // private function new_student_registration($data)
     // {
@@ -1502,14 +1563,14 @@ class User_Controller extends Api_Controller
     //                 "uid"               => $this->generate_uid(UID_USER_IMG),
     //                 "user_id"           => $user_data['uid'],
     //             ];
-                
+
 
     //             $file_src = $this->single_upload($uploadedFiles['student_photo'], PATH_USER_IMG);
     //             $user_image_data['img'] = $file_src;
 
     //             $file_src = $this->single_upload($uploadedFiles['aadhar_img'], PATH_USER_DOC);
     //             $student_data['aadhar_img'] = $file_src;
-            
+
     //             $file_src = $this->single_upload($uploadedFiles['marksheet_img'], PATH_USER_DOC);
     //             $student_data['marksheet_img'] = $file_src;
 
@@ -1534,10 +1595,10 @@ class User_Controller extends Api_Controller
     //                         }
     //                 }
     //            }
-               
-                
 
-                
+
+
+
     //         }
 
     //     } catch (\Exception $e) {
@@ -1588,29 +1649,29 @@ class User_Controller extends Api_Controller
                     "status" => 'active'
                 ];
                 $student_data = [
-                    "uid"                   => $this->generate_uid(UID_STUSENT),
-                    "user_id"               => $user_data['uid'],
-                    "dob"                   => $data['dob'],
-                    "password"              => $data['password'],
-                    "login_code"            => ''
-                    
+                    "uid" => $this->generate_uid(UID_STUSENT),
+                    "user_id" => $user_data['uid'],
+                    "dob" => $data['dob'],
+                    "password" => $data['password'],
+                    "login_code" => ''
+
                 ];
 
                 $class_roll = [
-                    "uid"                   => $this->generate_uid('ROL'),
-                    "user_id"               => $user_data['uid'],
-                    "class_id"              => $data['className'],
-                    "branch_id"             => $data['branchName'],
-                    "roll"                  => $data['roll'],
-                    "status"                => 'active',
-                    
+                    "uid" => $this->generate_uid('ROL'),
+                    "user_id" => $user_data['uid'],
+                    "class_id" => $data['className'],
+                    "branch_id" => $data['branchName'],
+                    "roll" => $data['roll'],
+                    "status" => 'active',
+
                 ];
 
                 $user_image_data = [
-                    "uid"               => $this->generate_uid(UID_USER_IMG),
-                    "user_id"           => $user_data['uid'],
+                    "uid" => $this->generate_uid(UID_USER_IMG),
+                    "user_id" => $user_data['uid'],
                 ];
-                
+
 
                 $file_src = $this->single_upload($uploadedFiles['user_image'], PATH_USER_IMG);
                 $user_image_data['img'] = $file_src;
@@ -1621,25 +1682,25 @@ class User_Controller extends Api_Controller
                 $StudentClassRollModel = new StudentClassRollModel();
 
                 // Insert user data
-               $insert_user_data = $UsersModel->insert($user_data);
-               if($insert_user_data){
+                $insert_user_data = $UsersModel->insert($user_data);
+                if ($insert_user_data) {
                     $insert_user_img_data = $UserImageModel->insert($user_image_data);
-                    if($insert_user_img_data){
-                            $insert_student_data = $StudentModel->insert($student_data);
-                            if($insert_student_data){
-                                $insert_class_roll_data = $StudentClassRollModel->insert($class_roll);
-                                if($insert_class_roll_data){
-                                    $resp['status'] = true;
-                                    $resp['message'] = 'Student Added Succesfully';
-                                    $resp['data'] = ['user_id' => $user_data['uid']];
-                                }
+                    if ($insert_user_img_data) {
+                        $insert_student_data = $StudentModel->insert($student_data);
+                        if ($insert_student_data) {
+                            $insert_class_roll_data = $StudentClassRollModel->insert($class_roll);
+                            if ($insert_class_roll_data) {
+                                $resp['status'] = true;
+                                $resp['message'] = 'Student Added Succesfully';
+                                $resp['data'] = ['user_id' => $user_data['uid']];
                             }
+                        }
                     }
-               }
-               
-                
+                }
 
-                
+
+
+
             }
 
         } catch (\Exception $e) {
@@ -1694,7 +1755,7 @@ class User_Controller extends Api_Controller
         $students = json_decode(json_encode($students), true);
 
         if (count($students) > 0) {
-            foreach($students as $index => $student){
+            foreach ($students as $index => $student) {
 
                 $sql_roll = "SELECT
                         student_class_roll.roll AS student_roll,
@@ -1713,8 +1774,8 @@ class User_Controller extends Api_Controller
                         branches ON student_class_roll.branch_id = branches.uid
                     WHERE
                         student_class_roll.user_id = '{$student['user_id']}'";
-    
-                    $students[$index]['student_roll'] = $CommonModel->customQuery($sql_roll);
+
+                $students[$index]['student_roll'] = $CommonModel->customQuery($sql_roll);
             }
 
             $resp["status"] = true;
@@ -1761,24 +1822,24 @@ class User_Controller extends Api_Controller
                     "password" => md5($data['password']),
                 ];
                 $student_data = [
-                    "dob"                   => $data['dob'],
-                    "password"              => $data['password'],
-                    
+                    "dob" => $data['dob'],
+                    "password" => $data['password'],
+
                 ];
 
                 $class_roll = [
-                    "class_id"              => $data['className'],
-                    "branch_id"             => $data['branchName'],
-                    "roll"                  => $data['roll'],
+                    "class_id" => $data['className'],
+                    "branch_id" => $data['branchName'],
+                    "roll" => $data['roll'],
                 ];
-                
+
                 $UsersModel = new UsersModel();
                 $UserImageModel = new UserImageModel();
                 $StudentModel = new StudentModel();
                 $StudentClassRollModel = new StudentClassRollModel();
 
                 $uploadedFiles = $this->request->getFiles();
-                if (!empty($uploadedFiles['user_image'])){
+                if (!empty($uploadedFiles['user_image'])) {
                     $file_src = $this->single_upload($uploadedFiles['user_image'], PATH_USER_IMG);
                     $user_image_data['img'] = $file_src;
                     $UserImageModel->set($user_image_data)
@@ -1833,21 +1894,21 @@ class User_Controller extends Api_Controller
                 $StudentData = $StudentClassRollModel
                     ->where(['user_id' => $data['user_id']])
                     ->find();
-                if(!empty($StudentData)){
+                if (!empty($StudentData)) {
                     $isUserUpdated = $UsersModel->where(['uid' => $data['user_id']])->set($updateUserData)->update();
-                    if($isUserUpdated){
-                            $resp['status'] = true;
-                            $resp['message'] = 'Status update successfully';
-                            $resp['data'] = "";
+                    if ($isUserUpdated) {
+                        $resp['status'] = true;
+                        $resp['message'] = 'Status update successfully';
+                        $resp['data'] = "";
                     }
-                }else{
+                } else {
                     $resp['message'] = 'Please create roll and put the user in a class';
                 }
-                
+
                 // Insert user data
                 // $UsersModel->insert($user_data);
-                
-                
+
+
             }
 
         } catch (\Exception $e) {
@@ -2271,6 +2332,23 @@ class User_Controller extends Api_Controller
         $data = $this->request->getPost();
         $resp = $this->change_admin_password($data);
         return $this->response->setJSON($resp);
+    }
+
+    public function GET_admin_settings()
+    {
+        $resp = $this->admin_settings();
+        return $this->response->setJSON($resp);
+    }
+
+    public function POST_admin_settings()
+    {
+        $data = $this->request->getPost();
+
+        $resp = $this->admin_settings_update($data);
+        return $this->response->setJSON($resp);
 
     }
+
+
+
 }

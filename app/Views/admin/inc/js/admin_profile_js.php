@@ -1,7 +1,58 @@
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         let user_id = '<?= isset($_SESSION['ADMIN_user_id']) ? $_SESSION['ADMIN_user_id'] : $_SESSION['STAFF_user_id'] ?>'
-        get_profile_section (user_id)
+
+        get_profile_section(user_id)
+        get_admin_settings()
+
+        function get_admin_settings() {
+            $.ajax({
+                url: '<?= base_url('/api/user/admin/settings') ?>',
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) {
+                    console.log(response);
+                    if (response.status) {
+                        $('#fedbackInput').val(response.data.feedback_show == 1 ? 'show' : 'hide')
+
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("An error occurred: " + status + " " + error);
+                }
+            });
+
+        }
+
+        $('#save_settings').click(function () {
+            // Determine the status value based on the feedback input
+            let status = $('#fedbackInput').val() === 'show' ? 1 : 0;
+            var formData = new FormData();
+            formData.append('status', status);
+            $.ajax({
+                url: '<?= base_url('/api/user/admin/settings') ?>',  // Replace with your actual endpoint URL
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    // Handle success response
+                    console.log("Settings saved successfully:", response);
+                    html = `<div class="alert alert-success alert-dismissible alert-label-icon label-arrow fade show material-shadow" role="alert">
+                                <i class="ri-checkbox-circle-fill label-icon"></i>${response.message}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>`
+                    $('#alert').html(html)
+                    // Optionally display a message or perform further actions
+                },
+                error: function (xhr, status, error) {
+                    // Handle error response
+                    console.error("An error occurred: " + status + " " + error);
+                }
+            });
+        });
+
+
 
         $("#update_profile").click(function () {
             var user_id = $("#userId").val()
@@ -24,7 +75,7 @@
             } else {
                 $("#email_val").text("")
             }
-            
+
 
 
             if (nameInput != "" && emailInput != "" && phonenumberInput != "") {
@@ -168,18 +219,18 @@
 
         })
     });
-    function get_profile_section(user_id){
+    function get_profile_section(user_id) {
         $.ajax({
             url: "<?= base_url('api/get/admin') ?>",
             type: "GET",
-            data: {user_id:user_id},
+            data: { user_id: user_id },
             success: function (resp) {
                 // resp = JSON.parse(resp)
                 // console.log(resp.user_data.number)
                 if (resp.status) {
                     console.log(resp)
                     var user_img = `<?= base_url() ?>public/assets_admin/images/users/avatar-1.jpg`
-                    if(resp.user_data.type == 'staff'){
+                    if (resp.user_data.type == 'staff') {
                         var user_img = `<?= base_url() ?>public/uploads/user_images/${resp.user_image.img}`
                     }
 
@@ -191,7 +242,7 @@
                     $('#user_name').text(resp.user_data.user_name)
                     $('#user_role').text(resp.user_data.type)
                     // var image_url = `https://usercontent.one/wp/www.vocaleurope.eu/wp-content/uploads/no-image.jpg?media=1642546813`
-                   
+
                 } else {
                     console.log(resp)
                 }

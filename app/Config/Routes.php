@@ -241,6 +241,8 @@ $routes->get('/api/seller',                         'Api\User_Controller::GET_a_
 $routes->get('/api/delete/seller',                  'Api\User_Controller::GET_seller_delete');// Seller Delete
 $routes->post('/api/update/seller',                 'Api\User_Controller::POST_update_seller'); // Update seller
 $routes->get('/api/students',                       'Api\User_Controller::GET_students'); // Get Students
+$routes->get('/api/user/admin/settings',            'Api\User_Controller::GET_admin_settings'); // Get Students
+$routes->post('/api/user/admin/settings',           'Api\User_Controller::POST_admin_settings'); // Get Students
 $routes->post('/api/update/user/status',            'Api\User_Controller::POST_update_user_status'); // Update User Status
 $routes->get('/api/purchased/courses',              'Api\Order_Controller::GET_purchased_courses'); // Get Purchased Courses
 $routes->post('/api/city/add',                      'Api\Banner_Controller::POST_add_cities'); // Post Add city
